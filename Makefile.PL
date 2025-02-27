@@ -36,6 +36,7 @@ WriteMakefile(
 		},
 	},
 	TEST_REQUIRES => {
+		'Error' => 0,
 		'Test::Compile' => 0,
 		'Test::DescribeMe' => 0,
 		'Test::Most' => 0,
