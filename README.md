@@ -31,6 +31,9 @@ Version 0.01
         print 'You are at ', $params->{'latitude'}, ', ', $params->{'longitude'}, "\n";
     }
 
+    where_am_i(latitude => 0.3, longitude => 124);
+    where_am_i({ latitude => 3.14, longitude => -155 });
+
 # METHODS
 
 ## get\_params
@@ -38,8 +41,8 @@ Version 0.01
 Parse the arguments given to a function.
 Processes arguments passed to methods and ensures they are in a usable format,
 allowing the caller to call the function in any way that they want
-e.g. foo('bar'), foo(arg => 'bar'), foo({ arg => 'bar' }) all mean the same
-when called \_get\_params('arg', @\_);
+e.g. \`foo('bar')\`, \`foo(arg => 'bar')\`, \`foo({ arg => 'bar' })\` all mean the same
+when called get\_params('arg', @\_);
 
 # AUTHOR
 
