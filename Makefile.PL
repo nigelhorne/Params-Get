@@ -12,10 +12,10 @@ if($^O eq 'darwin') {
 }
 
 WriteMakefile(
-	ABSTRACT_FROM	=> 'lib/Params/Get/Strict.pm',
+	ABSTRACT_FROM	=> 'lib/Params/Get.pm',
 	AUTHOR => 'Nigel Horne <njh@bandsman.co.uk>',
-	NAME => 'Params::Get::Strict',
-	VERSION_FROM => 'lib/Params/Get/Strict.pm', # finds $VERSION in the module
+	NAME => 'Params::Get',
+	VERSION_FROM => 'lib/Params/Get.pm', # finds $VERSION in the module
 	((defined($ExtUtils::MakeMaker::VERSION) && ($ExtUtils::MakeMaker::VERSION >= 6.3002))
 		? ('LICENSE'=> 'GPL')
 		: ()),
