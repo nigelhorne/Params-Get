@@ -8,7 +8,7 @@ use Test::Needs 'Params::Validate::Strict';
 
 sub where_am_i
 {
-	my $params = Params::Validate::Strict({
+	my $params = Params::Validate::Strict::validate_strict({
 		args => Params::Get::get_params(undef, @_),
 		schema => {
 			'latitude' => {
@@ -22,9 +22,9 @@ sub where_am_i
 			}
 		}
 	});
-	return 'You are at ', $params->{'latitude'}, ', ', $params->{'longitude'};
+	return 'You are at ' . $params->{'latitude'} . ', ' . $params->{'longitude'};
 }
 
-cmp_ok(where_am_i(10, 100), 'eq', 'You are at 10, 100');
+cmp_ok(where_am_i(latitude => 10, longitude => 100), 'eq', 'You are at 10, 100');
 
 done_testing();
