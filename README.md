@@ -13,19 +13,19 @@ Version 0.01
 
     sub where_am_i
     {
-        my $params = Params::Validate::Strict({
-                args => Params::Get::get_params(undef, @_),
-                schema => {
-                        'latitude' => {
-                                type => 'number',
-                                min => -180,
-                                max => 180
-                        }, 'longitude' => {
-                                type => 'number',
-                                min => -180,
-                                max => 180
-                        }
+        my $params = Params::Validate::Strict::validate_strict({
+            args => Params::Get::get_params(undef, @_),
+            schema => {
+                'latitude' => {
+                    type => 'number',
+                    min => -180,
+                    max => 180
+                }, 'longitude' => {
+                    type => 'number',
+                    min => -180,
+                    max => 180
                 }
+            }
         });
 
         print 'You are at ', $params->{'latitude'}, ', ', $params->{'longitude'}, "\n";
@@ -37,7 +37,7 @@ Version 0.01
 
 Parse the arguments given to a function.
 Processes arguments passed to methods and ensures they are in a usable format,
-allowing the caller to call the function in anyway that they want
+allowing the caller to call the function in any way that they want
 e.g. foo('bar'), foo(arg => 'bar'), foo({ arg => 'bar' }) all mean the same
 when called \_get\_params('arg', @\_);
 

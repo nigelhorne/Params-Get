@@ -26,22 +26,22 @@ our $VERSION = '0.01';
 
     sub where_am_i
     {
-        my $params = Params::Validate::Strict({
-		args => Params::Get::get_params(undef, @_),
-		schema => {
-			'latitude' => {
-				type => 'number',
-				min => -180,
-				max => 180
-			}, 'longitude' => {
-				type => 'number',
-				min => -180,
-				max => 180
-			}
-		}
-	});
+        my $params = Params::Validate::Strict::validate_strict({
+            args => Params::Get::get_params(undef, @_),
+            schema => {
+                'latitude' => {
+                    type => 'number',
+                    min => -180,
+                    max => 180
+                }, 'longitude' => {
+                    type => 'number',
+                    min => -180,
+                    max => 180
+                }
+            }
+        });
 
-	print 'You are at ', $params->{'latitude'}, ', ', $params->{'longitude'}, "\n";
+        print 'You are at ', $params->{'latitude'}, ', ', $params->{'longitude'}, "\n";
     }
 
 =head1	METHODS
