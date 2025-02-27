@@ -9,7 +9,7 @@ our @EXPORT_OK = qw(get_params);
 
 =head1 NAME
 
-Params::Validate::Get - Get the parameters to a subroutine in any way you want
+Params::Get - Get the parameters to a subroutine in any way you want
 
 =head1 VERSION
 
@@ -104,15 +104,15 @@ Nigel Horne, C<< <njh at bandsman.co.uk> >>
 
 This module is provided as-is without any warranty.
 
-Please report any bugs or feature requests to C<bug-params-validate-get at rt.cpan.org>,
+Please report any bugs or feature requests to C<bug-params-get at rt.cpan.org>,
 or through the web interface at
-L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Params-Validate-Get>.
+L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Params-Get>.
 I will be notified, and then you'll
 automatically be notified of progress on your bug as I make changes.
 
 You can find documentation for this module with the perldoc command.
 
-    perldoc Params::Validate::Get
+    perldoc Params::Get
 
 You can also look for information at:
 
@@ -120,19 +120,19 @@ You can also look for information at:
 
 =item * MetaCPAN
 
-L<https://metacpan.org/dist/Params-Validate-Get>
+L<https://metacpan.org/dist/Params-Get>
 
 =item * RT: CPAN's request tracker
 
-L<https://rt.cpan.org/NoAuth/Bugs.html?Dist=Params-Validate-Get>
+L<https://rt.cpan.org/NoAuth/Bugs.html?Dist=Params-Get>
 
 =item * CPAN Testers' Matrix
 
-L<http://matrix.cpantesters.org/?dist=Params-Validate-Get>
+L<http://matrix.cpantesters.org/?dist=Params-Get>
 
 =item * CPAN Testers Dependencies
 
-L<http://deps.cpantesters.org/?module=Params::Validate::Get>
+L<http://deps.cpantesters.org/?module=Params::Get>
 
 =back
 

@@ -1,6 +1,6 @@
 # NAME
 
-Params::Validate::Get - Get the parameters to a subroutine in any way you want
+Params::Get - Get the parameters to a subroutine in any way you want
 
 # VERSION
 
@@ -55,33 +55,33 @@ Nigel Horne, `<njh at bandsman.co.uk>`
 
 This module is provided as-is without any warranty.
 
-Please report any bugs or feature requests to `bug-params-validate-get at rt.cpan.org`,
+Please report any bugs or feature requests to `bug-params-get at rt.cpan.org`,
 or through the web interface at
-[http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Params-Validate-Get](http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Params-Validate-Get).
+[http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Params-Get](http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Params-Get).
 I will be notified, and then you'll
 automatically be notified of progress on your bug as I make changes.
 
 You can find documentation for this module with the perldoc command.
 
-    perldoc Params::Validate::Get
+    perldoc Params::Get
 
 You can also look for information at:
 
 - MetaCPAN
 
-    [https://metacpan.org/dist/Params-Validate-Get](https://metacpan.org/dist/Params-Validate-Get)
+    [https://metacpan.org/dist/Params-Get](https://metacpan.org/dist/Params-Get)
 
 - RT: CPAN's request tracker
 
-    [https://rt.cpan.org/NoAuth/Bugs.html?Dist=Params-Validate-Get](https://rt.cpan.org/NoAuth/Bugs.html?Dist=Params-Validate-Get)
+    [https://rt.cpan.org/NoAuth/Bugs.html?Dist=Params-Get](https://rt.cpan.org/NoAuth/Bugs.html?Dist=Params-Get)
 
 - CPAN Testers' Matrix
 
-    [http://matrix.cpantesters.org/?dist=Params-Validate-Get](http://matrix.cpantesters.org/?dist=Params-Validate-Get)
+    [http://matrix.cpantesters.org/?dist=Params-Get](http://matrix.cpantesters.org/?dist=Params-Get)
 
 - CPAN Testers Dependencies
 
-    [http://deps.cpantesters.org/?module=Params::Validate::Get](http://deps.cpantesters.org/?module=Params::Validate::Get)
+    [http://deps.cpantesters.org/?module=Params::Get](http://deps.cpantesters.org/?module=Params::Get)
 
 # LICENSE AND COPYRIGHT
 
