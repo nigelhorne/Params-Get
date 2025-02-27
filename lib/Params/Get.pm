@@ -44,7 +44,6 @@ our $VERSION = '0.01';
 	print 'You are at ', $params->{'latitude'}, ', ', $params->{'longitude'}, "\n";
     }
 
-
 =head1	METHODS
 
 =head2 get_params
