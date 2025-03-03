@@ -70,16 +70,21 @@ sub get_params
 	my $num_args = scalar(@_);
 
 	# Populate %rc based on the number and type of arguments
-	if(($num_args == 1) && defined($default)) {
-		# %rc = ($default => shift);
-		return { $default => shift };
-	} elsif($num_args == 1) {
+	if($num_args == 1) {
+		if(defined($default)) {
+			# %rc = ($default => shift);
+			return { $default => shift };
+		}
 		Carp::croak('Usage: ', __PACKAGE__, '->', (caller(1))[3], '()');
-	} elsif(($num_args == 0) && defined($default)) {
-		Carp::croak('Usage: ', __PACKAGE__, '->', (caller(1))[3], "($default => \$val)");
-	} elsif($num_args == 0) {
+	}
+	if($num_args == 0) {
+		if(defined($default)) {
+			# No means to say that the default is optional
+			Carp::croak('Usage: ', __PACKAGE__, '->', (caller(1))[3], "($default => \$val)");
+		}
 		return;
-	} elsif(($num_args % 2) == 0) {
+	}
+	if(($num_args % 2) == 0) {
 		%rc = @_;
 	} else {
 		Carp::croak('Usage: ', __PACKAGE__, '->', (caller(1))[3], '()');
