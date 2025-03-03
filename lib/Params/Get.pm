@@ -66,7 +66,6 @@ sub get_params
 	# Directly return hash reference if the first parameter is a hash reference
 	return $_[0] if(ref($_[0]) eq 'HASH');
 
-	my %rc;
 	my $num_args = scalar(@_);
 
 	# Populate %rc based on the number and type of arguments
@@ -85,12 +84,11 @@ sub get_params
 		return;
 	}
 	if(($num_args % 2) == 0) {
-		%rc = @_;
-	} else {
-		Carp::croak('Usage: ', __PACKAGE__, '->', (caller(1))[3], '()');
+		my %rc = @_;
+		return \%rc;
 	}
 
-	return \%rc;
+	Carp::croak('Usage: ', __PACKAGE__, '->', (caller(1))[3], '()');
 }
 
 =head1 AUTHOR
