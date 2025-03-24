@@ -4,7 +4,7 @@ Params::Get - Get the parameters to a subroutine in any way you want
 
 # VERSION
 
-Version 0.01
+Version 0.02
 
 # SYNOPSIS
 
@@ -46,7 +46,7 @@ when called get\_params('arg', @\_);
 
 # AUTHOR
 
-Nigel Horne, `<njh at bandsman.co.uk>`
+Nigel Horne, `<njh at nigelhorne.com>`
 
 # BUGS
 
