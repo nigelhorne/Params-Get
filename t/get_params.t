@@ -35,7 +35,7 @@ try {
 };
 like($msg, qr/Usage/, 'Throws an error for single argument without default');
 
-# Test 5: Zero arguments with default
+# Zero arguments with default
 try {
 	get_params('key');
 } catch Error with {
@@ -43,8 +43,28 @@ try {
 };
 like($msg, qr/Usage/, 'Throws an error for zero arguments with default');
 
-# Test 6: Zero arguments without default
+# Zero arguments without default
 $params = get_params();
 is_deeply($params, undef, 'Zero arguments without default returns undef');
+
+# Default argument with options
+{
+	package Family;
+
+	use Params::Get;
+
+	sub new {
+		my $class = shift;
+		my $rc = Params::Get::get_params('name', \@_);
+
+		return bless $rc, $class;
+	}
+}
+
+my $obj = Family->new('flintstones', { 'fred' => 'wilma' });
+
+is_deeply($obj, { 'name' => 'flintstones', 'fred' => 'wilma' }, 'Mandatory followed by options works');
+
+diag(Data::Dumper->new([$obj])->Dump()) if($ENV{'TEST_VERBOSE'});
 
 done_testing();

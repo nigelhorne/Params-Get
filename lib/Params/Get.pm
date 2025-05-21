@@ -63,6 +63,24 @@ or
 
     get_params('arg', \@_);
 
+Some people like this sort of model, which is also supported.
+
+    use MyClass;
+
+    my $str = 'hello world';
+    my $obj = MyClass->new($str, { type => 'string' });
+
+    package MyClass;
+
+    use Params::Get;
+
+    sub new {
+        my $class = shift;
+        my $rc = Params::Get::get_params('value', \@_);
+
+        return bless $rc, $class;
+    }
+
 =cut
 
 sub get_params
@@ -97,6 +115,14 @@ sub get_params
 			Carp::croak('Usage: ', __PACKAGE__, '->', (caller(1))[3], "($default => \$val)");
 		}
 		return;
+	}
+	if(($num_args == 2) && (ref($args->[1]) eq 'HASH')) {
+		if(defined($default)) {
+			return {
+				$default => $args->[0],
+				%{$args->[1]}
+			};
+		}
 	}
 
 	if($array_ref && defined($default)) {
