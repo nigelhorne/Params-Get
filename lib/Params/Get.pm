@@ -103,15 +103,20 @@ sub get_params
 
 	# Populate %rc based on the number and type of arguments
 	if($num_args == 1) {
-		if(defined($default) && !ref($args->[0])) {
-			# %rc = ($default => shift);
-			return { $default => $args->[0] };
+		if(defined($default)) {
+			if(!ref($args->[0])) {
+				# %rc = ($default => shift);
+				return { $default => $args->[0] };
+			}
+			if(defined($default) && (ref($args->[0]) eq 'ARRAY')) {
+				return { $default => $args->[0] };
+			}
+			if(defined($default) && (ref($args->[0]) eq 'SCALAR')) {
+				return { $default => ${$args->[0]} };
+			}
 		}
 		if(ref($args->[0]) eq 'HASH') {
 			return $args->[0];
-		}
-		if(defined($default) && (ref($args->[0]) eq 'ARRAY')) {
-			return { $default => $args->[0] };
 		}
 		Carp::croak('Usage: ', __PACKAGE__, '->', (caller(1))[3], '()');
 	}

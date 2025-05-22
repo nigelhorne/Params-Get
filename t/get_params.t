@@ -105,4 +105,10 @@ $obj = MyClass->new(
 
 diag(Data::Dumper->new([$obj])->Dump()) if($ENV{'TEST_VERBOSE'});
 
+is_deeply(get_params('string', 'Hello World'), { 'string' => 'Hello World' });
+
+is_deeply(get_params('string', \'Hello World'), { 'string' => 'Hello World' });
+
+diag(Data::Dumper->new([get_params('string', \'Hello World')])->Dump()) if($ENV{'TEST_VERBOSE'});
+
 done_testing();
