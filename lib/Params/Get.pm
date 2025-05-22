@@ -116,6 +116,9 @@ sub get_params
 			if(ref($args->[0]) eq 'SCALAR') {
 				return { $default => ${$args->[0]} };
 			}
+			if(ref($args->[0]) eq 'CODE') {
+				return { $default => $args->[0] };
+			}
 			if(Scalar::Util::blessed($args->[0])) {
 				return { $default => $args->[0] };
 			}

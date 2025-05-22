@@ -1,5 +1,8 @@
 Revision history for Params-Get
 
+0.06
+	Allow the default to be a CODE ref
+
 0.05	Thu May 22 13:35:12 EDT 2025
 	Handle the model of a mandatory parameter followed by a hash ref of options
 	Go some way to fixing problems using \@_ rather than @_
