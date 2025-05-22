@@ -2,6 +2,7 @@ Revision history for Params-Get
 
 0.05
 	Handle the model of a mandatory parameter followed by a hash ref of options
+	Go some way to fixing problems using \@_ rather than @_
 
 0.04	Mon Apr 28 16:50:23 EDT 2025
 	Fix when there's only one argument which is a ref to an array

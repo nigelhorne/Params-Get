@@ -55,28 +55,24 @@ is_deeply($params, { value1 => 'value2' });
 	}
 }
 
-diag __LINE__;
 my $obj = MyClassArray->new('one', 'two');
 is_deeply($obj, { one => 'two' });
 
-diag(Data::Dumper->new([$obj])->Dump());
+diag(Data::Dumper->new([$obj])->Dump()) if($ENV{'TEST_VERBOSE'});
 
-diag __LINE__;
 $obj = MyClassArray->new({ 'one', 'two' });
 is_deeply($obj, { one => 'two' });
 
-diag(Data::Dumper->new([$obj])->Dump());
+diag(Data::Dumper->new([$obj])->Dump()) if($ENV{'TEST_VERBOSE'});
 
-diag __LINE__;
 $obj = MyClassArrayRef->new('one', 'two');
 is_deeply($obj, { one => 'two' });
 
-diag(Data::Dumper->new([$obj])->Dump());
+diag(Data::Dumper->new([$obj])->Dump()) if($ENV{'TEST_VERBOSE'});
 
-diag __LINE__;
 $obj = MyClassArrayRef->new({ 'one', 'two' });
 is_deeply($obj, { one => 'two' });
 
-diag(Data::Dumper->new([$obj])->Dump());
+diag(Data::Dumper->new([$obj])->Dump()) if($ENV{'TEST_VERBOSE'});
 
 done_testing();

@@ -107,6 +107,9 @@ sub get_params
 			# %rc = ($default => shift);
 			return { $default => $args->[0] };
 		}
+		if(ref($args->[0]) eq 'HASH') {
+			return $args->[0];
+		}
 		Carp::croak('Usage: ', __PACKAGE__, '->', (caller(1))[3], '()');
 	}
 	if($num_args == 0) {
