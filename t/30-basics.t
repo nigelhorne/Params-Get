@@ -13,6 +13,10 @@ is_deeply($params, { foo => 'bar' }, 'get_params correctly returns hash referenc
 $params = get_params(undef, foo => 'bar', baz => 'qux');
 is_deeply($params, { foo => 'bar', baz => 'qux' }, 'get_params correctly processes key-value pairs');
 
+# Test get_params with ref to key-value pairs
+$params = get_params(undef, { foo => 'bar', baz => 'qux' });
+is_deeply($params, { foo => 'bar', baz => 'qux' }, 'get_params correctly processes ref to key-value pairs');
+
 # Test get_params with a default key and single argument
 $params = get_params('key', 'value');
 is_deeply($params, { key => 'value' }, 'get_params correctly assigns default key');
@@ -30,5 +34,49 @@ is_deeply($params, { value1 => 'value2' });
 
 $params = get_params(undef, ['value1', 'value2']);
 is_deeply($params, { value1 => 'value2' });
+
+{
+	package MyClassArray;
+
+	sub new {
+		my $class = shift;
+
+		return bless Params::Get::get_params(undef, @_), $class;
+	}
+}
+
+{
+	package MyClassArrayRef;
+
+	sub new {
+		my $class = shift;
+
+		return bless Params::Get::get_params(undef, \@_), $class;
+	}
+}
+
+diag __LINE__;
+my $obj = MyClassArray->new('one', 'two');
+is_deeply($obj, { one => 'two' });
+
+diag(Data::Dumper->new([$obj])->Dump());
+
+diag __LINE__;
+$obj = MyClassArray->new({ 'one', 'two' });
+is_deeply($obj, { one => 'two' });
+
+diag(Data::Dumper->new([$obj])->Dump());
+
+diag __LINE__;
+$obj = MyClassArrayRef->new('one', 'two');
+is_deeply($obj, { one => 'two' });
+
+diag(Data::Dumper->new([$obj])->Dump());
+
+diag __LINE__;
+$obj = MyClassArrayRef->new({ 'one', 'two' });
+is_deeply($obj, { one => 'two' });
+
+diag(Data::Dumper->new([$obj])->Dump());
 
 done_testing();

@@ -45,7 +45,7 @@ like($msg, qr/Usage/, 'Throws an error for zero arguments with default');
 
 # Zero arguments without default
 $params = get_params();
-is_deeply($params, undef, 'Zero arguments without default returns undef');
+is($params, undef, 'Zero arguments without default returns undef');
 
 # Default argument with options, ref to array
 {
