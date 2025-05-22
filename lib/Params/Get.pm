@@ -2,7 +2,9 @@ package Params::Get;
 
 use strict;
 use warnings;
+
 use Carp;
+use Scalar::Util;
 
 our @ISA = qw(Exporter);
 our @EXPORT_OK = qw(get_params);
@@ -13,11 +15,11 @@ Params::Get - Get the parameters to a subroutine in any way you want
 
 =head1 VERSION
 
-Version 0.04
+Version 0.05
 
 =cut
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 =head1 SYNOPSIS
 
@@ -108,11 +110,14 @@ sub get_params
 				# %rc = ($default => shift);
 				return { $default => $args->[0] };
 			}
-			if(defined($default) && (ref($args->[0]) eq 'ARRAY')) {
+			if(ref($args->[0]) eq 'ARRAY') {
 				return { $default => $args->[0] };
 			}
-			if(defined($default) && (ref($args->[0]) eq 'SCALAR')) {
+			if(ref($args->[0]) eq 'SCALAR') {
 				return { $default => ${$args->[0]} };
+			}
+			if(Scalar::Util::blessed($args->[0])) {
+				return { $default => $args->[0] };
 			}
 		}
 		if(ref($args->[0]) eq 'HASH') {
