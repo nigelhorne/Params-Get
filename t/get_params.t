@@ -85,4 +85,24 @@ $obj = Family2->new('rubbles', { 'barney' => 'betty' });
 
 is_deeply($obj, { 'name' => 'rubbles', 'barney' => 'betty' }, 'Mandatory followed by options works, array');
 
+{
+	package MyClass;
+
+	use Params::Get;
+
+	sub new {
+		my $class = shift;
+		my $rc = Params::Get::get_params(undef, @_);
+
+		return bless $rc, $class;
+	}
+}
+
+$obj = MyClass->new(
+	config_dirs => ['/tmp'],
+	config_file => 'xml_test'
+);
+
+diag(Data::Dumper->new([$obj])->Dump()) if($ENV{'TEST_VERBOSE'});
+
 done_testing();

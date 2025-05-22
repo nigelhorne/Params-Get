@@ -60,7 +60,7 @@ is_deeply($obj, { one => 'two' });
 
 diag(Data::Dumper->new([$obj])->Dump()) if($ENV{'TEST_VERBOSE'});
 
-$obj = MyClassArray->new({ 'one', 'two' });
+$obj = MyClassArray->new({ 'one' => 'two' });
 is_deeply($obj, { one => 'two' });
 
 diag(Data::Dumper->new([$obj])->Dump()) if($ENV{'TEST_VERBOSE'});
@@ -70,8 +70,58 @@ is_deeply($obj, { one => 'two' });
 
 diag(Data::Dumper->new([$obj])->Dump()) if($ENV{'TEST_VERBOSE'});
 
-$obj = MyClassArrayRef->new({ 'one', 'two' });
+$obj = MyClassArrayRef->new({ 'one' => 'two' });
 is_deeply($obj, { one => 'two' });
+
+diag(Data::Dumper->new([$obj])->Dump()) if($ENV{'TEST_VERBOSE'});
+
+{
+	package MyClassArrayRequired;
+
+	sub new {
+		my $class = shift;
+
+		return bless Params::Get::get_params('count', @_), $class;
+	}
+}
+
+{
+	package MyClassArrayRefRequired;
+
+	sub new {
+		my $class = shift;
+
+		return bless Params::Get::get_params('count', \@_), $class;
+	}
+}
+
+$obj = MyClassArrayRequired->new(2, { 'one' => 'two' });
+is_deeply($obj, { count => 2, one => 'two' });
+
+diag(Data::Dumper->new([$obj])->Dump()) if($ENV{'TEST_VERBOSE'});
+
+$obj = MyClassArrayRequired->new({ 'count' => 2, 'one' => 'two' });
+is_deeply($obj, { count => 2, one => 'two' });
+
+diag(Data::Dumper->new([$obj])->Dump()) if($ENV{'TEST_VERBOSE'});
+
+$obj = MyClassArrayRefRequired->new({ 'count' => 2, 'one' => 'two' });
+is_deeply($obj, { count => 2, one => 'two' });
+
+diag(Data::Dumper->new([$obj])->Dump()) if($ENV{'TEST_VERBOSE'});
+
+$obj = MyClassArrayRefRequired->new(2, { 'one' => 'two' });
+is_deeply($obj, { count => 2, one => 'two' });
+
+diag(Data::Dumper->new([$obj])->Dump()) if($ENV{'TEST_VERBOSE'});
+
+$obj = MyClassArrayRefRequired->new({ 'count' => 2, 'one' => 'two' });
+is_deeply($obj, { count => 2, one => 'two' });
+
+diag(Data::Dumper->new([$obj])->Dump()) if($ENV{'TEST_VERBOSE'});
+
+$obj = MyClassArrayRefRequired->new({ 'count' => 2, 'one' => 'two' });
+is_deeply($obj, { count => 2, one => 'two' });
 
 diag(Data::Dumper->new([$obj])->Dump()) if($ENV{'TEST_VERBOSE'});
 
