@@ -142,6 +142,8 @@ Nigel Horne, C<< <njh at nigelhorne.com> >>
 
 =head1 BUGS
 
+Sometimes giving an array ref rather than array fails.
+
 =head1 SEE ALSO
 
 =over 4

@@ -47,7 +47,7 @@ like($msg, qr/Usage/, 'Throws an error for zero arguments with default');
 $params = get_params();
 is_deeply($params, undef, 'Zero arguments without default returns undef');
 
-# Default argument with options
+# Default argument with options, ref to array
 {
 	package Family;
 
@@ -63,8 +63,26 @@ is_deeply($params, undef, 'Zero arguments without default returns undef');
 
 my $obj = Family->new('flintstones', { 'fred' => 'wilma' });
 
-is_deeply($obj, { 'name' => 'flintstones', 'fred' => 'wilma' }, 'Mandatory followed by options works');
+is_deeply($obj, { 'name' => 'flintstones', 'fred' => 'wilma' }, 'Mandatory followed by options works, arrayref');
 
 diag(Data::Dumper->new([$obj])->Dump()) if($ENV{'TEST_VERBOSE'});
+
+# Default argument with options, array
+{
+	package Family2;
+
+	use Params::Get;
+
+	sub new {
+		my $class = shift;
+		my $rc = Params::Get::get_params('name', @_);
+
+		return bless $rc, $class;
+	}
+}
+
+$obj = Family2->new('rubbles', { 'barney' => 'betty' });
+
+is_deeply($obj, { 'name' => 'rubbles', 'barney' => 'betty' }, 'Mandatory followed by options works, array');
 
 done_testing();

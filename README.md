@@ -74,6 +74,8 @@ Nigel Horne, `<njh at nigelhorne.com>`
 
 # BUGS
 
+Sometimes giving an array ref rather than array fails.
+
 # SEE ALSO
 
 - [Params::Validate::Strict](https://metacpan.org/pod/Params%3A%3AValidate%3A%3AStrict)
