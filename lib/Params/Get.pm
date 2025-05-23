@@ -89,8 +89,8 @@ sub get_params
 {
 	my $default = shift;
 
-	# Directly return hash reference if the first parameter is a hash reference
-	return $_[0] if(ref($_[0]) eq 'HASH');
+	# Directly return hash reference if the only parameter is a hash reference
+	return $_[0] if((scalar(@_) == 1) && (ref($_[0]) eq 'HASH'));	# Note - doesn't check if "default" was given
 
 	my $args;
 	my $array_ref;
