@@ -4,6 +4,7 @@ use strict;
 use warnings;
 
 use Carp;
+use Devel::Confess;
 use Scalar::Util;
 
 our @ISA = qw(Exporter);
@@ -131,7 +132,8 @@ sub get_params
 	if($num_args == 0) {
 		if(defined($default)) {
 			# FIXME: No means to say that the default is optional
-			Carp::croak('Usage: ', __PACKAGE__, '->', (caller(1))[3], "($default => \$val)");
+			# Carp::croak('Usage: ', __PACKAGE__, '->', (caller(1))[3], "($default => \$val)");
+			Carp::croak(Devel::Confess::longmess('Usage: ', __PACKAGE__, '->', (caller(1))[3], "($default => \$val)"));
 		}
 		return;
 	}
