@@ -123,6 +123,9 @@ sub get_params
 			if(Scalar::Util::blessed($args->[0])) {
 				return { $default => $args->[0] };
 			}
+			if((ref($args->[0]) eq 'HASH') && (scalar keys(%{$args->[0]}) == 0)) {
+				return { $default => $args->[0] };
+			}
 		}
 		if(ref($args->[0]) eq 'HASH') {
 			return $args->[0];
