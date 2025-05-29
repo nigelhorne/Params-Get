@@ -123,9 +123,6 @@ sub get_params
 			if(Scalar::Util::blessed($args->[0])) {
 				return { $default => $args->[0] };
 			}
-			if((ref($args->[0]) eq 'HASH') && (scalar keys(%{$args->[0]}) == 0)) {
-				return { $default => $args->[0] };
-			}
 		}
 		if(ref($args->[0]) eq 'HASH') {
 			return $args->[0];
@@ -142,10 +139,15 @@ sub get_params
 	}
 	if(($num_args == 2) && (ref($args->[1]) eq 'HASH')) {
 		if(defined($default)) {
-			return {
-				$default => $args->[0],
-				%{$args->[1]}
-			};
+			if(scalar keys %{$args->[1]}) {
+				# Obj->new('foo', { 'key1' => 'val1 } - set foo to the mandatory first argument, and the rest are options
+				return {
+					$default => $args->[0],
+					%{$args->[1]}
+				};
+			}
+			# Obj->new(foo => {}) - set foo to be an empty hash
+			return { $default => $args->[1] }
 		}
 	}
 
