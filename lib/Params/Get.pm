@@ -131,8 +131,23 @@ sub get_params
 				return { $default => $args->[0] };
 			}
 		}
+		if(ref($args->[0]) eq 'REF') {
+			$args->[0] = ${$args->[0]};
+		}
 		if(ref($args->[0]) eq 'HASH') {
 			return $args->[0];
+		}
+		if(ref($args->[0]) eq 'ARRAY') {
+			if(scalar(@{$args->[0]}) == 0) {
+				# in main:
+				#	routine('countries' => []);
+				# in routine():
+				#	$params = Params::Get::get_params('countries', \@);
+				if(defined($default)) {
+					return { $default => [] }
+				}
+				return $args->[0];
+			}
 		}
 		Carp::croak('Usage: ', __PACKAGE__, '->', (caller(1))[3], '()');
 	}
