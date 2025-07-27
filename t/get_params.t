@@ -135,4 +135,6 @@ is_deeply(get_params('string', \'Hello World'), { 'string' => 'Hello World' });
 
 diag(Data::Dumper->new([get_params('string', \'Hello World')])->Dump()) if($ENV{'TEST_VERBOSE'});
 
+diag(Data::Dumper->new([get_params(undef, undef)])->Dump());
+
 done_testing();

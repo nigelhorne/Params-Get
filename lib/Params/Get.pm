@@ -131,6 +131,9 @@ sub get_params
 				return { $default => $args->[0] };
 			}
 		}
+		if(!defined($args->[0])) {
+			return;
+		}
 		if(ref($args->[0]) eq 'REF') {
 			$args->[0] = ${$args->[0]};
 		}
