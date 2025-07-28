@@ -22,6 +22,15 @@ Version 0.11
 
 our $VERSION = '0.11';
 
+=head1 DESCRIPTION
+
+Exports a single function, C<get_params>, which returns a given value.
+If a validation schema is provided, the value is validated using
+L<Params::Validate::Strict>.
+If validation fails, it croaks.
+
+When used hand-in-hand with L<Return::Set> you should be able to formally specify the input and output sets for a method.
+
 =head1 SYNOPSIS
 
     use Params::Get;
@@ -198,6 +207,8 @@ Sometimes giving an array ref rather than array fails.
 =over 4
 
 =item * L<Params::Validate::Strict>
+
+=item * L<Return::Set>
 
 =back
 
