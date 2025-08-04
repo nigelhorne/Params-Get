@@ -163,6 +163,10 @@ sub get_params
 	}
 	if($num_args == 0) {
 		if(defined($default)) {
+			if(defined($_[0]) && (ref($_[0]) eq 'ARRAY')) {
+				# Params::Get::get_params('list', []);
+				return { $default => [] };
+			}
 			# FIXME: No means to say that the default is optional
 			# Carp::croak('Usage: ', __PACKAGE__, '->', (caller(1))[3], "($default => \$val)");
 			Carp::croak(Devel::Confess::longmess('Usage: ', __PACKAGE__, '->', (caller(1))[3], "($default => \$val)"));
@@ -172,7 +176,7 @@ sub get_params
 	if(($num_args == 2) && (ref($args->[1]) eq 'HASH')) {
 		if(defined($default)) {
 			if(scalar keys %{$args->[1]}) {
-				# Obj->new('foo', { 'key1' => 'val1 } - set foo to the mandatory first argument, and the rest are options
+				# Obj->new('foo', { 'key1' => 'val1' } - set foo to the mandatory first argument, and the rest are options
 				return {
 					$default => $args->[0],
 					%{$args->[1]}
