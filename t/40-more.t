@@ -36,6 +36,7 @@ my @tests = (
 		name => 'Default + empty arrayref',
 		input => [ 'list', [] ],
 		expected => { list => [] },
+		dies => 1,
 	}, {
 		name => 'Default + code ref',
 		input => [ 'run', $code_ref ],
@@ -56,7 +57,12 @@ my @tests = (
 );
 
 foreach my $test (@tests) {
-	is_deeply(get_params(@{$test->{input}}), $test->{expected}, $test->{name});
+	if($test->{'dies'}) {
+		dies_ok(sub { get_params(@{$test->{'input'}}) }, $test->{'name'});
+	} else {
+		lives_ok(sub { get_params(@{$test->{'input'}}) });
+		is_deeply(get_params(@{$test->{input}}), $test->{expected}, $test->{name});
+	}
 }
 
 done_testing();

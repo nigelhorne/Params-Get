@@ -16,11 +16,11 @@ Params::Get - Get the parameters to a subroutine in any way you want
 
 =head1 VERSION
 
-Version 0.12
+Version 0.13
 
 =cut
 
-our $VERSION = '0.12';
+our $VERSION = '0.13';
 
 =head1 DESCRIPTION
 
@@ -163,10 +163,10 @@ sub get_params
 	}
 	if($num_args == 0) {
 		if(defined($default)) {
-			if(defined($_[0]) && (ref($_[0]) eq 'ARRAY')) {
-				# Params::Get::get_params('list', []);
-				return { $default => [] };
-			}
+			# if(defined($_[0]) && (ref($_[0]) eq 'ARRAY')) {
+				# FIXME
+				# return { $default => [] };
+			# }
 			# FIXME: No means to say that the default is optional
 			# Carp::croak('Usage: ', __PACKAGE__, '->', (caller(1))[3], "($default => \$val)");
 			Carp::croak(Devel::Confess::longmess('Usage: ', __PACKAGE__, '->', (caller(1))[3], "($default => \$val)"));
