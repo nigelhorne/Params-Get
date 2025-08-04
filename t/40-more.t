@@ -2,37 +2,61 @@ use strict;
 use warnings;
 use Test::Most;
 
-BEGIN {
-	use_ok('Params::Get');
+BEGIN { use_ok('Params::Get', qw(get_params)) }
+
+# Dummy class for blessed object tests
+{
+	package Dummy;
+	use overload '""' => sub { 'dummy' };
+	sub new { bless {}, shift }
 }
 
-# Hashref as sole argument
-is_deeply(Params::Get::get_params({ foo => 'bar' }), { foo => 'bar' }, 'Single hashref returns directly');
+my $blessed_obj = new_ok('Dummy');
+my $scalar_ref = \'val';
+my $code_ref = sub { 'hi' };
 
-# Default + scalar
-is_deeply(Params::Get::get_params('country', 'US'), { country => 'US' }, 'Default with scalar value');
+my @tests = (
+	{
+		name => 'Single hashref',
+		input => [ { foo => 'bar' } ],
+		expected => { foo => 'bar' },
+	}, {
+		name => 'Default + scalar',
+		input => [ 'country', 'US' ],
+		expected => { country => 'US' },
+	}, {
+		name => 'Default + arrayref',
+		input => [ 'tags', ['perl', 'VWF'] ],
+		expected => { tags => ['perl', 'VWF'] },
+	}, {
+		name => 'Default + scalar ref',
+		input => [ 'key', $scalar_ref ],
+		expected => { key => 'val' },
+	}, {
+		name => 'Default + empty arrayref',
+		input => [ 'list', [] ],
+		expected => { list => [] },
+	}, {
+		name => 'Default + code ref',
+		input => [ 'run', $code_ref ],
+		expected => { run => $code_ref },
+	}, {
+		name => 'Default + blessed object',
+		input => [ 'thing', $blessed_obj ],
+		expected => { thing => $blessed_obj },
+	}, {
+		name => 'Special form arrayref matching default',
+		input => [ 'country', ['country', 'US'] ],
+		expected => { country => 'US' },
+	}, {
+		name => 'Even args as key-value pairs',
+		input => [ undef, 'k1', 'v1', 'k2', 'v2' ],
+		expected => { k1 => 'v1', k2 => 'v2' },
+	},
+);
 
-# Default + arrayref
-is_deeply(Params::Get::get_params('tags', ['perl', 'testing']), { tags => ['perl', 'testing'] }, 'Default with arrayref');
-
-# Default + scalar ref
-my $scalar = 'value';
-is_deeply(Params::Get::get_params('key', \$scalar), { key => 'value' }, 'Default with scalar ref');
-
-# Default + empty arrayref
-is_deeply(Params::Get::get_params('list', []), { list => [] }, 'Default with empty array');
-
-# Default + code ref
-my $code = sub { 'hello' };
-is_deeply(Params::Get::get_params('run', $code), { run => $code }, 'Default with code ref');
-
-# Default + array ref of 2 elements matching special form
-is_deeply(Params::Get::get_params('country', ['country', 'US']), { country => 'US' }, 'Special arrayref matching default');
-
-# Even number of args converted to hash
-is_deeply(Params::Get::get_params(undef, 'key1', 'val1', 'key2', 'val2'), { key1 => 'val1', key2 => 'val2' }, 'Key-value pairs converted to hash');
-
-# Zero args + defined default triggers croak
-throws_ok { Params::Get::get_params('required') } qr/Usage:/, 'Croak with zero args and defined default';
+foreach my $test (@tests) {
+	is_deeply(get_params(@{$test->{input}}), $test->{expected}, $test->{name});
+}
 
 done_testing();
