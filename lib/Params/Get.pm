@@ -43,8 +43,8 @@ When used hand-in-hand with L<Return::Set> you should be able to formally specif
             schema => {
                 'latitude' => {
                     type => 'number',
-                    min => -180,
-                    max => 180
+                    min => -90,
+                    max => 90
                 }, 'longitude' => {
                     type => 'number',
                     min => -180,

@@ -27,8 +27,8 @@ When used hand-in-hand with [Return::Set](https://metacpan.org/pod/Return%3A%3AS
             schema => {
                 'latitude' => {
                     type => 'number',
-                    min => -180,
-                    max => 180
+                    min => -90,
+                    max => 90
                 }, 'longitude' => {
                     type => 'number',
                     min => -180,
