@@ -166,7 +166,7 @@ sub get_params
 			# }
 			# FIXME: No means to say that the default is optional
 			# Carp::croak('Usage: ', __PACKAGE__, '->', (caller(1))[3], "($default => \$val)");
-			Carp::croak(Devel::Confess::longmess("$default not set. Usage: ", __PACKAGE__, '->', (caller(1))[3], "($default => \$val)"));
+			Carp::croak(Devel::Confess::longmess("Usage: ", __PACKAGE__, '->', (caller(1))[3], "($default => \$val)"));
 		}
 		return;
 	}
