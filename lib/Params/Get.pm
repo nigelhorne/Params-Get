@@ -25,11 +25,8 @@ our $VERSION = '0.13';
 =head1 DESCRIPTION
 
 Exports a single function, C<get_params>, which returns a given value.
-If a validation schema is provided, the value is validated using
-L<Params::Validate::Strict>.
-If validation fails, it croaks.
 
-When used hand-in-hand with L<Return::Set> you should be able to formally specify the input and output sets for a method.
+When used hand-in-hand with L<Params::Validate::Strict> and L<Return::Set> you should be able to formally specify the input and output sets for a method.
 
 =head1 SYNOPSIS
 
@@ -169,7 +166,7 @@ sub get_params
 			# }
 			# FIXME: No means to say that the default is optional
 			# Carp::croak('Usage: ', __PACKAGE__, '->', (caller(1))[3], "($default => \$val)");
-			Carp::croak(Devel::Confess::longmess('Usage: ', __PACKAGE__, '->', (caller(1))[3], "($default => \$val)"));
+			Carp::croak(Devel::Confess::longmess("$default not set. Usage: ", __PACKAGE__, '->', (caller(1))[3], "($default => \$val)"));
 		}
 		return;
 	}

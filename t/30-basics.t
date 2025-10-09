@@ -23,7 +23,7 @@ is_deeply($params, { key => 'value' }, 'get_params correctly assigns default key
 
 # Test get_params with an empty argument list
 throws_ok { $params = get_params('key') }
-	qr /^Usage: /,
+	qr /^key not set. Usage: /,
 	'get_params throws exception with no arguments and no default';
 
 $params = get_params();
