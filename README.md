@@ -9,11 +9,9 @@ Version 0.13
 # DESCRIPTION
 
 Exports a single function, `get_params`, which returns a given value.
-If a validation schema is provided, the value is validated using
-[Params::Validate::Strict](https://metacpan.org/pod/Params%3A%3AValidate%3A%3AStrict).
-If validation fails, it croaks.
 
-When used hand-in-hand with [Return::Set](https://metacpan.org/pod/Return%3A%3ASet) you should be able to formally specify the input and output sets for a method.
+When used hand-in-hand with [Params::Validate::Strict](https://metacpan.org/pod/Params%3A%3AValidate%3A%3AStrict) and [Return::Set](https://metacpan.org/pod/Return%3A%3ASet),
+you should be able to formally specify the input and output sets for a method.
 
 # SYNOPSIS
 
@@ -76,6 +74,59 @@ Some people like this sort of model, which is also supported.
 
         return bless $rc, $class;
     }
+
+## The `$default` Parameter
+
+The first argument is the `$default` parameter controls how single-argument calls are interpreted and provides
+a default key name for parameter extraction in those cases.
+
+When no arguments are provided with a defined `$default`:
+
+    get_params('required'); # Throws usage error
+
+The function requires either arguments or an undefined `$default`.
+
+### Usage Examples
+
+- Simple scalar parameter:
+
+        sub set_country {
+            my $params = get_params('country', @_);
+            # Accepts: set_country('US')
+            # Returns: { country => 'US' }
+        }
+
+- Object constructor with options:
+
+        sub new {
+            my $class = shift;
+            my $params = get_params('value', @_);
+            # Accepts: MyClass->new($object)
+            # Accepts: MyClass->new($object, { option => 'value' })
+            # Returns: { value => $object } or { value => $object, option => 'value' }
+        }
+
+- Hash parameter:
+
+        sub configure {
+            my $params = get_params('config', @_);
+            # Accepts: configure({ db => 'mysql', host => 'localhost' })
+            # Returns: { config => { db => 'mysql', host => 'localhost' } }
+        }
+
+- Without default (named parameters only):
+
+        sub process {
+            my $params = get_params(undef, @_);
+            # Accepts: process(name => 'John', age => 30)
+            # Returns: { name => 'John', age => 30 }
+        }
+
+### Caveats
+
+- When `$default` is defined and no arguments are provided, an error is thrown
+- There's no way to specify that a default parameter is optional
+- Single hash references always bypass the default parameter naming
 
 # AUTHOR
 

@@ -1,5 +1,8 @@
 Revision history for Params-Get
 
+0.14
+	Document the default argument
+
 0.13	Mon Aug  4 16:59:56 EDT 2025
 	Back out 0.12, too much breakage
 

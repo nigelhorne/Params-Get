@@ -26,7 +26,8 @@ our $VERSION = '0.13';
 
 Exports a single function, C<get_params>, which returns a given value.
 
-When used hand-in-hand with L<Params::Validate::Strict> and L<Return::Set> you should be able to formally specify the input and output sets for a method.
+When used hand-in-hand with L<Params::Validate::Strict> and L<Return::Set>,
+you should be able to formally specify the input and output sets for a method.
 
 =head1 SYNOPSIS
 
@@ -89,6 +90,69 @@ Some people like this sort of model, which is also supported.
 
         return bless $rc, $class;
     }
+
+=head2 The C<$default> Parameter
+
+The first argument is the C<$default> parameter controls how single-argument calls are interpreted and provides
+a default key name for parameter extraction in those cases.
+
+When no arguments are provided with a defined C<$default>:
+
+    get_params('required'); # Throws usage error
+
+The function requires either arguments or an undefined C<$default>.
+
+=head3 Usage Examples
+
+=over 2
+
+=item * Simple scalar parameter:
+
+    sub set_country {
+        my $params = get_params('country', @_);
+        # Accepts: set_country('US')
+        # Returns: { country => 'US' }
+    }
+
+=item * Object constructor with options:
+
+    sub new {
+        my $class = shift;
+        my $params = get_params('value', @_);
+        # Accepts: MyClass->new($object)
+        # Accepts: MyClass->new($object, { option => 'value' })
+        # Returns: { value => $object } or { value => $object, option => 'value' }
+    }
+
+=item * Hash parameter:
+
+    sub configure {
+        my $params = get_params('config', @_);
+        # Accepts: configure({ db => 'mysql', host => 'localhost' })
+        # Returns: { config => { db => 'mysql', host => 'localhost' } }
+    }
+
+=item * Without default (named parameters only):
+
+    sub process {
+        my $params = get_params(undef, @_);
+        # Accepts: process(name => 'John', age => 30)
+        # Returns: { name => 'John', age => 30 }
+    }
+
+=back
+
+=head3 Caveats
+
+=over 2
+
+=item * When C<$default> is defined and no arguments are provided, an error is thrown
+
+=item * There's no way to specify that a default parameter is optional
+
+=item * Single hash references always bypass the default parameter naming
+
+=back
 
 =cut
 
