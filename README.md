@@ -138,6 +138,7 @@ Sometimes giving an array ref rather than array fails.
 
 # SEE ALSO
 
+- [Params::Smart](https://metacpan.org/pod/Params%3A%3ASmart)
 - [Params::Validate::Strict](https://metacpan.org/pod/Params%3A%3AValidate%3A%3AStrict)
 - [Return::Set](https://metacpan.org/pod/Return%3A%3ASet)
 

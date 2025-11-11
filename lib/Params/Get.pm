@@ -271,6 +271,8 @@ Sometimes giving an array ref rather than array fails.
 
 =over 4
 
+=item * L<Params::Smart>
+
 =item * L<Params::Validate::Strict>
 
 =item * L<Return::Set>
