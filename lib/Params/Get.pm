@@ -163,6 +163,10 @@ sub get_params
 
 	my $default = shift;
 
+	if(ref($default)) {
+		Carp::croak(__PACKAGE__, '::get_params: $default must be a scalar');
+	}
+
 	my $args;
 	my $array_ref;
 	if((scalar(@_) == 1) && (ref($_[0]) eq 'ARRAY')) {
