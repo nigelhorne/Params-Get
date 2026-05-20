@@ -241,6 +241,9 @@ sub get_params
 	if(($num_args == 2) && (ref($args->[1]) eq 'HASH')) {
 		if(defined($default)) {
 			if(scalar keys %{$args->[1]}) {
+				if($args->[0] eq $default) {
+					return { $default => $args->[1] };
+				}
 				# Obj->new('foo', { 'key1' => 'val1' } - set foo to the mandatory first argument, and the rest are options
 				return {
 					$default => $args->[0],
