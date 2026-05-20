@@ -284,6 +284,8 @@ Sometimes giving an array ref rather than array fails.
 
 =item * L<Return::Set>
 
+=item * L<Test Dashboard|https://nigelhorne.github.io/Params-Get/coverage/>
+
 =back
 
 =head1 SUPPORT
@@ -322,14 +324,14 @@ L<http://deps.cpantesters.org/?module=Params::Get>
 
 =back
 
-=head1 LICENSE AND COPYRIGHT
+=head1 LICENCE AND COPYRIGHT
 
-Copyright 2025 Nigel Horne.
+Copyright 2025-2026 Nigel Horne.
 
-This program is released under the following licence: GPL2
+Usage is subject to the GPL2 licence terms.
+If you use it,
+please let me know.
 
 =cut
 
 1;
-
-__END__

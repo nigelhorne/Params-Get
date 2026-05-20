@@ -141,6 +141,7 @@ Sometimes giving an array ref rather than array fails.
 - [Params::Smart](https://metacpan.org/pod/Params%3A%3ASmart)
 - [Params::Validate::Strict](https://metacpan.org/pod/Params%3A%3AValidate%3A%3AStrict)
 - [Return::Set](https://metacpan.org/pod/Return%3A%3ASet)
+- [Test Dashboard](https://nigelhorne.github.io/Params-Get/coverage/)
 
 # SUPPORT
 
@@ -174,8 +175,10 @@ You can also look for information at:
 
     [http://deps.cpantesters.org/?module=Params::Get](http://deps.cpantesters.org/?module=Params::Get)
 
-# LICENSE AND COPYRIGHT
+# LICENCE AND COPYRIGHT
 
-Copyright 2025 Nigel Horne.
+Copyright 2025-2026 Nigel Horne.
 
-This program is released under the following licence: GPL2
+Usage is subject to the GPL2 licence terms.
+If you use it,
+please let me know.
