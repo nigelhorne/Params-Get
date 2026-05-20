@@ -157,4 +157,8 @@ $obj = MyClass2->new();
 throws_ok(sub { $obj->method() }, qr/Usage/, 'no args dies');
 lives_ok(sub { $obj->method('bar' => []) }, 'can pass in an empty array');
 
+# Check the fix in release 0.14
+my $rc = get_params('foo', foo => { 'a' => 'b', 'c' => 'd' });
+cmp_deeply($rc, { 'foo' => { 'a' => 'b', 'c' => 'd' } });
+
 done_testing();
