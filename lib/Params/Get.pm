@@ -1,5 +1,8 @@
 package Params::Get;
 
+# TODO:  allow $default to be an arrayref of positional arg mames:
+#	i.e. [ 'foo', 'bar' ], @_ would set $_[0] to $rc->{foo} and $_[1] to $rc->{bar}
+
 use strict;
 use warnings;
 
