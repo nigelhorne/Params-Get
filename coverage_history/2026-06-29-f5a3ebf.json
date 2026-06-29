@@ -1,0 +1,228 @@
+{
+   "runs" : [
+      {
+         "OS" : "linux",
+         "abstract" : "Get the parameters to a subroutine in any way you want",
+         "dir" : "/home/runner/work/Params-Get/Params-Get",
+         "finish" : 1782753643.64679,
+         "name" : "Params-Get",
+         "perl" : "5.40.4",
+         "run" : "-e",
+         "start" : 1782753640.36292,
+         "version" : "0.14"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Get the parameters to a subroutine in any way you want",
+         "dir" : "/home/runner/work/Params-Get/Params-Get",
+         "finish" : 1782753640.50775,
+         "name" : "Params-Get",
+         "perl" : "5.40.4",
+         "run" : "-e",
+         "start" : 1782753640.50766,
+         "version" : "0.14"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Get the parameters to a subroutine in any way you want",
+         "dir" : "/home/runner/work/Params-Get/Params-Get",
+         "finish" : 1782753640.77453,
+         "name" : "Params-Get",
+         "perl" : "5.40.4",
+         "run" : "t/00-load.t",
+         "start" : 1782753640.77357,
+         "version" : "0.14"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Get the parameters to a subroutine in any way you want",
+         "dir" : "/home/runner/work/Params-Get/Params-Get",
+         "finish" : 1782753641.06417,
+         "name" : "Params-Get",
+         "perl" : "5.40.4",
+         "run" : "t/30-basics.t",
+         "start" : 1782753641.05842,
+         "version" : "0.14"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Get the parameters to a subroutine in any way you want",
+         "dir" : "/home/runner/work/Params-Get/Params-Get",
+         "finish" : 1782753641.36845,
+         "name" : "Params-Get",
+         "perl" : "5.40.4",
+         "run" : "t/40-more.t",
+         "start" : 1782753641.36138,
+         "version" : "0.14"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Get the parameters to a subroutine in any way you want",
+         "dir" : "/home/runner/work/Params-Get/Params-Get",
+         "finish" : 1782753641.62631,
+         "name" : "Params-Get",
+         "perl" : "5.40.4",
+         "run" : "t/eof.t",
+         "start" : 1782753641.62613,
+         "version" : "0.14"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Get the parameters to a subroutine in any way you want",
+         "dir" : "/home/runner/work/Params-Get/Params-Get",
+         "finish" : 1782753641.85123,
+         "name" : "Params-Get",
+         "perl" : "5.40.4",
+         "run" : "t/eol.t",
+         "start" : 1782753641.85104,
+         "version" : "0.14"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Get the parameters to a subroutine in any way you want",
+         "dir" : "/home/runner/work/Params-Get/Params-Get",
+         "finish" : 1782753642.12924,
+         "name" : "Params-Get",
+         "perl" : "5.40.4",
+         "run" : "t/get_params.t",
+         "start" : 1782753642.11367,
+         "version" : "0.14"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Get the parameters to a subroutine in any way you want",
+         "dir" : "/home/runner/work/Params-Get/Params-Get",
+         "finish" : 1782753642.39809,
+         "name" : "Params-Get",
+         "perl" : "5.40.4",
+         "run" : "t/pod-cm.t",
+         "start" : 1782753642.39791,
+         "version" : "0.14"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Get the parameters to a subroutine in any way you want",
+         "dir" : "/home/runner/work/Params-Get/Params-Get",
+         "finish" : 1782753642.62266,
+         "name" : "Params-Get",
+         "perl" : "5.40.4",
+         "run" : "t/pod-coverage.t",
+         "start" : 1782753642.62246,
+         "version" : "0.14"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Get the parameters to a subroutine in any way you want",
+         "dir" : "/home/runner/work/Params-Get/Params-Get",
+         "finish" : 1782753642.84715,
+         "name" : "Params-Get",
+         "perl" : "5.40.4",
+         "run" : "t/pod-synopsis.t",
+         "start" : 1782753642.84696,
+         "version" : "0.14"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Get the parameters to a subroutine in any way you want",
+         "dir" : "/home/runner/work/Params-Get/Params-Get",
+         "finish" : 1782753643.07373,
+         "name" : "Params-Get",
+         "perl" : "5.40.4",
+         "run" : "t/pod.t",
+         "start" : 1782753643.07352,
+         "version" : "0.14"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Get the parameters to a subroutine in any way you want",
+         "dir" : "/home/runner/work/Params-Get/Params-Get",
+         "finish" : 1782753643.35566,
+         "name" : "Params-Get",
+         "perl" : "5.40.4",
+         "run" : "t/validate-strict.t",
+         "start" : 1782753643.35419,
+         "version" : "0.14"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Get the parameters to a subroutine in any way you want",
+         "dir" : "/home/runner/work/Params-Get/Params-Get",
+         "finish" : 1782753643.61106,
+         "name" : "Params-Get",
+         "perl" : "5.40.4",
+         "run" : "t/vars.t",
+         "start" : 1782753643.61087,
+         "version" : "0.14"
+      }
+   ],
+   "summary" : {
+      "Total" : {
+         "branch" : {
+            "covered" : 43,
+            "error" : 5,
+            "percentage" : 89.5833333333333,
+            "total" : 48,
+            "uncoverable" : 0
+         },
+         "condition" : {
+            "covered" : 23,
+            "error" : 1,
+            "percentage" : 95.8333333333333,
+            "total" : 24,
+            "uncoverable" : 0
+         },
+         "statement" : {
+            "covered" : 74,
+            "error" : 4,
+            "percentage" : 94.8717948717949,
+            "total" : 78
+         },
+         "subroutine" : {
+            "covered" : 6,
+            "percentage" : 100,
+            "total" : 6
+         },
+         "total" : {
+            "covered" : 146,
+            "error" : 10,
+            "percentage" : 93.5897435897436,
+            "total" : 156,
+            "uncoverable" : 0
+         }
+      },
+      "blib/lib/Params/Get.pm" : {
+         "branch" : {
+            "covered" : 43,
+            "error" : 5,
+            "percentage" : 89.5833333333333,
+            "total" : 48,
+            "uncoverable" : 0
+         },
+         "condition" : {
+            "covered" : 23,
+            "error" : 1,
+            "percentage" : 95.8333333333333,
+            "total" : 24,
+            "uncoverable" : 0
+         },
+         "statement" : {
+            "covered" : 74,
+            "error" : 4,
+            "percentage" : 94.8717948717949,
+            "total" : 78
+         },
+         "subroutine" : {
+            "covered" : 6,
+            "percentage" : 100,
+            "total" : 6
+         },
+         "total" : {
+            "covered" : 146,
+            "error" : 10,
+            "percentage" : 93.5897435897436,
+            "total" : 156,
+            "uncoverable" : 0
+         }
+      }
+   }
+}
