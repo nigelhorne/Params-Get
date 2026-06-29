@@ -432,291 +432,305 @@ Approximate LCSAJ segments: 51<br>
 </span><span class="">  140: 
 </span><span class="">  141: =head3 API SPECIFICATION
 </span><span class="">  142: 
-</span><span class="">  143:     Input:
-</span><span class="">  144:         $default : Str | ArrayRef[Str] | Undef
-</span><span class="">  145:         @args    : Any*     # or a single ArrayRef containing Any*
-</span><span class="">  146: 
-</span><span class="">  147:     Output (Return::Set):
-</span><span class="">  148:         HashRef | Undef
-</span><span class="">  149: 
-</span><span class="">  150: =head3 MESSAGES
-</span><span class="">  151: 
-</span><span class="">  152:     Message                                             Meaning                                Resolution
-</span><span class="">  153:     --------------------------------------------------  -------------------------------------  ----------------------------------------------
-</span><span class="">  154:     ::get_params: $default must be a scalar or          A non-ARRAY ref was passed as          Pass a plain string, arrayref of strings,
-</span><span class="">  155:       arrayref                                          $default                               or undef
-</span><span class="">  156:     Usage: Pkg-&gt;method($key =&gt; $val)  [stack trace]    $default is defined but no args given  Ensure the caller always passes a value
-</span><span class="">  157:     Usage: Pkg-&gt;method()                               Odd-length or unrecognisable arg list  Correct the calling convention in the caller
+</span><span class="">  143: =head4 Input
+</span><span class="">  144: 
+</span><span class="">  145: 	{
+</span><span class="">  146: 		default =&gt; {
+</span><span class="">  147: 			type =&gt; [ &#39;string&#39; | &#39;stringref&#39; ],
+</span><span class="">  148: 			optional =&gt; 1,
+</span><span class="">  149: 			position =&gt; 0,
+</span><span class="">  150: 		}, args =&gt; {
+</span><span class="">  151: 			type =&gt; [ &#39;array&#39; | &#39;arrayref&#39; ],
+</span><span class="">  152: 			optional =&gt; 1,
+</span><span class="">  153: 			position =&gt; 1,
+</span><span class="">  154: 		}
+</span><span class="">  155: 	}
+</span><span class="">  156: 
+</span><span class="">  157: =head4 output
 </span><span class="">  158: 
-</span><span class="">  159: =head3 PSEUDOCODE
-</span><span class="">  160: 
-</span><span class="">  161:     1.  Fast-path: if the sole argument is a plain HASH ref, return it
-</span><span class="">  162:         immediately (fires before $default is inspected -- see LIMITATIONS).
+</span><span class="">  159:     {
+</span><span class="">  160: 	type =&gt; &#39;hashref&#39;,
+</span><span class="">  161: 	optional =&gt; 1,
+</span><span class="">  162:     }
 </span><span class="">  163: 
-</span><span class="">  164:     2.  Shift $default.  Validate: must be undef, a plain scalar, or an
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  165:         ARRAY ref.  Any other ref type croaks immediately.
-</span><p> <b> Mutants (Total: 3, Killed: 3, Survived: 0)</b><p><span class="">  166: 
-</span><span class="">  167:     3.  If $default is an ARRAY ref, map remaining @_ positionally to those
-</span><span class="">  168:         key names and return.  A single plain HASH ref is still passed
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  169:         through unchanged.
-</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  170: 
-</span><span class="">  171:     4.  Detect the \@_ calling convention: if exactly one ARRAY ref argument
-</span><span class="">  172:         remains, check the two-element (key =&gt; scalar-val) shorthand and
-</span><span class="">  173:         return immediately when it matches.  Otherwise unwrap and use the
-</span><span class="">  174:         array contents as the effective @args.
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  175: 
-</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  176:     5.  Dispatch on argument count:
-</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  177:         0 -- confess (with stack trace) if $default is defined;
-</span><span class="">  178:              return undef otherwise.
-</span><span class="">  179:         1 -- if $default is defined, wrap the single arg under $default
-</span><span class="">  180:              (scalar, arrayref, scalarref-&gt;deref, coderef, blessed object).
-</span><span class="">  181:              Without $default: unwrap REF-of-REF, pass HASH ref through,
-</span><span class="">  182:              return empty ARRAY ref as-is.  Anything else: croak.
-</span><span class="">  183:         2 with HASH ref as arg[1]
-</span><span class="">  184:           -- Mandatory-positional + options-hashref pattern.
-</span><span class="">  185:         even N -- treat as flat key/value pairs.
-</span><span class="">  186:         odd N  -- croak.
-</span><span class="">  187: 
-</span><span class="">  188: =cut
+</span><span class="">  164: =head3 MESSAGES
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  165: 
+</span><p> <b> Mutants (Total: 3, Killed: 3, Survived: 0)</b><p><span class="">  166:     Message                                             Meaning                                Resolution
+</span><span class="">  167:     --------------------------------------------------  -------------------------------------  ----------------------------------------------
+</span><span class="">  168:     ::get_params: $default must be a scalar or          A non-ARRAY ref was passed as          Pass a plain string, arrayref of strings,
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  169:       arrayref                                          $default                               or undef
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  170:     Usage: Pkg-&gt;method($key =&gt; $val)  [stack trace]    $default is defined but no args given  Ensure the caller always passes a value
+</span><span class="">  171:     Usage: Pkg-&gt;method()                               Odd-length or unrecognisable arg list  Correct the calling convention in the caller
+</span><span class="">  172: 
+</span><span class="">  173: =head3 PSEUDOCODE
+</span><span class="">  174: 
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  175:     1.  Fast-path: if the sole argument is a plain HASH ref, return it
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  176:         immediately (fires before $default is inspected -- see LIMITATIONS).
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  177: 
+</span><span class="">  178:     2.  Shift $default.  Validate: must be undef, a plain scalar, or an
+</span><span class="">  179:         ARRAY ref.  Any other ref type croaks immediately.
+</span><span class="">  180: 
+</span><span class="">  181:     3.  If $default is an ARRAY ref, map remaining @_ positionally to those
+</span><span class="">  182:         key names and return.  A single plain HASH ref is still passed
+</span><span class="">  183:         through unchanged.
+</span><span class="">  184: 
+</span><span class="">  185:     4.  Detect the \@_ calling convention: if exactly one ARRAY ref argument
+</span><span class="">  186:         remains, check the two-element (key =&gt; scalar-val) shorthand and
+</span><span class="">  187:         return immediately when it matches.  Otherwise unwrap and use the
+</span><span class="">  188:         array contents as the effective @args.
 </span><span class="">  189: 
-</span><span class="">  190: sub get_params
-</span><span class="">  191: {
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  192: 	# Fast path: sole argument is already a plain hashref.  Returning it
-</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  193: 	# directly avoids the overhead of shifting and inspecting $default.
-</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  194: 	# Consequence: a single hashref always bypasses default key naming --
-</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  195: 	# documented in LIMITATIONS.
-</span><span class=""><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">196 → 200 → 206</span></span>  196: 	return $_[0] if (@_ == 1) &amp;&amp; (ref($_[0]) eq $T_HASH);
-</span><span class="">  197: 
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  198: 	my $default = shift;
-</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  199: 
-</span><span class="">  200: 	if (ref($default) &amp;&amp; (ref($default) ne $T_ARRAY)) {
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  201: 		Carp::croak(__PACKAGE__, &#39;::get_params: $default must be a scalar or arrayref&#39;);
-</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  202: 	}
+</span><span class="">  190:     5.  Dispatch on argument count:
+</span><span class="">  191:         0 -- confess (with stack trace) if $default is defined;
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  192:              return undef otherwise.
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  193:         1 -- if $default is defined, wrap the single arg under $default
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  194:              (scalar, arrayref, scalarref-&gt;deref, coderef, blessed object).
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  195:              Without $default: unwrap REF-of-REF, pass HASH ref through,
+</span><span class="">  196:              return empty ARRAY ref as-is.  Anything else: croak.
+</span><span class="">  197:         2 with HASH ref as arg[1]
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  198:           -- Mandatory-positional + options-hashref pattern.
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  199:         even N -- treat as flat key/value pairs.
+</span><span class="">  200:         odd N  -- croak.
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  201: 
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  202: =cut
 </span><span class="">  203: 
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  204: 	# Positional-names feature: $default is an arrayref of key names and the
-</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  205: 	# remaining @_ are values to map to those keys in order.
-</span><span class=""><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">206 → 206 → 215</span></span>  206: 	if (ref($default) eq $T_ARRAY) {
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  207: 		# Honour the single-hashref passthrough for consistency with scalar $default.
-</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  208: 		return $_[0] if (@_ == 1) &amp;&amp; (ref($_[0]) eq $T_HASH);
-</span><span class="">  209: 		my %rc;
-</span><span class="">  210: 		@rc{@{$default}} = @_[0 .. $#{$default}];
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  211: 		return \%rc;
-</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  212: 	}
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  204: sub get_params
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  205: {
+</span><span class="">  206: 	# Fast path: sole argument is already a plain hashref.  Returning it
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  207: 	# directly avoids the overhead of shifting and inspecting $default.
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  208: 	# Consequence: a single hashref always bypasses default key naming --
+</span><span class="">  209: 	# documented in LIMITATIONS.
+</span><span class=""><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">210 → 214 → 220</span></span>  210: 	return $_[0] if (@_ == 1) &amp;&amp; (ref($_[0]) eq $T_HASH);
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  211: 
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  212: 	my $default = shift;
 </span><span class="">  213: 
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  214: 	# Detect \@_ usage: caller passed a reference to its own @_.
-</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class=""><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">215 → 216 → 233</span></span>  215: 	my ($args, $from_arrayref);
-</span><span class="">  216: 	if ((@_ == 1) &amp;&amp; (ref($_[0]) eq $T_ARRAY)) {
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  217: 		# Two-element shorthand: caller did routine(&#39;key&#39; =&gt; &#39;scalar&#39;) and the
-</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  218: 		# callee received \@_.  Only fires when the value is a plain scalar to
-</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  219: 		# avoid ambiguity with an arrayref value.
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  220: 		if (    $default
-</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  221: 			&amp;&amp; (@{$_[0]} == 2)
-</span><span class="">  222: 			&amp;&amp; ($_[0]-&gt;[0] eq $default)
-</span><span class="">  223: 			&amp;&amp; !ref($_[0]-&gt;[1])
-</span><span class="">  224: 		) {
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  225: 			return { $default =&gt; $_[0]-&gt;[1] };
-</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  226: 		}
-</span><span class="">  227: 		$args          = $_[0];
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  228: 		$from_arrayref = 1;
-</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  229: 	} else {
-</span><span class="">  230: 		$args = \@_;
-</span><span class="">  231: 	}
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  232: 
-</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic."><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">233 → 236 → 246</span></span>  233: 	my $num_args = scalar @{$args};
-</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  234: 
-</span><span class="">  235: 	# --- Zero arguments ---
-</span><span class="">  236: 	if ($num_args == 0) {
-</span><span class="">  237: 		if (defined $default) {
-</span><span class="">  238: 			# Full stack trace via Devel::Confess because receiving zero args
-</span><span class="">  239: 			# when a default is defined is virtually always a programming error.
-</span><span class="">  240: 			Carp::confess(&#39;Usage: &#39;, __PACKAGE__, &#39;-&gt;&#39;, (caller(1))[3], &quot;($default =&gt; \$val)&quot;);
-</span><span class="">  241: 		}
-</span><span class="">  242: 		return;
-</span><span class="">  243: 	}
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  244: 
-</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  245: 	# --- One argument ---
-</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic."><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">246 → 246 → 280</span></span>  246: 	if ($num_args == 1) {
-</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  247: 		if (defined $default) {
-</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  248: 			my $arg  = $args-&gt;[0];
-</span><span class="">  249: 			my $kind = ref($arg);
-</span><span class="">  250: 
-</span><span class="">  251: 			return { $default =&gt; $arg     } if !$kind;
-</span><span class="">  252: 			return { $default =&gt; $arg     } if $kind eq $T_ARRAY;
-</span><span class="">  253: 			return { $default =&gt; ${$arg}  } if $kind eq $T_SCALAR;
-</span><span class="">  254: 			return { $default =&gt; $arg     } if $kind eq $T_CODE;
-</span><span class="">  255: 			return { $default =&gt; $arg     } if Scalar::Util::blessed($arg);
-</span><span class="">  256: 			# Unblessed HASH ref falls through to the no-default path below,
-</span><span class="">  257: 			# where it is returned directly (see LIMITATIONS).
-</span><span class="">  258: 		}
-</span><span class="">  259: 
-</span><span class="">  260: 		return unless defined $args-&gt;[0];
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  261: 
-</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  262: 		# Copy before type checks: $args-&gt;[0] is an alias to the caller&#39;s
-</span><span class="">  263: 		# variable via @_ -- assigning through it would silently mutate the
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  264: 		# caller&#39;s data.  Work on a named copy instead.
-</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  265: 		my $val = $args-&gt;[0];
-</span><span class="">  266: 		$val = ${$val} if ref($val) eq $T_REF;
-</span><span class="">  267: 
-</span><span class="">  268: 		return $val if ref($val) eq $T_HASH;
-</span><span class="">  269: 
-</span><span class="">  270: 		# Empty arrayref with no default: return the ref itself.
-</span><span class="">  271: 		if ((ref($val) eq $T_ARRAY) &amp;&amp; (@{$val} == 0)) {
-</span><span class="">  272: 			return $val;
-</span><span class="">  273: 		}
-</span><span class="">  274: 
-</span><span class="">  275: 		Carp::croak(&#39;Usage: &#39;, __PACKAGE__, &#39;-&gt;&#39;, (caller(1))[3], &#39;()&#39;);
-</span><span class="">  276: 	}
-</span><span class="">  277: 
-</span><span class="">  278: 	# --- Two arguments where the second is a hash ref ---
-</span><span class="">  279: 	# Handles the Obj-&gt;new($mandatory, \%options) convention.
-</span><span class=""><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">280 → 280 → 294</span></span>  280: 	if (($num_args == 2) &amp;&amp; (ref($args-&gt;[1]) eq $T_HASH)) {
-</span><span class="">  281: 		if (defined $default) {
-</span><span class="">  282: 			if (scalar keys %{$args-&gt;[1]}) {
-</span><span class="">  283: 				# When first arg is the default key name itself, second arg is its value.
-</span><span class="">  284: 				return { $default =&gt; $args-&gt;[1] } if $args-&gt;[0] eq $default;
-</span><span class="">  285: 				# Otherwise: first arg is the mandatory value; options are merged.
-</span><span class="">  286: 				return { $default =&gt; $args-&gt;[0], %{$args-&gt;[1]} };
-</span><span class="">  287: 			}
-</span><span class="">  288: 			# Empty options hashref: store the ref as the value.
-</span><span class="">  289: 			return { $default =&gt; $args-&gt;[1] };
-</span><span class="">  290: 		}
-</span><span class="">  291: 	}
-</span><span class="">  292: 
-</span><span class="">  293: 	# --- \@_ with multiple values under a scalar default ---
-</span><span class=""><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">294 → 297 → 302</span></span>  294: 	return { $default =&gt; $args } if $from_arrayref &amp;&amp; defined $default;
-</span><span class="">  295: 
-</span><span class="">  296: 	# --- Even-length list: flat key/value pairs ---
-</span><span class="">  297: 	if (($num_args % 2) == 0) {
-</span><span class="">  298: 		my %rc = @{$args};
-</span><span class="">  299: 		return \%rc;
-</span><span class="">  300: 	}
-</span><span class="">  301: 
-</span><span class="">  302: 	Carp::croak(&#39;Usage: &#39;, __PACKAGE__, &#39;-&gt;&#39;, (caller(1))[3], &#39;()&#39;);
-</span><span class="">  303: }
-</span><span class="">  304: 
-</span><span class="">  305: =head1 LIMITATIONS
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  214: 	if (ref($default) &amp;&amp; (ref($default) ne $T_ARRAY)) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  215: 		Carp::croak(__PACKAGE__, &#39;::get_params: $default must be a scalar or arrayref&#39;);
+</span><span class="">  216: 	}
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  217: 
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  218: 	# Positional-names feature: $default is an arrayref of key names and the
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  219: 	# remaining @_ are values to map to those keys in order.
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic."><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">220 → 220 → 229</span></span>  220: 	if (ref($default) eq $T_ARRAY) {
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  221: 		# Honour the single-hashref passthrough for consistency with scalar $default.
+</span><span class="">  222: 		return $_[0] if (@_ == 1) &amp;&amp; (ref($_[0]) eq $T_HASH);
+</span><span class="">  223: 		my %rc;
+</span><span class="">  224: 		@rc{@{$default}} = @_[0 .. $#{$default}];
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  225: 		return \%rc;
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  226: 	}
+</span><span class="">  227: 
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  228: 	# Detect \@_ usage: caller passed a reference to its own @_.
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class=""><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">229 → 230 → 247</span></span>  229: 	my ($args, $from_arrayref);
+</span><span class="">  230: 	if ((@_ == 1) &amp;&amp; (ref($_[0]) eq $T_ARRAY)) {
+</span><span class="">  231: 		# Two-element shorthand: caller did routine(&#39;key&#39; =&gt; &#39;scalar&#39;) and the
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  232: 		# callee received \@_.  Only fires when the value is a plain scalar to
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  233: 		# avoid ambiguity with an arrayref value.
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  234: 		if (    $default
+</span><span class="">  235: 			&amp;&amp; (@{$_[0]} == 2)
+</span><span class="">  236: 			&amp;&amp; ($_[0]-&gt;[0] eq $default)
+</span><span class="">  237: 			&amp;&amp; !ref($_[0]-&gt;[1])
+</span><span class="">  238: 		) {
+</span><span class="">  239: 			return { $default =&gt; $_[0]-&gt;[1] };
+</span><span class="">  240: 		}
+</span><span class="">  241: 		$args          = $_[0];
+</span><span class="">  242: 		$from_arrayref = 1;
+</span><span class="">  243: 	} else {
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  244: 		$args = \@_;
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  245: 	}
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  246: 
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic."><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">247 → 250 → 260</span></span>  247: 	my $num_args = scalar @{$args};
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  248: 
+</span><span class="">  249: 	# --- Zero arguments ---
+</span><span class="">  250: 	if ($num_args == 0) {
+</span><span class="">  251: 		if (defined $default) {
+</span><span class="">  252: 			# Full stack trace via Devel::Confess because receiving zero args
+</span><span class="">  253: 			# when a default is defined is virtually always a programming error.
+</span><span class="">  254: 			Carp::confess(&#39;Usage: &#39;, __PACKAGE__, &#39;-&gt;&#39;, (caller(1))[3], &quot;($default =&gt; \$val)&quot;);
+</span><span class="">  255: 		}
+</span><span class="">  256: 		return;
+</span><span class="">  257: 	}
+</span><span class="">  258: 
+</span><span class="">  259: 	# --- One argument ---
+</span><span class=""><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">260 → 260 → 294</span></span>  260: 	if ($num_args == 1) {
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  261: 		if (defined $default) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  262: 			my $arg  = $args-&gt;[0];
+</span><span class="">  263: 			my $kind = ref($arg);
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  264: 
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  265: 			return { $default =&gt; $arg     } if !$kind;
+</span><span class="">  266: 			return { $default =&gt; $arg     } if $kind eq $T_ARRAY;
+</span><span class="">  267: 			return { $default =&gt; ${$arg}  } if $kind eq $T_SCALAR;
+</span><span class="">  268: 			return { $default =&gt; $arg     } if $kind eq $T_CODE;
+</span><span class="">  269: 			return { $default =&gt; $arg     } if Scalar::Util::blessed($arg);
+</span><span class="">  270: 			# Unblessed HASH ref falls through to the no-default path below,
+</span><span class="">  271: 			# where it is returned directly (see LIMITATIONS).
+</span><span class="">  272: 		}
+</span><span class="">  273: 
+</span><span class="">  274: 		return unless defined $args-&gt;[0];
+</span><span class="">  275: 
+</span><span class="">  276: 		# Copy before type checks: $args-&gt;[0] is an alias to the caller&#39;s
+</span><span class="">  277: 		# variable via @_ -- assigning through it would silently mutate the
+</span><span class="">  278: 		# caller&#39;s data.  Work on a named copy instead.
+</span><span class="">  279: 		my $val = $args-&gt;[0];
+</span><span class="">  280: 		$val = ${$val} if ref($val) eq $T_REF;
+</span><span class="">  281: 
+</span><span class="">  282: 		return $val if ref($val) eq $T_HASH;
+</span><span class="">  283: 
+</span><span class="">  284: 		# Empty arrayref with no default: return the ref itself.
+</span><span class="">  285: 		if ((ref($val) eq $T_ARRAY) &amp;&amp; (@{$val} == 0)) {
+</span><span class="">  286: 			return $val;
+</span><span class="">  287: 		}
+</span><span class="">  288: 
+</span><span class="">  289: 		Carp::croak(&#39;Usage: &#39;, __PACKAGE__, &#39;-&gt;&#39;, (caller(1))[3], &#39;()&#39;);
+</span><span class="">  290: 	}
+</span><span class="">  291: 
+</span><span class="">  292: 	# --- Two arguments where the second is a hash ref ---
+</span><span class="">  293: 	# Handles the Obj-&gt;new($mandatory, \%options) convention.
+</span><span class=""><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">294 → 294 → 308</span></span>  294: 	if (($num_args == 2) &amp;&amp; (ref($args-&gt;[1]) eq $T_HASH)) {
+</span><span class="">  295: 		if (defined $default) {
+</span><span class="">  296: 			if (scalar keys %{$args-&gt;[1]}) {
+</span><span class="">  297: 				# When first arg is the default key name itself, second arg is its value.
+</span><span class="">  298: 				return { $default =&gt; $args-&gt;[1] } if $args-&gt;[0] eq $default;
+</span><span class="">  299: 				# Otherwise: first arg is the mandatory value; options are merged.
+</span><span class="">  300: 				return { $default =&gt; $args-&gt;[0], %{$args-&gt;[1]} };
+</span><span class="">  301: 			}
+</span><span class="">  302: 			# Empty options hashref: store the ref as the value.
+</span><span class="">  303: 			return { $default =&gt; $args-&gt;[1] };
+</span><span class="">  304: 		}
+</span><span class="">  305: 	}
 </span><span class="">  306: 
-</span><span class="">  307: =over 4
-</span><span class="">  308: 
-</span><span class="">  309: =item B&lt;Single empty arrayref cannot be distinguished from C&lt;\@_&gt; of an empty list&gt;
-</span><span class="">  310: 
-</span><span class="">  311: When the caller does C&lt;foo([])&gt; and the callee uses C&lt;get_params(&#39;key&#39;, @_)&gt;,
-</span><span class="">  312: the C&lt;@_&gt; list is C&lt;([])&gt; -- one element, an arrayref.  The function
-</span><span class="">  313: interprets the lone arrayref as a C&lt;\@_&gt; passthrough, unwraps it to an empty
-</span><span class="">  314: list, and then croaks because C&lt;$default&gt; is defined but there are zero
-</span><span class="">  315: arguments.  Workaround: pass the value as a named pair
-</span><span class="">  316: (C&lt;key =E&lt;gt&gt; []&gt;) or ensure the callee always uses C&lt;\@_&gt;.
-</span><span class="">  317: 
-</span><span class="">  318: =item B&lt;Single hash ref always bypasses C&lt;$default&gt; key naming&gt;
-</span><span class="">  319: 
-</span><span class="">  320: C&lt;get_params(&#39;config&#39;, { a =E&lt;gt&gt; 1 })&gt; returns C&lt;{ a =E&lt;gt&gt; 1 }&gt;, not
-</span><span class="">  321: C&lt;{ config =E&lt;gt&gt; { a =E&lt;gt&gt; 1 } }&gt;.  The fast path fires before C&lt;$default&gt;
-</span><span class="">  322: is inspected.  To store a hash ref under a default key, pass it as a named
-</span><span class="">  323: pair: C&lt;get_params(&#39;config&#39;, config =E&lt;gt&gt; { a =E&lt;gt&gt; 1 })&gt;.
+</span><span class="">  307: 	# --- \@_ with multiple values under a scalar default ---
+</span><span class=""><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">308 → 311 → 316</span></span>  308: 	return { $default =&gt; $args } if $from_arrayref &amp;&amp; defined $default;
+</span><span class="">  309: 
+</span><span class="">  310: 	# --- Even-length list: flat key/value pairs ---
+</span><span class="">  311: 	if (($num_args % 2) == 0) {
+</span><span class="">  312: 		my %rc = @{$args};
+</span><span class="">  313: 		return \%rc;
+</span><span class="">  314: 	}
+</span><span class="">  315: 
+</span><span class="">  316: 	Carp::croak(&#39;Usage: &#39;, __PACKAGE__, &#39;-&gt;&#39;, (caller(1))[3], &#39;()&#39;);
+</span><span class="">  317: }
+</span><span class="">  318: 
+</span><span class="">  319: =head1 LIMITATIONS
+</span><span class="">  320: 
+</span><span class="">  321: =over 4
+</span><span class="">  322: 
+</span><span class="">  323: =item B&lt;Single empty arrayref cannot be distinguished from C&lt;\@_&gt; of an empty list&gt;
 </span><span class="">  324: 
-</span><span class="">  325: =item B&lt;No mechanism to mark a C&lt;$default&gt; argument as optional&gt;
-</span><span class="">  326: 
-</span><span class="">  327: When C&lt;$default&gt; is a string and zero arguments are received, the function
-</span><span class="">  328: always confesses.  There is no way to express I&lt;&quot;accept zero args and return
-</span><span class="">  329: undef gracefully&quot;&gt;.
-</span><span class="">  330: 
-</span><span class="">  331: =item B&lt;Duplicate keys in a flat list silently overwrite; last value wins&gt;
-</span><span class="">  332: 
-</span><span class="">  333: C&lt;get_params(undef, foo =E&lt;gt&gt; 1, foo =E&lt;gt&gt; 2)&gt; returns C&lt;{ foo =E&lt;gt&gt; 2 }&gt;
-</span><span class="">  334: with no warning.  If an attacker controls part of the argument list, a
-</span><span class="">  335: later duplicate key can silently override an earlier sanitised value.
-</span><span class="">  336: Detect and reject duplicate keys in the validation layer (e.g.
-</span><span class="">  337: L&lt;Params::Validate::Strict&gt;) rather than relying on C&lt;get_params&gt; to catch
-</span><span class="">  338: them.
-</span><span class="">  339: 
-</span><span class="">  340: =item B&lt;Positional-names C&lt;$default&gt; silently discards extra arguments&gt;
-</span><span class="">  341: 
-</span><span class="">  342: C&lt;get_params([qw(a b)], 1, 2, 3)&gt; returns C&lt;{ a =E&lt;gt&gt; 1, b =E&lt;gt&gt; 2 }&gt;
-</span><span class="">  343: and ignores C&lt;3&gt;.  If strict arity is required, validate the returned hash
-</span><span class="">  344: with L&lt;Params::Validate::Strict&gt;.
-</span><span class="">  345: 
-</span><span class="">  346: =back
-</span><span class="">  347: 
-</span><span class="">  348: =head1 AUTHOR
-</span><span class="">  349: 
-</span><span class="">  350: Nigel Horne, C&lt;&lt; &lt;njh at nigelhorne.com&gt; &gt;&gt;
-</span><span class="">  351: 
-</span><span class="">  352: =head1 BUGS
+</span><span class="">  325: When the caller does C&lt;foo([])&gt; and the callee uses C&lt;get_params(&#39;key&#39;, @_)&gt;,
+</span><span class="">  326: the C&lt;@_&gt; list is C&lt;([])&gt; -- one element, an arrayref.  The function
+</span><span class="">  327: interprets the lone arrayref as a C&lt;\@_&gt; passthrough, unwraps it to an empty
+</span><span class="">  328: list, and then croaks because C&lt;$default&gt; is defined but there are zero
+</span><span class="">  329: arguments.  Workaround: pass the value as a named pair
+</span><span class="">  330: (C&lt;key =E&lt;gt&gt; []&gt;) or ensure the callee always uses C&lt;\@_&gt;.
+</span><span class="">  331: 
+</span><span class="">  332: =item B&lt;Single hash ref always bypasses C&lt;$default&gt; key naming&gt;
+</span><span class="">  333: 
+</span><span class="">  334: C&lt;get_params(&#39;config&#39;, { a =E&lt;gt&gt; 1 })&gt; returns C&lt;{ a =E&lt;gt&gt; 1 }&gt;, not
+</span><span class="">  335: C&lt;{ config =E&lt;gt&gt; { a =E&lt;gt&gt; 1 } }&gt;.  The fast path fires before C&lt;$default&gt;
+</span><span class="">  336: is inspected.  To store a hash ref under a default key, pass it as a named
+</span><span class="">  337: pair: C&lt;get_params(&#39;config&#39;, config =E&lt;gt&gt; { a =E&lt;gt&gt; 1 })&gt;.
+</span><span class="">  338: 
+</span><span class="">  339: =item B&lt;No mechanism to mark a C&lt;$default&gt; argument as optional&gt;
+</span><span class="">  340: 
+</span><span class="">  341: When C&lt;$default&gt; is a string and zero arguments are received, the function
+</span><span class="">  342: always confesses.  There is no way to express I&lt;&quot;accept zero args and return
+</span><span class="">  343: undef gracefully&quot;&gt;.
+</span><span class="">  344: 
+</span><span class="">  345: =item B&lt;Duplicate keys in a flat list silently overwrite; last value wins&gt;
+</span><span class="">  346: 
+</span><span class="">  347: C&lt;get_params(undef, foo =E&lt;gt&gt; 1, foo =E&lt;gt&gt; 2)&gt; returns C&lt;{ foo =E&lt;gt&gt; 2 }&gt;
+</span><span class="">  348: with no warning.  If an attacker controls part of the argument list, a
+</span><span class="">  349: later duplicate key can silently override an earlier sanitised value.
+</span><span class="">  350: Detect and reject duplicate keys in the validation layer (e.g.
+</span><span class="">  351: L&lt;Params::Validate::Strict&gt;) rather than relying on C&lt;get_params&gt; to catch
+</span><span class="">  352: them.
 </span><span class="">  353: 
-</span><span class="">  354: Please report bugs or feature requests to C&lt;bug-params-get at rt.cpan.org&gt;
-</span><span class="">  355: or through L&lt;http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Params-Get&gt;.
-</span><span class="">  356: 
-</span><span class="">  357: =head1 SEE ALSO
-</span><span class="">  358: 
-</span><span class="">  359: =over 4
-</span><span class="">  360: 
-</span><span class="">  361: =item * L&lt;Params::Smart&gt;
-</span><span class="">  362: 
-</span><span class="">  363: =item * L&lt;Params::Validate::Strict&gt;
-</span><span class="">  364: 
-</span><span class="">  365: =item * L&lt;Return::Set&gt;
-</span><span class="">  366: 
-</span><span class="">  367: =item * L&lt;Test Dashboard|https://nigelhorne.github.io/Params-Get/coverage/&gt;
-</span><span class="">  368: 
-</span><span class="">  369: =back
+</span><span class="">  354: =item B&lt;Positional-names C&lt;$default&gt; silently discards extra arguments&gt;
+</span><span class="">  355: 
+</span><span class="">  356: C&lt;get_params([qw(a b)], 1, 2, 3)&gt; returns C&lt;{ a =E&lt;gt&gt; 1, b =E&lt;gt&gt; 2 }&gt;
+</span><span class="">  357: and ignores C&lt;3&gt;.  If strict arity is required, validate the returned hash
+</span><span class="">  358: with L&lt;Params::Validate::Strict&gt;.
+</span><span class="">  359: 
+</span><span class="">  360: =back
+</span><span class="">  361: 
+</span><span class="">  362: =head1 AUTHOR
+</span><span class="">  363: 
+</span><span class="">  364: Nigel Horne, C&lt;&lt; &lt;njh at nigelhorne.com&gt; &gt;&gt;
+</span><span class="">  365: 
+</span><span class="">  366: =head1 BUGS
+</span><span class="">  367: 
+</span><span class="">  368: Please report bugs or feature requests to C&lt;bug-params-get at rt.cpan.org&gt;
+</span><span class="">  369: or through L&lt;http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Params-Get&gt;.
 </span><span class="">  370: 
-</span><span class="">  371: =head1 SUPPORT
+</span><span class="">  371: =head1 SEE ALSO
 </span><span class="">  372: 
 </span><span class="">  373: =over 4
 </span><span class="">  374: 
-</span><span class="">  375: =item * MetaCPAN: L&lt;https://metacpan.org/dist/Params-Get&gt;
+</span><span class="">  375: =item * L&lt;Params::Smart&gt;
 </span><span class="">  376: 
-</span><span class="">  377: =item * RT: L&lt;https://rt.cpan.org/NoAuth/Bugs.html?Dist=Params-Get&gt;
+</span><span class="">  377: =item * L&lt;Params::Validate::Strict&gt;
 </span><span class="">  378: 
-</span><span class="">  379: =item * CPAN Testers: L&lt;http://matrix.cpantesters.org/?dist=Params-Get&gt;
+</span><span class="">  379: =item * L&lt;Return::Set&gt;
 </span><span class="">  380: 
-</span><span class="">  381: =item * CPAN Testers Dependencies: L&lt;http://deps.cpantesters.org/?module=Params::Get&gt;
+</span><span class="">  381: =item * L&lt;Test Dashboard|https://nigelhorne.github.io/Params-Get/coverage/&gt;
 </span><span class="">  382: 
 </span><span class="">  383: =back
 </span><span class="">  384: 
-</span><span class="">  385: =head2 FORMAL SPECIFICATION
+</span><span class="">  385: =head1 SUPPORT
 </span><span class="">  386: 
-</span><span class="">  387: =head3 get_params
+</span><span class="">  387: =over 4
 </span><span class="">  388: 
-</span><span class="">  389:     Let D = default key (Str | [Str*] | undef), A = argument tuple.
+</span><span class="">  389: =item * MetaCPAN: L&lt;https://metacpan.org/dist/Params-Get&gt;
 </span><span class="">  390: 
-</span><span class="">  391:     get_params : D x A* -&gt; HashRef | Undef
+</span><span class="">  391: =item * RT: L&lt;https://rt.cpan.org/NoAuth/Bugs.html?Dist=Params-Get&gt;
 </span><span class="">  392: 
-</span><span class="">  393:     -- Fast path (fires before D is inspected -- see LIMITATIONS)
-</span><span class="">  394:     get_params(D, h)            == h             when |A|=1, h:HashRef
-</span><span class="">  395: 
-</span><span class="">  396:     -- Positional-names default
-</span><span class="">  397:     get_params([n1..nk], v*)    == {ni -&gt; vi}    i in 1..k, vi = undef when missing
+</span><span class="">  393: =item * CPAN Testers: L&lt;http://matrix.cpantesters.org/?dist=Params-Get&gt;
+</span><span class="">  394: 
+</span><span class="">  395: =item * CPAN Testers Dependencies: L&lt;http://deps.cpantesters.org/?module=Params::Get&gt;
+</span><span class="">  396: 
+</span><span class="">  397: =back
 </span><span class="">  398: 
-</span><span class="">  399:     -- Scalar default, single arg
-</span><span class="">  400:     get_params(d, s)            == {d -&gt; s}      d:Str, s:Scalar
-</span><span class="">  401:     get_params(d, a)            == {d -&gt; a}      d:Str, a:ArrayRef
-</span><span class="">  402:     get_params(d, \s)           == {d -&gt; s}      d:Str (scalarref dereferenced)
-</span><span class="">  403:     get_params(d, c)            == {d -&gt; c}      d:Str, c:CodeRef
-</span><span class="">  404:     get_params(d, o)            == {d -&gt; o}      d:Str, o:BlessedObject
-</span><span class="">  405: 
-</span><span class="">  406:     -- Mandatory-positional + options-hashref
-</span><span class="">  407:     get_params(d, v, {k-&gt;w..})  == {d-&gt;v, k-&gt;w..}    non-empty opts
-</span><span class="">  408:     get_params(d, d, {k-&gt;w..})  == {d -&gt; {k-&gt;w..}}   first arg IS the key name
+</span><span class="">  399: =head2 FORMAL SPECIFICATION
+</span><span class="">  400: 
+</span><span class="">  401: =head3 get_params
+</span><span class="">  402: 
+</span><span class="">  403:     Let D = default key (Str | [Str*] | undef), A = argument tuple.
+</span><span class="">  404: 
+</span><span class="">  405:     get_params : D x A* -&gt; HashRef | Undef
+</span><span class="">  406: 
+</span><span class="">  407:     -- Fast path (fires before D is inspected -- see LIMITATIONS)
+</span><span class="">  408:     get_params(D, h)            == h             when |A|=1, h:HashRef
 </span><span class="">  409: 
-</span><span class="">  410:     -- Named pairs
-</span><span class="">  411:     get_params(undef, k1,v1..)  == {ki -&gt; vi}    when |A| is even
+</span><span class="">  410:     -- Positional-names default
+</span><span class="">  411:     get_params([n1..nk], v*)    == {ni -&gt; vi}    i in 1..k, vi = undef when missing
 </span><span class="">  412: 
-</span><span class="">  413:     -- Empty / error
-</span><span class="">  414:     get_params(undef)           == undef
-</span><span class="">  415:     get_params(d)               =&gt; confess       d:Str (missing required arg)
-</span><span class="">  416:     get_params(D, odd-list)     =&gt; croak
-</span><span class="">  417: 
-</span><span class="">  418: =head1 LICENCE AND COPYRIGHT
+</span><span class="">  413:     -- Scalar default, single arg
+</span><span class="">  414:     get_params(d, s)            == {d -&gt; s}      d:Str, s:Scalar
+</span><span class="">  415:     get_params(d, a)            == {d -&gt; a}      d:Str, a:ArrayRef
+</span><span class="">  416:     get_params(d, \s)           == {d -&gt; s}      d:Str (scalarref dereferenced)
+</span><span class="">  417:     get_params(d, c)            == {d -&gt; c}      d:Str, c:CodeRef
+</span><span class="">  418:     get_params(d, o)            == {d -&gt; o}      d:Str, o:BlessedObject
 </span><span class="">  419: 
-</span><span class="">  420: Copyright 2025-2026 Nigel Horne.
-</span><span class="">  421: 
-</span><span class="">  422: Usage is subject to the GPL2 licence terms.  If you use this module,
-</span><span class="">  423: please let me know.
-</span><span class="">  424: 
-</span><span class="">  425: =cut
+</span><span class="">  420:     -- Mandatory-positional + options-hashref
+</span><span class="">  421:     get_params(d, v, {k-&gt;w..})  == {d-&gt;v, k-&gt;w..}    non-empty opts
+</span><span class="">  422:     get_params(d, d, {k-&gt;w..})  == {d -&gt; {k-&gt;w..}}   first arg IS the key name
+</span><span class="">  423: 
+</span><span class="">  424:     -- Named pairs
+</span><span class="">  425:     get_params(undef, k1,v1..)  == {ki -&gt; vi}    when |A| is even
 </span><span class="">  426: 
-</span><span class="">  427: 1;
+</span><span class="">  427:     -- Empty / error
+</span><span class="">  428:     get_params(undef)           == undef
+</span><span class="">  429:     get_params(d)               =&gt; confess       d:Str (missing required arg)
+</span><span class="">  430:     get_params(D, odd-list)     =&gt; croak
+</span><span class="">  431: 
+</span><span class="">  432: =head1 LICENCE AND COPYRIGHT
+</span><span class="">  433: 
+</span><span class="">  434: Copyright 2025-2026 Nigel Horne.
+</span><span class="">  435: 
+</span><span class="">  436: Usage is subject to the GPL2 licence terms.  If you use this module,
+</span><span class="">  437: please let me know.
+</span><span class="">  438: 
+</span><span class="">  439: =cut
+</span><span class="">  440: 
+</span><span class="">  441: 1;
 </span></pre>
 
 <script>
