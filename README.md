@@ -88,12 +88,26 @@ because that almost always indicates a programming error.
 
 ### API SPECIFICATION
 
-    Input:
-        $default : Str | ArrayRef[Str] | Undef
-        @args    : Any*     # or a single ArrayRef containing Any*
+#### Input
 
-    Output (Return::Set):
-        HashRef | Undef
+        {
+                default => {
+                        type => [ 'string' | 'stringref' ],
+                        optional => 1,
+                        position => 0,
+                }, args => {
+                        type => [ 'array' | 'arrayref' ],
+                        optional => 1,
+                        position => 1,
+                }
+        }
+
+#### output
+
+    {
+        type => 'hashref',
+        optional => 1,
+    }
 
 ### MESSAGES
 

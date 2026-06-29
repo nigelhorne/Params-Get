@@ -140,12 +140,26 @@ because that almost always indicates a programming error.
 
 =head3 API SPECIFICATION
 
-    Input:
-        $default : Str | ArrayRef[Str] | Undef
-        @args    : Any*     # or a single ArrayRef containing Any*
+=head4 Input
 
-    Output (Return::Set):
-        HashRef | Undef
+	{
+		default => {
+			type => [ 'string' | 'stringref' ],
+			optional => 1,
+			position => 0,
+		}, args => {
+			type => [ 'array' | 'arrayref' ],
+			optional => 1,
+			position => 1,
+		}
+	}
+
+=head4 output
+
+    {
+	type => 'hashref',
+	optional => 1,
+    }
 
 =head3 MESSAGES
 
