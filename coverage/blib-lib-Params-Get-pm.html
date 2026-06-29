@@ -20,273 +20,361 @@ https://pjcj.net
 <h1>File Coverage</h1>
 <table>
 <tr><td class="h" align="right">File:</td><td align="left">blib/lib/Params/Get.pm</td></tr>
-<tr><td class="h" align="right">Coverage:</td><td align="left" class="c2">93.6%</td></tr>
+<tr><td class="h" align="right">Coverage:</td><td align="left" class="c2">94.7%</td></tr>
 </table>
 <div><br/></div>
 <table>
 <tr><th>line</th><th>stmt</th><th>bran</th><th>cond</th><th>sub</th><th>time</th><th>code</th></tr>
 <tr><td class="h">1</td><td></td><td></td><td></td><td></td><td></td><td class="s">package Params::Get;</td></tr>
-<tr><td class="h">2</td><td colspan="6"></td></tr><tr><td class="h">3</td><td></td><td></td><td></td><td></td><td></td><td class="s"># TODO:&nbsp;&nbsp;allow $default to be an arrayref of positional arg mames:</td></tr>
-<tr><td class="h">4</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i.e. [ &#39;foo&#39;, &#39;bar&#39; ], @_ would set $_[0] to $rc-&gt;{foo} and $_[1] to $rc-&gt;{bar}</td></tr>
-<tr><td class="h">5</td><td colspan="6"></td></tr><tr><td class="h">6</td><td><div class="c3">5</div><div class="c3">5</div><div class="c3">5</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Params-Get-pm--subroutine.html#L6">5</a></div></td><td><div>261902</div><div>4</div><div>72</div></td><td class="s">use strict;</td></tr>
-<tr><td class="h">7</td><td><div class="c3">5</div><div class="c3">5</div><div class="c3">5</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Params-Get-pm--subroutine.html#L7">5</a></div></td><td><div>9</div><div>1</div><div>81</div></td><td class="s">use warnings;</td></tr>
-<tr><td class="h">8</td><td colspan="6"></td></tr><tr><td class="h">9</td><td><div class="c3">5</div><div class="c3">5</div><div class="c3">5</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Params-Get-pm--subroutine.html#L9">5</a></div></td><td><div>8</div><div>4</div><div>106</div></td><td class="s">use Carp;</td></tr>
-<tr><td class="h">10</td><td><div class="c3">5</div><div class="c3">5</div><div class="c3">5</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Params-Get-pm--subroutine.html#L10">5</a></div></td><td><div>1147</div><div>20372</div><div>10</div></td><td class="s">use Devel::Confess;</td></tr>
-<tr><td class="h">11</td><td><div class="c3">5</div><div class="c3">5</div><div class="c3">5</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Params-Get-pm--subroutine.html#L11">5</a></div></td><td><div>203</div><div>3</div><div>1389</div></td><td class="s">use Scalar::Util;</td></tr>
-<tr><td class="h">12</td><td colspan="6"></td></tr><tr><td class="h">13</td><td></td><td></td><td></td><td></td><td></td><td class="s">our @ISA = qw(Exporter);</td></tr>
-<tr><td class="h">14</td><td></td><td></td><td></td><td></td><td></td><td class="s">our @EXPORT_OK = qw(get_params);</td></tr>
-<tr><td class="h">15</td><td colspan="6"></td></tr><tr><td class="h">16 - 24</td><td colspan="5"></td><td class="s"><pre>=head1 NAME
+<tr><td class="h">2</td><td colspan="6"></td></tr><tr><td class="h">3</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Normalises the many calling conventions Perl callers use when passing</td></tr>
+<tr><td class="h">4</td><td></td><td></td><td></td><td></td><td></td><td class="s"># arguments -- positional scalar, named pairs, hashref, arrayref -- into a</td></tr>
+<tr><td class="h">5</td><td></td><td></td><td></td><td></td><td></td><td class="s"># single hashref so the receiving sub need not care which style was used.</td></tr>
+<tr><td class="h">6</td><td colspan="6"></td></tr><tr><td class="h">7</td><td><div class="c3">6</div><div class="c3">6</div><div class="c3">6</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Params-Get-pm--subroutine.html#L7">6</a></div></td><td><div>393080</div><div>4</div><div>76</div></td><td class="s">use strict;</td></tr>
+<tr><td class="h">8</td><td><div class="c3">6</div><div class="c3">6</div><div class="c3">6</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Params-Get-pm--subroutine.html#L8">6</a></div></td><td><div>8</div><div>6</div><div>106</div></td><td class="s">use warnings;</td></tr>
+<tr><td class="h">9</td><td><div class="c3">6</div><div class="c3">6</div><div class="c3">6</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Params-Get-pm--subroutine.html#L9">6</a></div></td><td><div>1108</div><div>37834</div><div>13</div></td><td class="s">use autodie qw(:all);</td></tr>
+<tr><td class="h">10</td><td colspan="6"></td></tr><tr><td class="h">11</td><td><div class="c3">6</div><div class="c3">6</div><div class="c3">6</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Params-Get-pm--subroutine.html#L11">6</a></div></td><td><div>44901</div><div>10</div><div>9</div></td><td class="s">use parent &#39;Exporter&#39;;</td></tr>
+<tr><td class="h">12</td><td colspan="6"></td></tr><tr><td class="h">13</td><td><div class="c3">6</div><div class="c3">6</div><div class="c3">6</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Params-Get-pm--subroutine.html#L13">6</a></div></td><td><div>185</div><div>2</div><div>41</div></td><td class="s">use Carp ();</td></tr>
+<tr><td class="h">14</td><td><div class="c3">6</div><div class="c3">6</div><div class="c3">6</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Params-Get-pm--subroutine.html#L14">6</a></div></td><td><div>1442</div><div>22464</div><div>7</div></td><td class="s">use Devel::Confess;</td></tr>
+<tr><td class="h">15</td><td><div class="c3">6</div><div class="c3">6</div><div class="c3">6</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Params-Get-pm--subroutine.html#L15">6</a></div></td><td><div>186</div><div>5</div><div>47</div></td><td class="s">use Scalar::Util ();</td></tr>
+<tr><td class="h">16</td><td colspan="6"></td></tr><tr><td class="h">17</td><td><div class="c3">6</div><div class="c3">6</div><div class="c3">6</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Params-Get-pm--subroutine.html#L17">6</a></div></td><td><div>1295</div><div>9997</div><div>2216</div></td><td class="s">use Readonly;</td></tr>
+<tr><td class="h">18</td><td colspan="6"></td></tr><tr><td class="h">19</td><td></td><td></td><td></td><td></td><td></td><td class="s">our @EXPORT_OK = qw(get_params);</td></tr>
+<tr><td class="h">20</td><td colspan="6"></td></tr><tr><td class="h">21 - 29</td><td colspan="5"></td><td class="s"><pre>=head1 NAME
 
-Params::Get - Get the parameters to a subroutine in any way you want
+Params::Get - Normalise subroutine arguments regardless of calling convention
 
 =head1 VERSION
 
 Version 0.14
 
 =cut</pre></td></tr>
-<tr><td class="h">25</td><td colspan="6"></td></tr><tr><td class="h">26</td><td></td><td></td><td></td><td></td><td></td><td class="s">our $VERSION = &#39;0.14&#39;;</td></tr>
-<tr><td class="h">27</td><td colspan="6"></td></tr><tr><td class="h">28 - 160</td><td colspan="5"></td><td class="s"><pre>=head1 DESCRIPTION
+<tr><td class="h">30</td><td colspan="6"></td></tr><tr><td class="h">31</td><td></td><td></td><td></td><td></td><td></td><td class="s">our $VERSION = &#39;0.14&#39;;</td></tr>
+<tr><td class="h">32</td><td colspan="6"></td></tr><tr><td class="h">33</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Reference-type sentinels.&nbsp;&nbsp;Collected here so a typo is a compile-time</td></tr>
+<tr><td class="h">34</td><td></td><td></td><td></td><td></td><td></td><td class="s"># error via Readonly and grep/ack finds every usage in one search.</td></tr>
+<tr><td class="h">35</td><td></td><td></td><td></td><td></td><td></td><td class="s">Readonly::Scalar my $T_HASH&nbsp;&nbsp;&nbsp;=&gt; &#39;HASH&#39;;</td></tr>
+<tr><td class="h">36</td><td></td><td></td><td></td><td></td><td></td><td class="s">Readonly::Scalar my $T_ARRAY&nbsp;&nbsp;=&gt; &#39;ARRAY&#39;;</td></tr>
+<tr><td class="h">37</td><td></td><td></td><td></td><td></td><td></td><td class="s">Readonly::Scalar my $T_SCALAR =&gt; &#39;SCALAR&#39;;</td></tr>
+<tr><td class="h">38</td><td></td><td></td><td></td><td></td><td></td><td class="s">Readonly::Scalar my $T_CODE&nbsp;&nbsp;&nbsp;=&gt; &#39;CODE&#39;;</td></tr>
+<tr><td class="h">39</td><td></td><td></td><td></td><td></td><td></td><td class="s">Readonly::Scalar my $T_REF&nbsp;&nbsp;&nbsp;&nbsp;=&gt; &#39;REF&#39;;</td></tr>
+<tr><td class="h">40</td><td colspan="6"></td></tr><tr><td class="h">41 - 222</td><td colspan="5"></td><td class="s"><pre>=head1 DESCRIPTION
 
-Exports a single function, C&lt;get_params&gt;, which returns a given value.
+C&lt;Params::Get&gt; exports a single function, C&lt;get_params&gt;, which accepts a
+caller&#39;s argument list (or a reference to it) in any of the common Perl
+calling conventions and returns a unified hash-ref.&nbsp;&nbsp;Library authors can
+write one normalisation call at the top of every public method rather than
+hand-rolling the same conditional chains in each one.
 
-When used hand-in-hand with L&lt;Params::Validate::Strict&gt; and L&lt;Return::Set&gt;,
-you should be able to formally specify the input and output sets for a method.
+When combined with L&lt;Params::Validate::Strict&gt; and L&lt;Return::Set&gt; you can
+formally specify and enforce the input and output contracts of every method.
 
 =head1 SYNOPSIS
 
-&nbsp;&nbsp;&nbsp;&nbsp;use Params::Get;
+&nbsp;&nbsp;&nbsp;&nbsp;use Params::Get qw(get_params);
 &nbsp;&nbsp;&nbsp;&nbsp;use Params::Validate::Strict;
 
-&nbsp;&nbsp;&nbsp;&nbsp;sub where_am_i
-&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;sub where_am_i {
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $params = Params::Validate::Strict::validate_strict({
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;args =&gt; Params::Get::get_params(undef, \@_),
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;args&nbsp;&nbsp;&nbsp;=&gt; get_params(undef, \@_),
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;schema =&gt; {
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;latitude&#39; =&gt; {
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type =&gt; &#39;number&#39;,
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;min =&gt; -90,
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;max =&gt; 90
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, &#39;longitude&#39; =&gt; {
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type =&gt; &#39;number&#39;,
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;min =&gt; -180,
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;max =&gt; 180
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;latitude&nbsp;&nbsp;=&gt; { type =&gt; &#39;number&#39;, min =&gt; -90,&nbsp;&nbsp;max =&gt;&nbsp;&nbsp;90 },
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;longitude =&gt; { type =&gt; &#39;number&#39;, min =&gt; -180, max =&gt; 180 },
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print &#39;You are at &#39;, $params-&gt;{&#39;latitude&#39;}, &#39;, &#39;, $params-&gt;{&#39;longitude&#39;}, &quot;\n&quot;;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf &quot;You are at %s, %s\n&quot;,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$params-&gt;{latitude}, $params-&gt;{longitude};
 &nbsp;&nbsp;&nbsp;&nbsp;}
 
 &nbsp;&nbsp;&nbsp;&nbsp;where_am_i(latitude =&gt; 0.3, longitude =&gt; 124);
 &nbsp;&nbsp;&nbsp;&nbsp;where_am_i({ latitude =&gt; 3.14, longitude =&gt; -155 });
 
-=head1&nbsp;&nbsp;METHODS
+=head1 FUNCTIONS
 
 =head2 get_params
 
-Parse the arguments given to a function.
-Processes arguments passed to methods and ensures they are in a usable format,
-allowing the caller to call the function in any way that they want
-e.g. `foo(&#39;bar&#39;)`, `foo(arg =&gt; &#39;bar&#39;)`, `foo({ arg =&gt; &#39;bar&#39; })` all mean the same
-when called with
+=head3 PURPOSE
 
-&nbsp;&nbsp;&nbsp;&nbsp;get_params(&#39;arg&#39;, @_);
+Parse the argument list passed to a subroutine and return a unified hash-ref
+regardless of the calling convention used.&nbsp;&nbsp;Supported conventions:
 
-or
+=over 4
 
-&nbsp;&nbsp;&nbsp;&nbsp;get_params(&#39;arg&#39;, \@_);
+=item * Single hash-ref: C&lt;foo({ a =E&lt;gt&gt; 1 })&gt;
 
-Some people like this sort of model, which is also supported.
+=item * Named key/value pairs: C&lt;foo(a =E&lt;gt&gt; 1, b =E&lt;gt&gt; 2)&gt;
 
-&nbsp;&nbsp;&nbsp;&nbsp;use MyClass;
+=item * Single scalar with a default key: C&lt;foo(&#39;US&#39;)&gt; given C&lt;get_params(&#39;country&#39;, @_)&gt;
 
-&nbsp;&nbsp;&nbsp;&nbsp;my $str = &#39;hello world&#39;;
-&nbsp;&nbsp;&nbsp;&nbsp;my $obj = MyClass-&gt;new($str, { type =&gt; &#39;string&#39; });
+=item * Array-ref shorthand: C&lt;foo(\@_)&gt; inside the callee
 
-&nbsp;&nbsp;&nbsp;&nbsp;package MyClass;
+=item * Mandatory positional argument plus an options hash-ref:
+C&lt;Obj-E&lt;gt&gt;new($val, { opt =E&lt;gt&gt; 1 })&gt;
 
-&nbsp;&nbsp;&nbsp;&nbsp;use Params::Get;
+=item * Scalar-ref: C&lt;foo(\&#39;text&#39;)&gt; -- dereferenced automatically
 
-&nbsp;&nbsp;&nbsp;&nbsp;sub new {
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $class = shift;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $rc = Params::Get::get_params(&#39;value&#39;, \@_);
+=item * Blessed object or CODE ref: mapped under C&lt;$default&gt;
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return bless $rc, $class;
-&nbsp;&nbsp;&nbsp;&nbsp;}
-
-=head2 The C&lt;$default&gt; Parameter
-
-The first argument is the C&lt;$default&gt; parameter controls how single-argument calls are interpreted and provides
-a default key name for parameter extraction in those cases.
-
-When no arguments are provided with a defined C&lt;$default&gt;:
-
-&nbsp;&nbsp;&nbsp;&nbsp;get_params(&#39;required&#39;); # Throws usage error
-
-The function requires either arguments or an undefined C&lt;$default&gt;.
-
-=head3 Usage Examples
-
-=over 2
-
-=item * Simple scalar parameter:
-
-&nbsp;&nbsp;&nbsp;&nbsp;sub set_country {
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $params = get_params(&#39;country&#39;, @_);
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Accepts: set_country(&#39;US&#39;)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Returns: { country =&gt; &#39;US&#39; }
-&nbsp;&nbsp;&nbsp;&nbsp;}
-
-=item * Object constructor with options:
-
-&nbsp;&nbsp;&nbsp;&nbsp;sub new {
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $class = shift;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $params = get_params(&#39;value&#39;, @_);
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Accepts: MyClass-&gt;new($object)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Accepts: MyClass-&gt;new($object, { option =&gt; &#39;value&#39; })
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Returns: { value =&gt; $object } or { value =&gt; $object, option =&gt; &#39;value&#39; }
-&nbsp;&nbsp;&nbsp;&nbsp;}
-
-=item * Hash parameter:
-
-&nbsp;&nbsp;&nbsp;&nbsp;sub configure {
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $params = get_params(&#39;config&#39;, @_);
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Accepts: configure({ db =&gt; &#39;mysql&#39;, host =&gt; &#39;localhost&#39; })
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Returns: { config =&gt; { db =&gt; &#39;mysql&#39;, host =&gt; &#39;localhost&#39; } }
-&nbsp;&nbsp;&nbsp;&nbsp;}
-
-=item * Without default (named parameters only):
-
-&nbsp;&nbsp;&nbsp;&nbsp;sub process {
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $params = get_params(undef, @_);
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Accepts: process(name =&gt; &#39;John&#39;, age =&gt; 30)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Returns: { name =&gt; &#39;John&#39;, age =&gt; 30 }
-&nbsp;&nbsp;&nbsp;&nbsp;}
+=item * Array-ref of positional key names as C&lt;$default&gt;:
+C&lt;get_params([qw(name age)], @_)&gt;
 
 =back
 
-=head3 Caveats
+=head3 ARGUMENTS
 
-=over 2
+=over 4
 
-=item * When C&lt;$default&gt; is defined and no arguments are provided, an error is thrown
+=item C&lt;$default&gt; (scalar string, arrayref of strings, or C&lt;undef&gt;)
 
-=item * There&#39;s no way to specify that a default parameter is optional
+Controls how a single non-hash argument is interpreted:
 
-=item * Single hash references always bypass the default parameter naming
+=over 8
+
+=item * B&lt;string&gt; -- used as the key name when a lone scalar, ref, or object
+is received.
+
+=item * B&lt;arrayref of strings&gt; -- positional key names; the I&lt;n&gt;th argument
+is mapped to the I&lt;n&gt;th name.&nbsp;&nbsp;Extra arguments are silently discarded;
+missing arguments produce C&lt;undef&gt; values.
+
+=item * B&lt;undef&gt; -- no default key; the caller must pass named pairs or a
+single hash-ref.&nbsp;&nbsp;An empty argument list returns C&lt;undef&gt;.
 
 =back
+
+=item C&lt;@args&gt;
+
+The caller&#39;s argument list, passed either as a flat list (C&lt;@_&gt;) or as a
+reference to the array (C&lt;\@_&gt;).&nbsp;&nbsp;Both forms are accepted transparently.
+
+=back
+
+=head3 RETURNS
+
+A hash-ref on success, or C&lt;undef&gt; when C&lt;$default&gt; is C&lt;undef&gt; and no
+arguments are provided.
+
+=head3 SIDE EFFECTS
+
+Croaks from the caller&#39;s frame on programming errors (wrong calling
+convention, non-ARRAY ref passed as C&lt;$default&gt;).&nbsp;&nbsp;Confesses with a full
+stack trace when C&lt;$default&gt; is defined but zero arguments are received,
+because that almost always indicates a programming error.
+
+=head3 API SPECIFICATION
+
+&nbsp;&nbsp;&nbsp;&nbsp;Input:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$default : Str | ArrayRef[Str] | Undef
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@args&nbsp;&nbsp;&nbsp;&nbsp;: Any*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# or a single ArrayRef containing Any*
+
+&nbsp;&nbsp;&nbsp;&nbsp;Output (Return::Set):
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HashRef | Undef
+
+=head3 MESSAGES
+
+&nbsp;&nbsp;&nbsp;&nbsp;Message&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Meaning&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Resolution
+&nbsp;&nbsp;&nbsp;&nbsp;--------------------------------------------------&nbsp;&nbsp;-------------------------------------&nbsp;&nbsp;----------------------------------------------
+&nbsp;&nbsp;&nbsp;&nbsp;::get_params: $default must be a scalar or&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A non-ARRAY ref was passed as&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pass a plain string, arrayref of strings,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arrayref&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$default&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or undef
+&nbsp;&nbsp;&nbsp;&nbsp;Usage: Pkg-&gt;method($key =&gt; $val)&nbsp;&nbsp;[stack trace]&nbsp;&nbsp;&nbsp;&nbsp;$default is defined but no args given&nbsp;&nbsp;Ensure the caller always passes a value
+&nbsp;&nbsp;&nbsp;&nbsp;Usage: Pkg-&gt;method()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Odd-length or unrecognisable arg list&nbsp;&nbsp;Correct the calling convention in the caller
+
+=head3 FORMAL SPECIFICATION
+
+&nbsp;&nbsp;&nbsp;&nbsp;Let D = default key (Str | [Str*] | undef), A = argument tuple.
+
+&nbsp;&nbsp;&nbsp;&nbsp;get_params : D x A* -&gt; HashRef | Undef
+
+&nbsp;&nbsp;&nbsp;&nbsp;-- Fast path (fires before D is inspected -- see LIMITATIONS)
+&nbsp;&nbsp;&nbsp;&nbsp;get_params(D, h)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;== h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when |A|=1, h:HashRef
+
+&nbsp;&nbsp;&nbsp;&nbsp;-- Positional-names default
+&nbsp;&nbsp;&nbsp;&nbsp;get_params([n1..nk], v*)&nbsp;&nbsp;&nbsp;&nbsp;== {ni -&gt; vi}&nbsp;&nbsp;&nbsp;&nbsp;i in 1..k, vi = undef when missing
+
+&nbsp;&nbsp;&nbsp;&nbsp;-- Scalar default, single arg
+&nbsp;&nbsp;&nbsp;&nbsp;get_params(d, s)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;== {d -&gt; s}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d:Str, s:Scalar
+&nbsp;&nbsp;&nbsp;&nbsp;get_params(d, a)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;== {d -&gt; a}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d:Str, a:ArrayRef
+&nbsp;&nbsp;&nbsp;&nbsp;get_params(d, \s)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;== {d -&gt; s}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d:Str (scalarref dereferenced)
+&nbsp;&nbsp;&nbsp;&nbsp;get_params(d, c)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;== {d -&gt; c}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d:Str, c:CodeRef
+&nbsp;&nbsp;&nbsp;&nbsp;get_params(d, o)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;== {d -&gt; o}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d:Str, o:BlessedObject
+
+&nbsp;&nbsp;&nbsp;&nbsp;-- Mandatory-positional + options-hashref
+&nbsp;&nbsp;&nbsp;&nbsp;get_params(d, v, {k-&gt;w..})&nbsp;&nbsp;== {d-&gt;v, k-&gt;w..}&nbsp;&nbsp;&nbsp;&nbsp;non-empty opts
+&nbsp;&nbsp;&nbsp;&nbsp;get_params(d, d, {k-&gt;w..})&nbsp;&nbsp;== {d -&gt; {k-&gt;w..}}&nbsp;&nbsp;&nbsp;first arg IS the key name
+
+&nbsp;&nbsp;&nbsp;&nbsp;-- Named pairs
+&nbsp;&nbsp;&nbsp;&nbsp;get_params(undef, k1,v1..)&nbsp;&nbsp;== {ki -&gt; vi}&nbsp;&nbsp;&nbsp;&nbsp;when |A| is even
+
+&nbsp;&nbsp;&nbsp;&nbsp;-- Empty / error
+&nbsp;&nbsp;&nbsp;&nbsp;get_params(undef)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;== undef
+&nbsp;&nbsp;&nbsp;&nbsp;get_params(d)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; confess&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d:Str (missing required arg)
+&nbsp;&nbsp;&nbsp;&nbsp;get_params(D, odd-list)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; croak
+
+=head3 PSEUDOCODE
+
+&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;&nbsp;Fast-path: if the sole argument is a plain HASH ref, return it
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;immediately (fires before $default is inspected -- see LIMITATIONS).
+
+&nbsp;&nbsp;&nbsp;&nbsp;2.&nbsp;&nbsp;Shift $default.&nbsp;&nbsp;Validate: must be undef, a plain scalar, or an
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ARRAY ref.&nbsp;&nbsp;Any other ref type croaks immediately.
+
+&nbsp;&nbsp;&nbsp;&nbsp;3.&nbsp;&nbsp;If $default is an ARRAY ref, map remaining @_ positionally to those
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key names and return.&nbsp;&nbsp;A single plain HASH ref is still passed
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;through unchanged.
+
+&nbsp;&nbsp;&nbsp;&nbsp;4.&nbsp;&nbsp;Detect the \@_ calling convention: if exactly one ARRAY ref argument
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;remains, check the two-element (key =&gt; scalar-val) shorthand and
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return immediately when it matches.&nbsp;&nbsp;Otherwise unwrap and use the
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array contents as the effective @args.
+
+&nbsp;&nbsp;&nbsp;&nbsp;5.&nbsp;&nbsp;Dispatch on argument count:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0 -- confess (with stack trace) if $default is defined;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return undef otherwise.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 -- if $default is defined, wrap the single arg under $default
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(scalar, arrayref, scalarref-&gt;deref, coderef, blessed object).
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Without $default: unwrap REF-of-REF, pass HASH ref through,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return empty ARRAY ref as-is.&nbsp;&nbsp;Anything else: croak.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2 with HASH ref as arg[1]
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- Mandatory-positional + options-hashref pattern.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;even N -- treat as flat key/value pairs.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;odd N&nbsp;&nbsp;-- croak.
 
 =cut</pre></td></tr>
-<tr><td class="h">161</td><td colspan="6"></td></tr><tr><td class="h">162</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub get_params</td></tr>
-<tr><td class="h">163</td><td></td><td></td><td></td><td></td><td></td><td class="s">{</td></tr>
-<tr><td class="h">164</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Directly return hash reference if the only parameter is a hash reference</td></tr>
-<tr><td class="h">165</td><td><div class="c3">60</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L165">100</a></div></td><td><div class="c3"><a href="blib-lib-Params-Get-pm--condition.html#L165">100</a></div></td><td><div class="c3"><a href="blib-lib-Params-Get-pm--subroutine.html#L165">60</a></div></td><td><div>391757</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $_[0] if((scalar(@_) == 1) &amp;&amp; (ref($_[0]) eq &#39;HASH&#39;));&nbsp;&nbsp;&nbsp;# Note - doesn&#39;t check if &quot;default&quot; was given</td></tr>
-<tr><td class="h">166</td><td colspan="6"></td></tr><tr><td class="h">167</td><td><div class="c3">58</div></td><td></td><td></td><td></td><td><div>45</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $default = shift;</td></tr>
-<tr><td class="h">168</td><td colspan="6"></td></tr><tr><td class="h">169</td><td><div class="c3">58</div></td><td><div class="c0" title="-/F"><a href="blib-lib-Params-Get-pm--branch.html#L169">50</a></div></td><td></td><td></td><td><div>62</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(ref($default)) {</td></tr>
-<tr><td class="h">170</td><td><div class="c0">0</div></td><td></td><td></td><td></td><td><div>0</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::croak(__PACKAGE__, &#39;::get_params: $default must be a scalar&#39;);</td></tr>
-<tr><td class="h">171</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">172</td><td colspan="6"></td></tr><tr><td class="h">173</td><td><div class="c3">58</div></td><td></td><td></td><td></td><td><div>59</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $args;</td></tr>
-<tr><td class="h">174</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $array_ref;</td></tr>
-<tr><td class="h">175</td><td><div class="c3">58</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L175">100</a></div></td><td><div class="c3"><a href="blib-lib-Params-Get-pm--condition.html#L175">100</a></div></td><td></td><td><div>110</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if((scalar(@_) == 1) &amp;&amp; (ref($_[0]) eq &#39;ARRAY&#39;)) {</td></tr>
-<tr><td class="h">176</td><td><div class="c3">21</div><div class="c3">14</div><div class="c3">8</div><div class="c3">3</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L176">100</a></div></td><td><div class="c3"><a href="blib-lib-Params-Get-pm--condition.html#L176">100</a></div></td><td></td><td><div>43</div><div>23</div><div>17</div><div>5</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($default &amp;&amp; (scalar(@{$_[0]}) == 2) &amp;&amp; (@{$_[0]}[0] eq $default) &amp;&amp; (!ref(@{$_[0]}[1]))) {</td></tr>
-<tr><td class="h">177</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# in main:</td></tr>
-<tr><td class="h">178</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;routine(&#39;country&#39; =&gt; &#39;US&#39;);</td></tr>
-<tr><td class="h">179</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# in routine():</td></tr>
-<tr><td class="h">180</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$params = Params::Get::get_params(&#39;country&#39;, \@);</td></tr>
-<tr><td class="h">181</td><td><div class="c3">2</div><div class="c3">2</div></td><td></td><td></td><td></td><td><div>1</div><div>4</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return { $default =&gt; @{$_[0]}[1] };</td></tr>
-<tr><td class="h">182</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">183</td><td><div class="c3">19</div></td><td></td><td></td><td></td><td><div>16</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$args = $_[0];</td></tr>
-<tr><td class="h">184</td><td><div class="c3">19</div></td><td></td><td></td><td></td><td><div>14</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$array_ref = 1;</td></tr>
-<tr><td class="h">185</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else {</td></tr>
-<tr><td class="h">186</td><td><div class="c3">37</div></td><td></td><td></td><td></td><td><div>30</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$args = \@_;</td></tr>
-<tr><td class="h">187</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">188</td><td colspan="6"></td></tr><tr><td class="h">189</td><td><div class="c3">56</div><div class="c3">56</div></td><td></td><td></td><td></td><td><div>38</div><div>38</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $num_args = scalar(@{$args});</td></tr>
-<tr><td class="h">190</td><td colspan="6"></td></tr><tr><td class="h">191</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Populate %rc based on the number and type of arguments</td></tr>
-<tr><td class="h">192</td><td><div class="c3">56</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L192">100</a></div></td><td></td><td></td><td><div>56</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($num_args == 1) {</td></tr>
-<tr><td class="h">193</td><td><div class="c3">30</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L193">100</a></div></td><td></td><td></td><td><div>30</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(defined($default)) {</td></tr>
-<tr><td class="h">194</td><td><div class="c3">17</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L194">100</a></div></td><td></td><td></td><td><div>20</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(!ref($args-&gt;[0])) {</td></tr>
-<tr><td class="h">195</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# %rc = ($default =&gt; shift);</td></tr>
-<tr><td class="h">196</td><td><div class="c3">5</div></td><td></td><td></td><td></td><td><div>16</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return { $default =&gt; $args-&gt;[0] };</td></tr>
-<tr><td class="h">197</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">198</td><td><div class="c3">12</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L198">100</a></div></td><td></td><td></td><td><div>15</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(ref($args-&gt;[0]) eq &#39;ARRAY&#39;) {</td></tr>
-<tr><td class="h">199</td><td><div class="c3">1</div></td><td></td><td></td><td></td><td><div>2</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return { $default =&gt; $args-&gt;[0] };</td></tr>
-<tr><td class="h">200</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">201</td><td><div class="c3">11</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L201">100</a></div></td><td></td><td></td><td><div>15</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(ref($args-&gt;[0]) eq &#39;SCALAR&#39;) {</td></tr>
-<tr><td class="h">202</td><td><div class="c3">3</div><div class="c3">3</div></td><td></td><td></td><td></td><td><div>4</div><div>7</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return { $default =&gt; ${$args-&gt;[0]} };</td></tr>
-<tr><td class="h">203</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">204</td><td><div class="c3">8</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L204">100</a></div></td><td></td><td></td><td><div>10</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(ref($args-&gt;[0]) eq &#39;CODE&#39;) {</td></tr>
-<tr><td class="h">205</td><td><div class="c3">2</div></td><td></td><td></td><td></td><td><div>5</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return { $default =&gt; $args-&gt;[0] };</td></tr>
-<tr><td class="h">206</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">207</td><td><div class="c3">6</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L207">100</a></div></td><td></td><td></td><td><div>16</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(Scalar::Util::blessed($args-&gt;[0])) {</td></tr>
-<tr><td class="h">208</td><td><div class="c3">2</div></td><td></td><td></td><td></td><td><div>4</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return { $default =&gt; $args-&gt;[0] };</td></tr>
-<tr><td class="h">209</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">210</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">211</td><td><div class="c3">17</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L211">100</a></div></td><td></td><td></td><td><div>24</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(!defined($args-&gt;[0])) {</td></tr>
-<tr><td class="h">212</td><td><div class="c3">1</div></td><td></td><td></td><td></td><td><div>2</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;</td></tr>
-<tr><td class="h">213</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">214</td><td><div class="c3">16</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L214">100</a></div></td><td></td><td></td><td><div>22</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(ref($args-&gt;[0]) eq &#39;REF&#39;) {</td></tr>
-<tr><td class="h">215</td><td><div class="c3">1</div><div class="c3">1</div></td><td></td><td></td><td></td><td><div>1</div><div>1</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$args-&gt;[0] = ${$args-&gt;[0]};</td></tr>
-<tr><td class="h">216</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">217</td><td><div class="c3">16</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L217">100</a></div></td><td></td><td></td><td><div>19</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(ref($args-&gt;[0]) eq &#39;HASH&#39;) {</td></tr>
-<tr><td class="h">218</td><td><div class="c3">14</div></td><td></td><td></td><td></td><td><div>42</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $args-&gt;[0];</td></tr>
-<tr><td class="h">219</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">220</td><td><div class="c3">2</div><div class="c3">1</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L220">100</a></div></td><td><div class="c0"><a href="blib-lib-Params-Get-pm--condition.html#L220">67</a></div></td><td></td><td><div>5</div><div>2</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if((ref($args-&gt;[0]) eq &#39;ARRAY&#39;) &amp;&amp; (scalar(@{$args-&gt;[0]}) == 0)) {</td></tr>
-<tr><td class="h">221</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# in main:</td></tr>
-<tr><td class="h">222</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;routine(&#39;countries&#39; =&gt; []);</td></tr>
-<tr><td class="h">223</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# in routine():</td></tr>
-<tr><td class="h">224</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$params = Params::Get::get_params(&#39;countries&#39;, \@);</td></tr>
-<tr><td class="h">225</td><td><div class="c3">1</div></td><td><div class="c0" title="-/F"><a href="blib-lib-Params-Get-pm--branch.html#L225">50</a></div></td><td></td><td></td><td><div>1</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(defined($default)) {</td></tr>
-<tr><td class="h">226</td><td><div class="c0">0</div></td><td></td><td></td><td></td><td><div>0</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return { $default =&gt; [] }</td></tr>
-<tr><td class="h">227</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">228</td><td><div class="c3">1</div></td><td></td><td></td><td></td><td><div>2</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $args-&gt;[0];</td></tr>
-<tr><td class="h">229</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">230</td><td><div class="c3">1</div></td><td></td><td></td><td></td><td><div>27</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::croak(&#39;Usage: &#39;, __PACKAGE__, &#39;-&gt;&#39;, (caller(1))[3], &#39;()&#39;);</td></tr>
-<tr><td class="h">231</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">232</td><td><div class="c3">26</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L232">100</a></div></td><td></td><td></td><td><div>22</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($num_args == 0) {</td></tr>
-<tr><td class="h">233</td><td><div class="c3">7</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L233">100</a></div></td><td></td><td></td><td><div>7</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(defined($default)) {</td></tr>
-<tr><td class="h">234</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# if(defined($_[0]) &amp;&amp; (ref($_[0]) eq &#39;ARRAY&#39;)) {</td></tr>
-<tr><td class="h">235</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# FIXME</td></tr>
-<tr><td class="h">236</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# return { $default =&gt; [] };</td></tr>
-<tr><td class="h">237</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# }</td></tr>
-<tr><td class="h">238</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# FIXME: No means to say that the default is optional</td></tr>
-<tr><td class="h">239</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Carp::croak(&#39;Usage: &#39;, __PACKAGE__, &#39;-&gt;&#39;, (caller(1))[3], &quot;($default =&gt; \$val)&quot;);</td></tr>
-<tr><td class="h">240</td><td><div class="c3">4</div></td><td></td><td></td><td></td><td><div>38</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::croak(Devel::Confess::longmess(&quot;Usage: &quot;, __PACKAGE__, &#39;-&gt;&#39;, (caller(1))[3], &quot;($default =&gt; \$val)&quot;));</td></tr>
-<tr><td class="h">241</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">242</td><td><div class="c3">3</div></td><td></td><td></td><td></td><td><div>6</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;</td></tr>
-<tr><td class="h">243</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">244</td><td><div class="c3">19</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L244">100</a></div></td><td><div class="c3"><a href="blib-lib-Params-Get-pm--condition.html#L244">100</a></div></td><td></td><td><div>36</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(($num_args == 2) &amp;&amp; (ref($args-&gt;[1]) eq &#39;HASH&#39;)) {</td></tr>
-<tr><td class="h">245</td><td><div class="c3">5</div></td><td><div class="c0" title="T/-"><a href="blib-lib-Params-Get-pm--branch.html#L245">50</a></div></td><td></td><td></td><td><div>8</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(defined($default)) {</td></tr>
-<tr><td class="h">246</td><td><div class="c3">5</div><div class="c3">5</div></td><td><div class="c0" title="T/-"><a href="blib-lib-Params-Get-pm--branch.html#L246">50</a></div></td><td></td><td></td><td><div>3</div><div>9</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(scalar keys %{$args-&gt;[1]}) {</td></tr>
-<tr><td class="h">247</td><td><div class="c3">5</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L247">100</a></div></td><td></td><td></td><td><div>5</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($args-&gt;[0] eq $default) {</td></tr>
-<tr><td class="h">248</td><td><div class="c3">1</div></td><td></td><td></td><td></td><td><div>2</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return { $default =&gt; $args-&gt;[1] };</td></tr>
-<tr><td class="h">249</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">250</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Obj-&gt;new(&#39;foo&#39;, { &#39;key1&#39; =&gt; &#39;val1&#39; } - set foo to the mandatory first argument, and the rest are options</td></tr>
-<tr><td class="h">251</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return {</td></tr>
-<tr><td class="h">252</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$default =&gt; $args-&gt;[0],</td></tr>
-<tr><td class="h">253</td><td><div class="c3">4</div><div class="c3">4</div></td><td></td><td></td><td></td><td><div>8</div><div>15</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%{$args-&gt;[1]}</td></tr>
-<tr><td class="h">254</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};</td></tr>
-<tr><td class="h">255</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">256</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Obj-&gt;new(foo =&gt; {}) - set foo to be an empty hash</td></tr>
-<tr><td class="h">257</td><td><div class="c0">0</div></td><td></td><td></td><td></td><td><div>0</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return { $default =&gt; $args-&gt;[1] }</td></tr>
-<tr><td class="h">258</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">259</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">260</td><td colspan="6"></td></tr><tr><td class="h">261</td><td><div class="c3">14</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L261">100</a></div></td><td><div class="c3"><a href="blib-lib-Params-Get-pm--condition.html#L261">100</a></div></td><td></td><td><div>22</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($array_ref &amp;&amp; defined($default)) {</td></tr>
-<tr><td class="h">262</td><td><div class="c3">4</div></td><td></td><td></td><td></td><td><div>7</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return { $default =&gt; $args };</td></tr>
-<tr><td class="h">263</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">264</td><td><div class="c3">10</div></td><td><div class="c0" title="T/-"><a href="blib-lib-Params-Get-pm--branch.html#L264">50</a></div></td><td></td><td></td><td><div>16</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(($num_args % 2) == 0) {</td></tr>
-<tr><td class="h">265</td><td><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td></td><td><div>6</div><div>17</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my %rc = @{$args};</td></tr>
-<tr><td class="h">266</td><td><div class="c3">10</div></td><td></td><td></td><td></td><td><div>29</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return \%rc;</td></tr>
-<tr><td class="h">267</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">268</td><td colspan="6"></td></tr><tr><td class="h">269</td><td><div class="c0">0</div></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::croak(&#39;Usage: &#39;, __PACKAGE__, &#39;-&gt;&#39;, (caller(1))[3], &#39;()&#39;);</td></tr>
-<tr><td class="h">270</td><td></td><td></td><td></td><td></td><td></td><td class="s">}</td></tr>
-<tr><td class="h">271</td><td colspan="6"></td></tr><tr><td class="h">272 - 338</td><td colspan="5"></td><td class="s"><pre>=head1 AUTHOR
+<tr><td class="h">223</td><td colspan="6"></td></tr><tr><td class="h">224</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub get_params</td></tr>
+<tr><td class="h">225</td><td></td><td></td><td></td><td></td><td></td><td class="s">{</td></tr>
+<tr><td class="h">226</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Fast path: sole argument is already a plain hashref.&nbsp;&nbsp;Returning it</td></tr>
+<tr><td class="h">227</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# directly avoids the overhead of shifting and inspecting $default.</td></tr>
+<tr><td class="h">228</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Consequence: a single hashref always bypasses default key naming --</td></tr>
+<tr><td class="h">229</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# documented in LIMITATIONS.</td></tr>
+<tr><td class="h">230</td><td><div class="c3">75</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L230">100</a></div></td><td><div class="c3"><a href="blib-lib-Params-Get-pm--condition.html#L230">100</a></div></td><td><div class="c3"><a href="blib-lib-Params-Get-pm--subroutine.html#L230">75</a></div></td><td><div>401345</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $_[0] if (@_ == 1) &amp;&amp; (ref($_[0]) eq $T_HASH);</td></tr>
+<tr><td class="h">231</td><td colspan="6"></td></tr><tr><td class="h">232</td><td><div class="c3">73</div></td><td></td><td></td><td></td><td><div>57</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $default = shift;</td></tr>
+<tr><td class="h">233</td><td colspan="6"></td></tr><tr><td class="h">234</td><td><div class="c3">73</div></td><td><div class="c0" title="-/F"><a href="blib-lib-Params-Get-pm--branch.html#L234">50</a></div></td><td><div class="c0"><a href="blib-lib-Params-Get-pm--condition.html#L234">67</a></div></td><td></td><td><div>91</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (ref($default) &amp;&amp; (ref($default) ne $T_ARRAY)) {</td></tr>
+<tr><td class="h">235</td><td><div class="c0">0</div></td><td></td><td></td><td></td><td><div>0</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::croak(__PACKAGE__, &#39;::get_params: $default must be a scalar or arrayref&#39;);</td></tr>
+<tr><td class="h">236</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">237</td><td colspan="6"></td></tr><tr><td class="h">238</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Positional-names feature: $default is an arrayref of key names and the</td></tr>
+<tr><td class="h">239</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# remaining @_ are values to map to those keys in order.</td></tr>
+<tr><td class="h">240</td><td><div class="c3">73</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L240">100</a></div></td><td></td><td></td><td><div>65</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (ref($default) eq $T_ARRAY) {</td></tr>
+<tr><td class="h">241</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Honour the single-hashref passthrough for consistency with scalar $default.</td></tr>
+<tr><td class="h">242</td><td><div class="c3">7</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L242">100</a></div></td><td><div class="c3"><a href="blib-lib-Params-Get-pm--condition.html#L242">100</a></div></td><td></td><td><div>10</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $_[0] if (@_ == 1) &amp;&amp; (ref($_[0]) eq $T_HASH);</td></tr>
+<tr><td class="h">243</td><td><div class="c3">6</div></td><td></td><td></td><td></td><td><div>6</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my %rc;</td></tr>
+<tr><td class="h">244</td><td><div class="c3">6</div><div class="c3">6</div><div class="c3">6</div></td><td></td><td></td><td></td><td><div>4</div><div>8</div><div>6</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@rc{@{$default}} = @_[0 .. $#{$default}];</td></tr>
+<tr><td class="h">245</td><td><div class="c3">6</div></td><td></td><td></td><td></td><td><div>16</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return \%rc;</td></tr>
+<tr><td class="h">246</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">247</td><td colspan="6"></td></tr><tr><td class="h">248</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Detect \@_ usage: caller passed a reference to its own @_.</td></tr>
+<tr><td class="h">249</td><td><div class="c3">66</div></td><td></td><td></td><td></td><td><div>48</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($args, $from_arrayref);</td></tr>
+<tr><td class="h">250</td><td><div class="c3">66</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L250">100</a></div></td><td><div class="c3"><a href="blib-lib-Params-Get-pm--condition.html#L250">100</a></div></td><td></td><td><div>113</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if ((@_ == 1) &amp;&amp; (ref($_[0]) eq $T_ARRAY)) {</td></tr>
+<tr><td class="h">251</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Two-element shorthand: caller did routine(&#39;key&#39; =&gt; &#39;scalar&#39;) and the</td></tr>
+<tr><td class="h">252</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# callee received \@_.&nbsp;&nbsp;Only fires when the value is a plain scalar to</td></tr>
+<tr><td class="h">253</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# avoid ambiguity with an arrayref value.</td></tr>
+<tr><td class="h">254</td><td><div class="c3">21</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L254">100</a></div></td><td><div class="c3"><a href="blib-lib-Params-Get-pm--condition.html#L254">100</a></div></td><td></td><td><div>32</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (&nbsp;&nbsp;&nbsp;&nbsp;$default</td></tr>
+<tr><td class="h">255</td><td><div class="c3">14</div></td><td></td><td></td><td></td><td><div>33</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; (@{$_[0]} == 2)</td></tr>
+<tr><td class="h">256</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; ($_[0]-&gt;[0] eq $default)</td></tr>
+<tr><td class="h">257</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; !ref($_[0]-&gt;[1])</td></tr>
+<tr><td class="h">258</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;) {</td></tr>
+<tr><td class="h">259</td><td><div class="c3">2</div></td><td></td><td></td><td></td><td><div>4</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return { $default =&gt; $_[0]-&gt;[1] };</td></tr>
+<tr><td class="h">260</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">261</td><td><div class="c3">19</div></td><td></td><td></td><td></td><td><div>16</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$args&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= $_[0];</td></tr>
+<tr><td class="h">262</td><td><div class="c3">19</div></td><td></td><td></td><td></td><td><div>18</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$from_arrayref = 1;</td></tr>
+<tr><td class="h">263</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else {</td></tr>
+<tr><td class="h">264</td><td><div class="c3">45</div></td><td></td><td></td><td></td><td><div>36</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$args = \@_;</td></tr>
+<tr><td class="h">265</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">266</td><td colspan="6"></td></tr><tr><td class="h">267</td><td><div class="c3">64</div><div class="c3">64</div></td><td></td><td></td><td></td><td><div>41</div><div>48</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $num_args = scalar @{$args};</td></tr>
+<tr><td class="h">268</td><td colspan="6"></td></tr><tr><td class="h">269</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# --- Zero arguments ---</td></tr>
+<tr><td class="h">270</td><td><div class="c3">64</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L270">100</a></div></td><td></td><td></td><td><div>69</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if ($num_args == 0) {</td></tr>
+<tr><td class="h">271</td><td><div class="c3">9</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L271">100</a></div></td><td></td><td></td><td><div>12</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (defined $default) {</td></tr>
+<tr><td class="h">272</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Full stack trace via Devel::Confess because receiving zero args</td></tr>
+<tr><td class="h">273</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# when a default is defined is virtually always a programming error.</td></tr>
+<tr><td class="h">274</td><td><div class="c3">6</div></td><td></td><td></td><td></td><td><div>17</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::confess(&#39;Usage: &#39;, __PACKAGE__, &#39;-&gt;&#39;, (caller(1))[3], &quot;($default =&gt; \$val)&quot;);</td></tr>
+<tr><td class="h">275</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">276</td><td><div class="c3">3</div></td><td></td><td></td><td></td><td><div>6</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;</td></tr>
+<tr><td class="h">277</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">278</td><td colspan="6"></td></tr><tr><td class="h">279</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# --- One argument ---</td></tr>
+<tr><td class="h">280</td><td><div class="c3">55</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L280">100</a></div></td><td></td><td></td><td><div>56</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if ($num_args == 1) {</td></tr>
+<tr><td class="h">281</td><td><div class="c3">34</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L281">100</a></div></td><td></td><td></td><td><div>27</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (defined $default) {</td></tr>
+<tr><td class="h">282</td><td><div class="c3">19</div></td><td></td><td></td><td></td><td><div>21</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $arg&nbsp;&nbsp;= $args-&gt;[0];</td></tr>
+<tr><td class="h">283</td><td><div class="c3">19</div></td><td></td><td></td><td></td><td><div>15</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $kind = ref($arg);</td></tr>
+<tr><td class="h">284</td><td colspan="6"></td></tr><tr><td class="h">285</td><td><div class="c3">19</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L285">100</a></div></td><td></td><td></td><td><div>30</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return { $default =&gt; $arg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} if !$kind;</td></tr>
+<tr><td class="h">286</td><td><div class="c3">12</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L286">100</a></div></td><td></td><td></td><td><div>16</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return { $default =&gt; $arg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} if $kind eq $T_ARRAY;</td></tr>
+<tr><td class="h">287</td><td><div class="c3">11</div><div class="c3">3</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L287">100</a></div></td><td></td><td></td><td><div>13</div><div>7</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return { $default =&gt; ${$arg}&nbsp;&nbsp;} if $kind eq $T_SCALAR;</td></tr>
+<tr><td class="h">288</td><td><div class="c3">8</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L288">100</a></div></td><td></td><td></td><td><div>11</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return { $default =&gt; $arg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} if $kind eq $T_CODE;</td></tr>
+<tr><td class="h">289</td><td><div class="c3">6</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L289">100</a></div></td><td></td><td></td><td><div>12</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return { $default =&gt; $arg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} if Scalar::Util::blessed($arg);</td></tr>
+<tr><td class="h">290</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Unblessed HASH ref falls through to the no-default path below,</td></tr>
+<tr><td class="h">291</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# where it is returned directly (see LIMITATIONS).</td></tr>
+<tr><td class="h">292</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">293</td><td colspan="6"></td></tr><tr><td class="h">294</td><td><div class="c3">19</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L294">100</a></div></td><td></td><td></td><td><div>23</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return unless defined $args-&gt;[0];</td></tr>
+<tr><td class="h">295</td><td colspan="6"></td></tr><tr><td class="h">296</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Unwrap a ref-to-ref before further type checks.</td></tr>
+<tr><td class="h">297</td><td><div class="c3">18</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L297">100</a></div></td><td></td><td></td><td><div>23</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (ref($args-&gt;[0]) eq $T_REF) {</td></tr>
+<tr><td class="h">298</td><td><div class="c3">1</div><div class="c3">1</div></td><td></td><td></td><td></td><td><div>1</div><div>1</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$args-&gt;[0] = ${$args-&gt;[0]};</td></tr>
+<tr><td class="h">299</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">300</td><td colspan="6"></td></tr><tr><td class="h">301</td><td><div class="c3">18</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L301">100</a></div></td><td></td><td></td><td><div>56</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $args-&gt;[0] if ref($args-&gt;[0]) eq $T_HASH;</td></tr>
+<tr><td class="h">302</td><td colspan="6"></td></tr><tr><td class="h">303</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Empty arrayref with no default: return the ref itself.</td></tr>
+<tr><td class="h">304</td><td><div class="c3">4</div><div class="c3">1</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L304">100</a></div></td><td><div class="c0"><a href="blib-lib-Params-Get-pm--condition.html#L304">67</a></div></td><td></td><td><div>6</div><div>2</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if ((ref($args-&gt;[0]) eq $T_ARRAY) &amp;&amp; (@{$args-&gt;[0]} == 0)) {</td></tr>
+<tr><td class="h">305</td><td><div class="c3">1</div></td><td></td><td></td><td></td><td><div>1</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $args-&gt;[0];</td></tr>
+<tr><td class="h">306</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">307</td><td colspan="6"></td></tr><tr><td class="h">308</td><td><div class="c3">3</div></td><td></td><td></td><td></td><td><div>12</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::croak(&#39;Usage: &#39;, __PACKAGE__, &#39;-&gt;&#39;, (caller(1))[3], &#39;()&#39;);</td></tr>
+<tr><td class="h">309</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">310</td><td colspan="6"></td></tr><tr><td class="h">311</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# --- Two arguments where the second is a hash ref ---</td></tr>
+<tr><td class="h">312</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Handles the Obj-&gt;new($mandatory, \%options) convention.</td></tr>
+<tr><td class="h">313</td><td><div class="c3">21</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L313">100</a></div></td><td><div class="c3"><a href="blib-lib-Params-Get-pm--condition.html#L313">100</a></div></td><td></td><td><div>46</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (($num_args == 2) &amp;&amp; (ref($args-&gt;[1]) eq $T_HASH)) {</td></tr>
+<tr><td class="h">314</td><td><div class="c3">5</div></td><td><div class="c0" title="T/-"><a href="blib-lib-Params-Get-pm--branch.html#L314">50</a></div></td><td></td><td></td><td><div>9</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (defined $default) {</td></tr>
+<tr><td class="h">315</td><td><div class="c3">5</div><div class="c3">5</div></td><td><div class="c0" title="T/-"><a href="blib-lib-Params-Get-pm--branch.html#L315">50</a></div></td><td></td><td></td><td><div>5</div><div>11</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (scalar keys %{$args-&gt;[1]}) {</td></tr>
+<tr><td class="h">316</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# When first arg is the default key name itself, second arg is its value.</td></tr>
+<tr><td class="h">317</td><td><div class="c3">5</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L317">100</a></div></td><td></td><td></td><td><div>12</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return { $default =&gt; $args-&gt;[1] } if $args-&gt;[0] eq $default;</td></tr>
+<tr><td class="h">318</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Otherwise: first arg is the mandatory value; options are merged.</td></tr>
+<tr><td class="h">319</td><td><div class="c3">4</div><div class="c3">4</div></td><td></td><td></td><td></td><td><div>4</div><div>15</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return { $default =&gt; $args-&gt;[0], %{$args-&gt;[1]} };</td></tr>
+<tr><td class="h">320</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">321</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Empty options hashref: store the ref as the value.</td></tr>
+<tr><td class="h">322</td><td><div class="c0">0</div></td><td></td><td></td><td></td><td><div>0</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return { $default =&gt; $args-&gt;[1] };</td></tr>
+<tr><td class="h">323</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">324</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">325</td><td colspan="6"></td></tr><tr><td class="h">326</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# --- \@_ with multiple values under a scalar default ---</td></tr>
+<tr><td class="h">327</td><td><div class="c3">16</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Params-Get-pm--branch.html#L327">100</a></div></td><td><div class="c3"><a href="blib-lib-Params-Get-pm--condition.html#L327">100</a></div></td><td></td><td><div>34</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return { $default =&gt; $args } if $from_arrayref &amp;&amp; defined $default;</td></tr>
+<tr><td class="h">328</td><td colspan="6"></td></tr><tr><td class="h">329</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# --- Even-length list: flat key/value pairs ---</td></tr>
+<tr><td class="h">330</td><td><div class="c3">12</div></td><td><div class="c0" title="T/-"><a href="blib-lib-Params-Get-pm--branch.html#L330">50</a></div></td><td></td><td></td><td><div>16</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (($num_args % 2) == 0) {</td></tr>
+<tr><td class="h">331</td><td><div class="c3">12</div><div class="c3">12</div></td><td></td><td></td><td></td><td><div>9</div><div>27</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my %rc = @{$args};</td></tr>
+<tr><td class="h">332</td><td><div class="c3">12</div></td><td></td><td></td><td></td><td><div>31</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return \%rc;</td></tr>
+<tr><td class="h">333</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">334</td><td colspan="6"></td></tr><tr><td class="h">335</td><td><div class="c0">0</div></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::croak(&#39;Usage: &#39;, __PACKAGE__, &#39;-&gt;&#39;, (caller(1))[3], &#39;()&#39;);</td></tr>
+<tr><td class="h">336</td><td></td><td></td><td></td><td></td><td></td><td class="s">}</td></tr>
+<tr><td class="h">337</td><td colspan="6"></td></tr><tr><td class="h">338 - 416</td><td colspan="5"></td><td class="s"><pre>=head1 LIMITATIONS
+
+=over 4
+
+=item B&lt;Single empty arrayref cannot be distinguished from C&lt;\@_&gt; of an empty list&gt;
+
+When the caller does C&lt;foo([])&gt; and the callee uses C&lt;get_params(&#39;key&#39;, @_)&gt;,
+the C&lt;@_&gt; list is C&lt;([])&gt; -- one element, an arrayref.&nbsp;&nbsp;The function
+interprets the lone arrayref as a C&lt;\@_&gt; passthrough, unwraps it to an empty
+list, and then croaks because C&lt;$default&gt; is defined but there are zero
+arguments.&nbsp;&nbsp;Workaround: pass the value as a named pair
+(C&lt;key =E&lt;gt&gt; []&gt;) or ensure the callee always uses C&lt;\@_&gt;.
+
+=item B&lt;Single hash ref always bypasses C&lt;$default&gt; key naming&gt;
+
+C&lt;get_params(&#39;config&#39;, { a =E&lt;gt&gt; 1 })&gt; returns C&lt;{ a =E&lt;gt&gt; 1 }&gt;, not
+C&lt;{ config =E&lt;gt&gt; { a =E&lt;gt&gt; 1 } }&gt;.&nbsp;&nbsp;The fast path fires before C&lt;$default&gt;
+is inspected.&nbsp;&nbsp;To store a hash ref under a default key, pass it as a named
+pair: C&lt;get_params(&#39;config&#39;, config =E&lt;gt&gt; { a =E&lt;gt&gt; 1 })&gt;.
+
+=item B&lt;No mechanism to mark a C&lt;$default&gt; argument as optional&gt;
+
+When C&lt;$default&gt; is a string and zero arguments are received, the function
+always confesses.&nbsp;&nbsp;There is no way to express I&lt;&quot;accept zero args and return
+undef gracefully&quot;&gt;.
+
+=item B&lt;Positional-names C&lt;$default&gt; silently discards extra arguments&gt;
+
+C&lt;get_params([qw(a b)], 1, 2, 3)&gt; returns C&lt;{ a =E&lt;gt&gt; 1, b =E&lt;gt&gt; 2 }&gt;
+and ignores C&lt;3&gt;.&nbsp;&nbsp;If strict arity is required, validate the returned hash
+with L&lt;Params::Validate::Strict&gt;.
+
+=back
+
+=head1 AUTHOR
 
 Nigel Horne, C&lt;&lt; &lt;njh at nigelhorne.com&gt; &gt;&gt;
 
 =head1 BUGS
 
-Sometimes giving an array ref rather than array fails.
+Please report bugs or feature requests to C&lt;bug-params-get at rt.cpan.org&gt;
+or through L&lt;http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Params-Get&gt;.
 
 =head1 SEE ALSO
 
@@ -304,37 +392,15 @@ Sometimes giving an array ref rather than array fails.
 
 =head1 SUPPORT
 
-This module is provided as-is without any warranty.
-
-Please report any bugs or feature requests to C&lt;bug-params-get at rt.cpan.org&gt;,
-or through the web interface at
-L&lt;http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Params-Get&gt;.
-I will be notified, and then you&#39;ll
-automatically be notified of progress on your bug as I make changes.
-
-You can find documentation for this module with the perldoc command.
-
-&nbsp;&nbsp;&nbsp;&nbsp;perldoc Params::Get
-
-You can also look for information at:
-
 =over 4
 
-=item * MetaCPAN
+=item * MetaCPAN: L&lt;https://metacpan.org/dist/Params-Get&gt;
 
-L&lt;https://metacpan.org/dist/Params-Get&gt;
+=item * RT: L&lt;https://rt.cpan.org/NoAuth/Bugs.html?Dist=Params-Get&gt;
 
-=item * RT: CPAN&#39;s request tracker
+=item * CPAN Testers: L&lt;http://matrix.cpantesters.org/?dist=Params-Get&gt;
 
-L&lt;https://rt.cpan.org/NoAuth/Bugs.html?Dist=Params-Get&gt;
-
-=item * CPAN Testers&#39; Matrix
-
-L&lt;http://matrix.cpantesters.org/?dist=Params-Get&gt;
-
-=item * CPAN Testers Dependencies
-
-L&lt;http://deps.cpantesters.org/?module=Params::Get&gt;
+=item * CPAN Testers Dependencies: L&lt;http://deps.cpantesters.org/?module=Params::Get&gt;
 
 =back
 
@@ -342,12 +408,11 @@ L&lt;http://deps.cpantesters.org/?module=Params::Get&gt;
 
 Copyright 2025-2026 Nigel Horne.
 
-Usage is subject to the GPL2 licence terms.
-If you use it,
+Usage is subject to the GPL2 licence terms.&nbsp;&nbsp;If you use this module,
 please let me know.
 
 =cut</pre></td></tr>
-<tr><td class="h">339</td><td colspan="6"></td></tr><tr><td class="h">340</td><td></td><td></td><td></td><td></td><td></td><td class="s">1;</td></tr>
+<tr><td class="h">417</td><td colspan="6"></td></tr><tr><td class="h">418</td><td></td><td></td><td></td><td></td><td></td><td class="s">1;</td></tr>
 </table>
 </body>
 </html>
