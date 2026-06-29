@@ -10,21 +10,9 @@
 use strict;
 use warnings;
 
-BEGIN {
-	# Prefer installed versions; fall back to local development trees on the
-	# author's machine so these tests work without a full CPAN install.
-	for my $path (
-		'/Users/njh/src/njh/Test-Mockingbird/lib',
-		'/Users/njh/src/njh/Test-Returns/lib',
-	) {
-		unshift @INC, $path if -d $path;
-	}
-}
-
 use Test::Most;
-use Test::Needs qw(Test::Mockingbird Test::Returns Test::Memory::Cycle Readonly);
 
-use Test::Mockingbird;
+use Test::Mockingbird 0.08;
 use Test::Returns;
 use Test::Memory::Cycle;
 use Readonly;
