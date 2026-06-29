@@ -2,6 +2,7 @@
 
 requires 'Carp';
 requires 'ExtUtils::MakeMaker', '6.64';
+requires 'Readonly';
 requires 'Scalar::Util';
 
 on 'test' => sub {

@@ -38,6 +38,7 @@ WriteMakefile(
 	PREREQ_PM => {
 		'ExtUtils::MakeMaker' => 6.64,	# Minimum version for TEST_REQUIRES
 		'Carp' => 0,
+		'Readonly' => 0,
 		'Scalar::Util' => 0
 	},
 	TEST_REQUIRES => {
