@@ -7,6 +7,7 @@ requires 'Scalar::Util';
 
 on 'test' => sub {
 	requires 'Error';
+	requires 'IPC::System::Simple';
 	requires 'Test::Compile';
 	requires 'Test::DescribeMe';
 	requires 'Test::Most';

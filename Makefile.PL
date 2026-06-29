@@ -19,12 +19,6 @@ WriteMakefile(
 	((defined($ExtUtils::MakeMaker::VERSION) && ($ExtUtils::MakeMaker::VERSION >= 6.3002))
 		? ('LICENSE'=> 'GPL')
 		: ()),
-	PREREQ_PM => {
-		'Devel::Confess' => 0,
-		'ExtUtils::MakeMaker' => 6.64,	# Minimum version for TEST_REQUIRES
-		'Carp' => 0,
-		'Scalar::Util' => 0
-	},
 	META_MERGE => {
 		'meta-spec' => { version => 2 },
 		resources => {
@@ -41,8 +35,15 @@ WriteMakefile(
 			},
 		},
 	},
+	PREREQ_PM => {
+		'Devel::Confess' => 0,
+		'ExtUtils::MakeMaker' => 6.64,	# Minimum version for TEST_REQUIRES
+		'Carp' => 0,
+		'Scalar::Util' => 0
+	},
 	TEST_REQUIRES => {
 		'Error' => 0,
+		'IPC::System::Simple' => 0,
 		'Test::Compile' => 0,
 		'Test::DescribeMe' => 0,
 		'Test::Most' => 0,
