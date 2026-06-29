@@ -246,7 +246,7 @@ pre details.mutant-details ul {
 <strong>Structural Coverage (Approximate)</strong><p>
 TER1 (Statement): 94.87%<br>
 TER2 (Branch): 89.58%<br>
-TER3 (LCSAJ): 93.3% (14/15)<br>
+TER3 (LCSAJ): 100.0% (7/7)<br>
 Approximate LCSAJ segments: 49<br>
 </div>
 
@@ -454,7 +454,7 @@ Approximate LCSAJ segments: 49<br>
 </span><span class="">  162: sub get_params
 </span><span class="">  163: {
 </span><span class="">  164: 	# Directly return hash reference if the only parameter is a hash reference
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic."><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">165 → 169 → 173</span></span><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">165 → 169 → 0</span></span>  165: 	return $_[0] if((scalar(@_) == 1) &amp;&amp; (ref($_[0]) eq &#39;HASH&#39;));	# Note - doesn&#39;t check if &quot;default&quot; was given
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic."><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">165 → 169 → 173</span></span>  165: 	return $_[0] if((scalar(@_) == 1) &amp;&amp; (ref($_[0]) eq &#39;HASH&#39;));	# Note - doesn&#39;t check if &quot;default&quot; was given
 </span><p> <b> Mutants (Total: 3, Killed: 3, Survived: 0)</b><p><span class="">  166: 
 </span><span class="">  167: 	my $default = shift;
 </span><span class="">  168: 
@@ -462,7 +462,7 @@ Approximate LCSAJ segments: 49<br>
 </span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  170: 		Carp::croak(__PACKAGE__, &#39;::get_params: $default must be a scalar&#39;);
 </span><span class="">  171: 	}
 </span><span class="">  172: 
-</span><span class=""><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">173 → 175 → 189</span></span><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">173 → 175 → 0</span></span>  173: 	my $args;
+</span><span class=""><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">173 → 175 → 189</span></span>  173: 	my $args;
 </span><span class="">  174: 	my $array_ref;
 </span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  175: 	if((scalar(@_) == 1) &amp;&amp; (ref($_[0]) eq &#39;ARRAY&#39;)) {
 </span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  176: 		if($default &amp;&amp; (scalar(@{$_[0]}) == 2) &amp;&amp; (@{$_[0]}[0] eq $default) &amp;&amp; (!ref(@{$_[0]}[1]))) {
@@ -478,7 +478,7 @@ Approximate LCSAJ segments: 49<br>
 </span><span class="">  186: 		$args = \@_;
 </span><span class="">  187: 	}
 </span><span class="">  188: 
-</span><span class=""><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">189 → 192 → 232</span></span><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">189 → 192 → 0</span></span>  189: 	my $num_args = scalar(@{$args});
+</span><span class=""><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">189 → 192 → 232</span></span>  189: 	my $num_args = scalar(@{$args});
 </span><span class="">  190: 
 </span><span class="">  191: 	# Populate %rc based on the number and type of arguments
 </span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  192: 	if($num_args == 1) {
@@ -521,7 +521,7 @@ Approximate LCSAJ segments: 49<br>
 </span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  229: 		}
 </span><span class="">  230: 		Carp::croak(&#39;Usage: &#39;, __PACKAGE__, &#39;-&gt;&#39;, (caller(1))[3], &#39;()&#39;);
 </span><span class="">  231: 	}
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic."><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">232 → 232 → 244</span></span><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">232 → 232 → 0</span></span>  232: 	if($num_args == 0) {
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic."><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">232 → 232 → 244</span></span>  232: 	if($num_args == 0) {
 </span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  233: 		if(defined($default)) {
 </span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  234: 			# if(defined($_[0]) &amp;&amp; (ref($_[0]) eq &#39;ARRAY&#39;)) {
 </span><span class="">  235: 				# FIXME
@@ -533,7 +533,7 @@ Approximate LCSAJ segments: 49<br>
 </span><span class="">  241: 		}
 </span><span class="">  242: 		return;
 </span><span class="">  243: 	}
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic."><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">244 → 244 → 261</span></span><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">244 → 244 → 0</span></span>  244: 	if(($num_args == 2) &amp;&amp; (ref($args-&gt;[1]) eq &#39;HASH&#39;)) {
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic."><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">244 → 244 → 261</span></span>  244: 	if(($num_args == 2) &amp;&amp; (ref($args-&gt;[1]) eq &#39;HASH&#39;)) {
 </span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  245: 		if(defined($default)) {
 </span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  246: 			if(scalar keys %{$args-&gt;[1]}) {
 </span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  247: 				if($args-&gt;[0] eq $default) {
@@ -550,15 +550,15 @@ Approximate LCSAJ segments: 49<br>
 </span><span class="">  258: 		}
 </span><span class="">  259: 	}
 </span><span class="">  260: 
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic."><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">261 → 261 → 264</span></span><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">261 → 261 → 0</span></span>  261: 	if($array_ref &amp;&amp; defined($default)) {
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic."><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">261 → 261 → 264</span></span>  261: 	if($array_ref &amp;&amp; defined($default)) {
 </span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  262: 		return { $default =&gt; $args };
 </span><span class="">  263: 	}
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic."><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">264 → 264 → 269</span></span><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">264 → 264 → 0</span></span>  264: 	if(($num_args % 2) == 0) {
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic."><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">264 → 264 → 269</span></span>  264: 	if(($num_args % 2) == 0) {
 </span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  265: 		my %rc = @{$args};
 </span><span class="">  266: 		return \%rc;
 </span><span class="">  267: 	}
 </span><span class="">  268: 
-</span><span class=""><span class="lcsaj-tip"><span class="lcsaj-dot-uncovered">●</span><span class="lcsaj-tip-text">[NOT COVERED] 269 → 269 → 0</span></span>  269: 	Carp::croak(&#39;Usage: &#39;, __PACKAGE__, &#39;-&gt;&#39;, (caller(1))[3], &#39;()&#39;);
+</span><span class="">  269: 	Carp::croak(&#39;Usage: &#39;, __PACKAGE__, &#39;-&gt;&#39;, (caller(1))[3], &#39;()&#39;);
 </span><span class="">  270: }
 </span><span class="">  271: 
 </span><span class="">  272: =head1 AUTHOR
