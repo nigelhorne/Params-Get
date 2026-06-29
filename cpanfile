@@ -1,7 +1,6 @@
 # Generated from Makefile.PL using makefilepl2cpanfile
 
 requires 'Carp';
-requires 'Devel::Confess';
 requires 'ExtUtils::MakeMaker', '6.64';
 requires 'Scalar::Util';
 

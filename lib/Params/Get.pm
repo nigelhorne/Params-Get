@@ -11,7 +11,6 @@ use autodie qw(:all);
 use parent 'Exporter';
 
 use Carp ();
-use Devel::Confess;
 use Scalar::Util ();
 
 use Readonly;
@@ -69,11 +68,9 @@ formally specify and enforce the input and output contracts of every method.
     where_am_i(latitude => 0.3, longitude => 124);
     where_am_i({ latitude => 3.14, longitude => -155 });
 
-=head1 FUNCTIONS
+=head1 METHODS
 
 =head2 get_params
-
-=head3 PURPOSE
 
 Parse the argument list passed to a subroutine and return a unified hash-ref
 regardless of the calling convention used.  Supported conventions:
@@ -158,37 +155,6 @@ because that almost always indicates a programming error.
       arrayref                                          $default                               or undef
     Usage: Pkg->method($key => $val)  [stack trace]    $default is defined but no args given  Ensure the caller always passes a value
     Usage: Pkg->method()                               Odd-length or unrecognisable arg list  Correct the calling convention in the caller
-
-=head3 FORMAL SPECIFICATION
-
-    Let D = default key (Str | [Str*] | undef), A = argument tuple.
-
-    get_params : D x A* -> HashRef | Undef
-
-    -- Fast path (fires before D is inspected -- see LIMITATIONS)
-    get_params(D, h)            == h             when |A|=1, h:HashRef
-
-    -- Positional-names default
-    get_params([n1..nk], v*)    == {ni -> vi}    i in 1..k, vi = undef when missing
-
-    -- Scalar default, single arg
-    get_params(d, s)            == {d -> s}      d:Str, s:Scalar
-    get_params(d, a)            == {d -> a}      d:Str, a:ArrayRef
-    get_params(d, \s)           == {d -> s}      d:Str (scalarref dereferenced)
-    get_params(d, c)            == {d -> c}      d:Str, c:CodeRef
-    get_params(d, o)            == {d -> o}      d:Str, o:BlessedObject
-
-    -- Mandatory-positional + options-hashref
-    get_params(d, v, {k->w..})  == {d->v, k->w..}    non-empty opts
-    get_params(d, d, {k->w..})  == {d -> {k->w..}}   first arg IS the key name
-
-    -- Named pairs
-    get_params(undef, k1,v1..)  == {ki -> vi}    when |A| is even
-
-    -- Empty / error
-    get_params(undef)           == undef
-    get_params(d)               => confess       d:Str (missing required arg)
-    get_params(D, odd-list)     => croak
 
 =head3 PSEUDOCODE
 
@@ -293,16 +259,17 @@ sub get_params
 
 		return unless defined $args->[0];
 
-		# Unwrap a ref-to-ref before further type checks.
-		if (ref($args->[0]) eq $T_REF) {
-			$args->[0] = ${$args->[0]};
-		}
+		# Copy before type checks: $args->[0] is an alias to the caller's
+		# variable via @_ -- assigning through it would silently mutate the
+		# caller's data.  Work on a named copy instead.
+		my $val = $args->[0];
+		$val = ${$val} if ref($val) eq $T_REF;
 
-		return $args->[0] if ref($args->[0]) eq $T_HASH;
+		return $val if ref($val) eq $T_HASH;
 
 		# Empty arrayref with no default: return the ref itself.
-		if ((ref($args->[0]) eq $T_ARRAY) && (@{$args->[0]} == 0)) {
-			return $args->[0];
+		if ((ref($val) eq $T_ARRAY) && (@{$val} == 0)) {
+			return $val;
 		}
 
 		Carp::croak('Usage: ', __PACKAGE__, '->', (caller(1))[3], '()');
@@ -361,6 +328,15 @@ When C<$default> is a string and zero arguments are received, the function
 always confesses.  There is no way to express I<"accept zero args and return
 undef gracefully">.
 
+=item B<Duplicate keys in a flat list silently overwrite; last value wins>
+
+C<get_params(undef, foo =E<gt> 1, foo =E<gt> 2)> returns C<{ foo =E<gt> 2 }>
+with no warning.  If an attacker controls part of the argument list, a
+later duplicate key can silently override an earlier sanitised value.
+Detect and reject duplicate keys in the validation layer (e.g.
+L<Params::Validate::Strict>) rather than relying on C<get_params> to catch
+them.
+
 =item B<Positional-names C<$default> silently discards extra arguments>
 
 C<get_params([qw(a b)], 1, 2, 3)> returns C<{ a =E<gt> 1, b =E<gt> 2 }>
@@ -405,6 +381,39 @@ or through L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Params-Get>.
 =item * CPAN Testers Dependencies: L<http://deps.cpantesters.org/?module=Params::Get>
 
 =back
+
+=head2 FORMAL SPECIFICATION
+
+=head3 get_params
+
+    Let D = default key (Str | [Str*] | undef), A = argument tuple.
+
+    get_params : D x A* -> HashRef | Undef
+
+    -- Fast path (fires before D is inspected -- see LIMITATIONS)
+    get_params(D, h)            == h             when |A|=1, h:HashRef
+
+    -- Positional-names default
+    get_params([n1..nk], v*)    == {ni -> vi}    i in 1..k, vi = undef when missing
+
+    -- Scalar default, single arg
+    get_params(d, s)            == {d -> s}      d:Str, s:Scalar
+    get_params(d, a)            == {d -> a}      d:Str, a:ArrayRef
+    get_params(d, \s)           == {d -> s}      d:Str (scalarref dereferenced)
+    get_params(d, c)            == {d -> c}      d:Str, c:CodeRef
+    get_params(d, o)            == {d -> o}      d:Str, o:BlessedObject
+
+    -- Mandatory-positional + options-hashref
+    get_params(d, v, {k->w..})  == {d->v, k->w..}    non-empty opts
+    get_params(d, d, {k->w..})  == {d -> {k->w..}}   first arg IS the key name
+
+    -- Named pairs
+    get_params(undef, k1,v1..)  == {ki -> vi}    when |A| is even
+
+    -- Empty / error
+    get_params(undef)           == undef
+    get_params(d)               => confess       d:Str (missing required arg)
+    get_params(D, odd-list)     => croak
 
 =head1 LICENCE AND COPYRIGHT
 
