@@ -3,6 +3,22 @@ Revision history for Params-Get
 0.15
 	[ Bug fixes ]
 	- Ensure Makefile.PL has the latest META_MERGE format
+	- Replace Devel::Confess::longmess (internal API) with Carp::confess
+	- Fix array-slice syntax @{$_[0]}[0] -> $_[0]->[0]
+
+	[ New features ]
+	- $default may now be an arrayref of positional key names:
+	    get_params([qw(name age)], 'Alice', 30) -> { name => 'Alice', age => 30 }
+
+	[ Tests ]
+	- Add t/locales.t: verify error messages are locale-independent
+	- Add arrayref-default coverage to t/get_params.t
+
+	[ Code quality ]
+	- Modernise Exporter: use parent 'Exporter' replaces @ISA manipulation
+	- Add Readonly sentinels for ref-type strings
+	- Remove dead commented-out code and FIXME blocks
+	- Expand POD: LIMITATIONS, MESSAGES table, FORMAL SPECIFICATION, PSEUDOCODE
 
 0.14	Tue May 19 21:40:21 EDT 2026
 	Document the default argument
