@@ -11,6 +11,7 @@ t/30-basics.t
 t/40-more.t
 t/eof.t
 t/eol.t
+t/function.t
 t/get_params.t
 t/locales.t
 t/pod-cm.t
