@@ -124,6 +124,7 @@ subtest 'global state: $_ (topic variable) not clobbered' => sub {
 };
 
 subtest 'global state: alarm countdown not reset or cleared by get_params' => sub {
+	plan skip_all => 'alarm() not supported on Windows' if $^O eq 'MSWin32';
 	# Set a 300-second countdown, call get_params (takes microseconds),
 	# then immediately restore the original alarm via alarm($prev).
 	# The returned remaining time must be indistinguishably close to 300.
