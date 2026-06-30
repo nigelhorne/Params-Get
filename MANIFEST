@@ -18,5 +18,6 @@ t/pod-cm.t
 t/pod-coverage.t
 t/pod-synopsis.t
 t/pod.t
+t/unit.t
 t/validate-strict.t
 t/vars.t
