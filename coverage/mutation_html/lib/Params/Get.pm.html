@@ -436,11 +436,11 @@ Approximate LCSAJ segments: 51<br>
 </span><span class="">  144: 
 </span><span class="">  145: 	{
 </span><span class="">  146: 		default =&gt; {
-</span><span class="">  147: 			type =&gt; [ &#39;string&#39; | &#39;stringref&#39; ],
+</span><span class="">  147: 			type =&gt; [ &#39;string&#39;, &#39;stringref&#39; ],
 </span><span class="">  148: 			optional =&gt; 1,
 </span><span class="">  149: 			position =&gt; 0,
 </span><span class="">  150: 		}, args =&gt; {
-</span><span class="">  151: 			type =&gt; [ &#39;array&#39; | &#39;arrayref&#39; ],
+</span><span class="">  151: 			type =&gt; [ &#39;array&#39;, &#39;arrayref&#39; ],
 </span><span class="">  152: 			optional =&gt; 1,
 </span><span class="">  153: 			position =&gt; 1,
 </span><span class="">  154: 		}
@@ -524,8 +524,8 @@ Approximate LCSAJ segments: 51<br>
 </span><span class="">  232: 		# callee received \@_.  Only fires when the value is a plain scalar to
 </span><span class="">  233: 		# avoid ambiguity with an arrayref value.
 </span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  234: 		if($default &amp;&amp; (@{$_[0]} == 2) &amp;&amp; ($_[0]-&gt;[0] eq $default) &amp;&amp; !ref($_[0]-&gt;[1])) {
-</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  235: 			return { $default =&gt; $_[0]-&gt;[1] };
-</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  236: 		}
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  235: 			return { $default =&gt; $_[0]-&gt;[1] };
+</span><span class="">  236: 		}
 </span><span class="">  237: 		$args = $_[0];
 </span><span class="">  238: 		$from_arrayref = 1;
 </span><span class="">  239: 	} else {
@@ -535,23 +535,23 @@ Approximate LCSAJ segments: 51<br>
 </span><span class=""><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">243 → 246 → 256</span></span>  243: 	my $num_args = scalar @{$args};
 </span><span class="">  244: 
 </span><span class="">  245: 	# --- Zero arguments ---
-</span><span class="">  246: 	if ($num_args == 0) {
-</span><span class="">  247: 		if (defined $default) {
-</span><span class="">  248: 			# Full stack trace via Devel::Confess because receiving zero args
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  246: 	if ($num_args == 0) {
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  247: 		if (defined $default) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  248: 			# Full stack trace via Devel::Confess because receiving zero args
 </span><span class="">  249: 			# when a default is defined is virtually always a programming error.
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  250: 			Carp::confess(&#39;Usage: &#39;, __PACKAGE__, &#39;-&gt;&#39;, (caller(1))[3], &quot;($default =&gt; \$val)&quot;);
-</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  251: 		}
-</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  252: 		return;
+</span><span class="">  250: 			Carp::confess(&#39;Usage: &#39;, __PACKAGE__, &#39;-&gt;&#39;, (caller(1))[3], &quot;($default =&gt; \$val)&quot;);
+</span><span class="">  251: 		}
+</span><span class="">  252: 		return;
 </span><span class="">  253: 	}
 </span><span class="">  254: 
 </span><span class="">  255: 	# --- One argument ---
-</span><span class=""><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">256 → 256 → 290</span></span>  256: 	if ($num_args == 1) {
-</span><span class="">  257: 		if (defined $default) {
-</span><span class="">  258: 			my $arg  = $args-&gt;[0];
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic."><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">256 → 256 → 290</span></span>  256: 	if ($num_args == 1) {
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  257: 		if (defined $default) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  258: 			my $arg  = $args-&gt;[0];
 </span><span class="">  259: 			my $kind = ref($arg);
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  260: 
-</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  261: 			return { $default =&gt; $arg     } if !$kind;
-</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  262: 			return { $default =&gt; $arg     } if $kind eq $T_ARRAY;
+</span><span class="">  260: 
+</span><span class="">  261: 			return { $default =&gt; $arg     } if !$kind;
+</span><span class="">  262: 			return { $default =&gt; $arg     } if $kind eq $T_ARRAY;
 </span><span class="">  263: 			return { $default =&gt; ${$arg}  } if $kind eq $T_SCALAR;
 </span><span class="">  264: 			return { $default =&gt; $arg     } if $kind eq $T_CODE;
 </span><span class="">  265: 			return { $default =&gt; $arg     } if Scalar::Util::blessed($arg);
@@ -567,26 +567,26 @@ Approximate LCSAJ segments: 51<br>
 </span><span class="">  275: 		my $val = $args-&gt;[0];
 </span><span class="">  276: 		$val = ${$val} if ref($val) eq $T_REF;
 </span><span class="">  277: 
-</span><span class="">  278: 		return $val if ref($val) eq $T_HASH;
-</span><span class="">  279: 
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  278: 		return $val if ref($val) eq $T_HASH;
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  279: 
 </span><span class="">  280: 		# Empty arrayref with no default: return the ref itself.
-</span><span class="">  281: 		if ((ref($val) eq $T_ARRAY) &amp;&amp; (@{$val} == 0)) {
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  282: 			return $val;
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  281: 		if ((ref($val) eq $T_ARRAY) &amp;&amp; (@{$val} == 0)) {
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  282: 			return $val;
 </span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  283: 		}
 </span><span class="">  284: 
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  285: 		Carp::croak(&#39;Usage: &#39;, __PACKAGE__, &#39;-&gt;&#39;, (caller(1))[3], &#39;()&#39;);
-</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  286: 	}
-</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  287: 
+</span><span class="">  285: 		Carp::croak(&#39;Usage: &#39;, __PACKAGE__, &#39;-&gt;&#39;, (caller(1))[3], &#39;()&#39;);
+</span><span class="">  286: 	}
+</span><span class="">  287: 
 </span><span class="">  288: 	# --- Two arguments where the second is a hash ref ---
 </span><span class="">  289: 	# Handles the Obj-&gt;new($mandatory, \%options) convention.
-</span><span class=""><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">290 → 290 → 304</span></span>  290: 	if (($num_args == 2) &amp;&amp; (ref($args-&gt;[1]) eq $T_HASH)) {
-</span><span class="">  291: 		if (defined $default) {
-</span><span class="">  292: 			if (scalar keys %{$args-&gt;[1]}) {
-</span><span class="">  293: 				# When first arg is the default key name itself, second arg is its value.
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  294: 				return { $default =&gt; $args-&gt;[1] } if $args-&gt;[0] eq $default;
-</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  295: 				# Otherwise: first arg is the mandatory value; options are merged.
-</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  296: 				return { $default =&gt; $args-&gt;[0], %{$args-&gt;[1]} };
-</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  297: 			}
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic."><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">290 → 290 → 304</span></span>  290: 	if (($num_args == 2) &amp;&amp; (ref($args-&gt;[1]) eq $T_HASH)) {
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  291: 		if (defined $default) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  292: 			if (scalar keys %{$args-&gt;[1]}) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  293: 				# When first arg is the default key name itself, second arg is its value.
+</span><span class="">  294: 				return { $default =&gt; $args-&gt;[1] } if $args-&gt;[0] eq $default;
+</span><span class="">  295: 				# Otherwise: first arg is the mandatory value; options are merged.
+</span><span class="">  296: 				return { $default =&gt; $args-&gt;[0], %{$args-&gt;[1]} };
+</span><span class="">  297: 			}
 </span><span class="">  298: 			# Empty options hashref: store the ref as the value.
 </span><span class="">  299: 			return { $default =&gt; $args-&gt;[1] };
 </span><span class="">  300: 		}
@@ -596,14 +596,14 @@ Approximate LCSAJ segments: 51<br>
 </span><span class=""><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">304 → 307 → 312</span></span>  304: 	return { $default =&gt; $args } if $from_arrayref &amp;&amp; defined $default;
 </span><span class="">  305: 
 </span><span class="">  306: 	# --- Even-length list: flat key/value pairs ---
-</span><span class="">  307: 	if (($num_args % 2) == 0) {
-</span><span class="">  308: 		my %rc = @{$args};
-</span><span class="">  309: 		return \%rc;
-</span><span class="">  310: 	}
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  311: 
-</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  312: 	Carp::croak(&#39;Usage: &#39;, __PACKAGE__, &#39;-&gt;&#39;, (caller(1))[3], &#39;()&#39;);
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  313: }
-</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  314: 
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  307: 	if (($num_args % 2) == 0) {
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  308: 		my %rc = @{$args};
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  309: 		return \%rc;
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  310: 	}
+</span><span class="">  311: 
+</span><span class="">  312: 	Carp::croak(&#39;Usage: &#39;, __PACKAGE__, &#39;-&gt;&#39;, (caller(1))[3], &#39;()&#39;);
+</span><span class="">  313: }
+</span><span class="">  314: 
 </span><span class="">  315: =head1 LIMITATIONS
 </span><span class="">  316: 
 </span><span class="">  317: =over 4
