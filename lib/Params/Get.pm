@@ -217,11 +217,11 @@ sub get_params
 
 	# Positional-names feature: $default is an arrayref of key names and the
 	# remaining @_ are values to map to those keys in order.
-	if (ref($default) eq $T_ARRAY) {
+	if($default && (ref($default) eq $T_ARRAY)) {
 		# Honour the single-hashref passthrough for consistency with scalar $default.
 		return $_[0] if (@_ == 1) && (ref($_[0]) eq $T_HASH);
 		my %rc;
-		@rc{@{$default}} = @_[0 .. $#{$default}];
+		{ no warnings 'uninitialized'; @rc{@{$default}} = @_[0 .. $#{$default}] }
 		return \%rc;
 	}
 
