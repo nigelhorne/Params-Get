@@ -12,6 +12,7 @@ t/40-more.t
 t/edge_cases.t
 t/eof.t
 t/eol.t
+t/extended_tests.t
 t/function.t
 t/get_params.t
 t/integration.t
