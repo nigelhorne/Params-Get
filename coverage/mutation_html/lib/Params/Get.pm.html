@@ -509,11 +509,11 @@ Approximate LCSAJ segments: 51<br>
 </span><span class="">  217: 
 </span><span class="">  218: 	# Positional-names feature: $default is an arrayref of key names and the
 </span><span class="">  219: 	# remaining @_ are values to map to those keys in order.
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic."><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">220 → 220 → 229</span></span>  220: 	if (ref($default) eq $T_ARRAY) {
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic."><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">220 → 220 → 229</span></span>  220: 	if($default &amp;&amp; (ref($default) eq $T_ARRAY)) {
 </span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  221: 		# Honour the single-hashref passthrough for consistency with scalar $default.
 </span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  222: 		return $_[0] if (@_ == 1) &amp;&amp; (ref($_[0]) eq $T_HASH);
 </span><p> <b> Mutants (Total: 3, Killed: 3, Survived: 0)</b><p><span class="">  223: 		my %rc;
-</span><span class="">  224: 		@rc{@{$default}} = @_[0 .. $#{$default}];
+</span><span class="">  224: 		{ no warnings &#39;uninitialized&#39;; @rc{@{$default}} = @_[0 .. $#{$default}] }
 </span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  225: 		return \%rc;
 </span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  226: 	}
 </span><span class="">  227: 
