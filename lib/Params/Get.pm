@@ -144,11 +144,11 @@ because that almost always indicates a programming error.
 
 	{
 		default => {
-			type => [ 'string' | 'stringref' ],
+			type => [ 'string', 'stringref' ],
 			optional => 1,
 			position => 0,
 		}, args => {
-			type => [ 'array' | 'arrayref' ],
+			type => [ 'array', 'arrayref' ],
 			optional => 1,
 			position => 1,
 		}
