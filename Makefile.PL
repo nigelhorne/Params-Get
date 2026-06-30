@@ -43,9 +43,9 @@ WriteMakefile(
 		'Carp' => 0,
 		'Readonly' => 0,
 		'Scalar::Util' => 0
-	},
-	TEST_REQUIRES => {
+	}, TEST_REQUIRES => {
 		'Error' => 0,
+		'IPC::System::Simple' => 0,
 		'Params::Validate::Strict' => 0,
 		'Test::DescribeMe' => 0,
 		'Test::Memory::Cycle' => 0,

@@ -231,14 +231,10 @@ sub get_params
 		# Two-element shorthand: caller did routine('key' => 'scalar') and the
 		# callee received \@_.  Only fires when the value is a plain scalar to
 		# avoid ambiguity with an arrayref value.
-		if (    $default
-			&& (@{$_[0]} == 2)
-			&& ($_[0]->[0] eq $default)
-			&& !ref($_[0]->[1])
-		) {
+		if($default && (@{$_[0]} == 2) && ($_[0]->[0] eq $default) && !ref($_[0]->[1])) {
 			return { $default => $_[0]->[1] };
 		}
-		$args          = $_[0];
+		$args = $_[0];
 		$from_arrayref = 1;
 	} else {
 		$args = \@_;
