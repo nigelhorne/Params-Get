@@ -9,6 +9,7 @@ README.md
 t/00-load.t
 t/30-basics.t
 t/40-more.t
+t/edge_cases.t
 t/eof.t
 t/eol.t
 t/function.t
