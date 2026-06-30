@@ -511,25 +511,30 @@ subtest 'hostile mock: croak suppressed for bad $default -- even pairs still pro
 	restore_all();
 };
 
-subtest 'hostile mock: XS alias -- Scalar::Util::blessed cannot be intercepted' => sub {
-	# CLAUDE.md documents: Scalar::Util::blessed is an XS alias.
-	# A mock installed via glob replacement does not intercept XS calls.
-	# This test verifies that the real blessed() is always used, regardless
-	# of any mock installed on the symbol table.
+subtest 'hostile mock: Scalar::Util::blessed mock -- get_params wraps object correctly regardless' => sub {
+	# On macOS the XS alias for blessed prevents glob interception (intercepted=0).
+	# On Linux the pure-Perl glob replacement fires (intercepted=1).
+	# Either way, get_params must wrap the blessed object under $default.
+	# Do NOT assert which platform behavior occurs -- that is a Perl internals
+	# detail, not a contract of Params::Get.
 	my $intercepted = 0;
 	mock 'Scalar::Util::blessed' => sub { $intercepted = 1; return 'FakeClass'; };
 
 	my $obj    = bless { v => 99 }, 'Real::Class';
 	my $result = get_params('thing', $obj);
 
-	# The real XS blessed() must have fired: result class is unchanged.
-	is(Scalar::Util::blessed($result->{thing}), 'Real::Class',
-		'real class preserved -- XS blessed not interceptable via glob mock');
+	is(ref($result), 'HASH', 'get_params returns a hashref');
+	is($result->{thing}, $obj, 'blessed object stored under $default key');
 
-	diag "intercepted=$intercepted (expect 0 for XS, 1 for pure-Perl fallback)"
-		if $ENV{TEST_VERBOSE};
-
+	# Restore the real blessed() BEFORE checking the class of the stored object.
 	restore_all();
+
+	is(Scalar::Util::blessed($result->{thing}), 'Real::Class',
+		'stored object is still blessed as Real::Class after restore');
+
+	diag sprintf('Scalar::Util::blessed was %sintercepted (0=XS bypassed mock; 1=pure-Perl)',
+		$intercepted ? '' : 'NOT ')
+		if $ENV{TEST_VERBOSE};
 };
 
 # =========================================================================
