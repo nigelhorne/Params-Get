@@ -1,6 +1,6 @@
 Revision history for Params-Get
 
-0.15
+0.15	Tue Jun 30 10:17:42 EDT 2026
 	[ Bug fixes ]
 	- Ensure Makefile.PL has the latest META_MERGE format
 	- Replace Devel::Confess::longmess (internal API) with Carp::confess
