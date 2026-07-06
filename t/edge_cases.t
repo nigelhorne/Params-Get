@@ -355,8 +355,7 @@ subtest 'security: attacker-injected key silently overrides earlier sanitised va
 	is($result->{role}, $EVIL_VALUE,
 		'SECURITY: later key silently overrides earlier sanitised value');
 
-	diag 'Mitigation: validate with Params::Validate::Strict before trusting the hashref'
-		if $ENV{TEST_VERBOSE};
+	diag 'Mitigation: validate before trusting the hashref' if $ENV{TEST_VERBOSE};
 };
 
 subtest 'security: 100 duplicate keys -- only the last survives' => sub {
