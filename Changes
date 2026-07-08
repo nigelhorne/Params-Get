@@ -1,5 +1,10 @@
 Revision history for Params-Get
 
+0.16
+	[ Bug fixes ]
+	- Don't rely on PVS (GitHub#5)
+	  I have not been able to reproduce this, so I do not know if this fix works
+
 0.15	Tue Jun 30 10:17:42 EDT 2026
 	[ Bug fixes ]
 	- Ensure Makefile.PL has the latest META_MERGE format
