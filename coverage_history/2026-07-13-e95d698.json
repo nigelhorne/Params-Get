@@ -1,0 +1,292 @@
+{
+   "runs" : [
+      {
+         "OS" : "linux",
+         "abstract" : "Normalise subroutine arguments regardless of calling convention",
+         "dir" : "/home/runner/work/Params-Get/Params-Get",
+         "finish" : 1783971414.11106,
+         "name" : "Params-Get",
+         "perl" : "5.40.4",
+         "run" : "-e",
+         "start" : 1783971407.97419,
+         "version" : "0.16"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Normalise subroutine arguments regardless of calling convention",
+         "dir" : "/home/runner/work/Params-Get/Params-Get",
+         "finish" : 1783971408.11725,
+         "name" : "Params-Get",
+         "perl" : "5.40.4",
+         "run" : "-e",
+         "start" : 1783971408.11715,
+         "version" : "0.16"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Normalise subroutine arguments regardless of calling convention",
+         "dir" : "/home/runner/work/Params-Get/Params-Get",
+         "finish" : 1783971408.40114,
+         "name" : "Params-Get",
+         "perl" : "5.40.4",
+         "run" : "t/00-load.t",
+         "start" : 1783971408.39981,
+         "version" : "0.16"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Normalise subroutine arguments regardless of calling convention",
+         "dir" : "/home/runner/work/Params-Get/Params-Get",
+         "finish" : 1783971408.71198,
+         "name" : "Params-Get",
+         "perl" : "5.40.4",
+         "run" : "t/30-basics.t",
+         "start" : 1783971408.70684,
+         "version" : "0.16"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Normalise subroutine arguments regardless of calling convention",
+         "dir" : "/home/runner/work/Params-Get/Params-Get",
+         "finish" : 1783971409.0341,
+         "name" : "Params-Get",
+         "perl" : "5.40.4",
+         "run" : "t/40-more.t",
+         "start" : 1783971409.02939,
+         "version" : "0.16"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Normalise subroutine arguments regardless of calling convention",
+         "dir" : "/home/runner/work/Params-Get/Params-Get",
+         "finish" : 1783971409.45341,
+         "name" : "Params-Get",
+         "perl" : "5.40.4",
+         "run" : "t/edge_cases.t",
+         "start" : 1783971409.36815,
+         "version" : "0.16"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Normalise subroutine arguments regardless of calling convention",
+         "dir" : "/home/runner/work/Params-Get/Params-Get",
+         "finish" : 1783971409.81093,
+         "name" : "Params-Get",
+         "perl" : "5.40.4",
+         "run" : "t/eof.t",
+         "start" : 1783971409.81066,
+         "version" : "0.16"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Normalise subroutine arguments regardless of calling convention",
+         "dir" : "/home/runner/work/Params-Get/Params-Get",
+         "finish" : 1783971410.04711,
+         "name" : "Params-Get",
+         "perl" : "5.40.4",
+         "run" : "t/eol.t",
+         "start" : 1783971410.04683,
+         "version" : "0.16"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Normalise subroutine arguments regardless of calling convention",
+         "dir" : "/home/runner/work/Params-Get/Params-Get",
+         "finish" : 1783971410.40762,
+         "name" : "Params-Get",
+         "perl" : "5.40.4",
+         "run" : "t/extended_tests.t",
+         "start" : 1783971410.34157,
+         "version" : "0.16"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Normalise subroutine arguments regardless of calling convention",
+         "dir" : "/home/runner/work/Params-Get/Params-Get",
+         "finish" : 1783971410.87929,
+         "name" : "Params-Get",
+         "perl" : "5.40.4",
+         "run" : "t/function.t",
+         "start" : 1783971410.81158,
+         "version" : "0.16"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Normalise subroutine arguments regardless of calling convention",
+         "dir" : "/home/runner/work/Params-Get/Params-Get",
+         "finish" : 1783971411.28182,
+         "name" : "Params-Get",
+         "perl" : "5.40.4",
+         "run" : "t/get_params.t",
+         "start" : 1783971411.26492,
+         "version" : "0.16"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Normalise subroutine arguments regardless of calling convention",
+         "dir" : "/home/runner/work/Params-Get/Params-Get",
+         "finish" : 1783971411.66651,
+         "name" : "Params-Get",
+         "perl" : "5.40.4",
+         "run" : "t/integration.t",
+         "start" : 1783971411.62855,
+         "version" : "0.16"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Normalise subroutine arguments regardless of calling convention",
+         "dir" : "/home/runner/work/Params-Get/Params-Get",
+         "finish" : 1783971412.01962,
+         "name" : "Params-Get",
+         "perl" : "5.40.4",
+         "run" : "t/locales.t",
+         "start" : 1783971411.99623,
+         "version" : "0.16"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Normalise subroutine arguments regardless of calling convention",
+         "dir" : "/home/runner/work/Params-Get/Params-Get",
+         "finish" : 1783971412.29243,
+         "name" : "Params-Get",
+         "perl" : "5.40.4",
+         "run" : "t/pod-cm.t",
+         "start" : 1783971412.29216,
+         "version" : "0.16"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Normalise subroutine arguments regardless of calling convention",
+         "dir" : "/home/runner/work/Params-Get/Params-Get",
+         "finish" : 1783971412.52539,
+         "name" : "Params-Get",
+         "perl" : "5.40.4",
+         "run" : "t/pod-coverage.t",
+         "start" : 1783971412.52506,
+         "version" : "0.16"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Normalise subroutine arguments regardless of calling convention",
+         "dir" : "/home/runner/work/Params-Get/Params-Get",
+         "finish" : 1783971412.75703,
+         "name" : "Params-Get",
+         "perl" : "5.40.4",
+         "run" : "t/pod-synopsis.t",
+         "start" : 1783971412.75679,
+         "version" : "0.16"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Normalise subroutine arguments regardless of calling convention",
+         "dir" : "/home/runner/work/Params-Get/Params-Get",
+         "finish" : 1783971412.98913,
+         "name" : "Params-Get",
+         "perl" : "5.40.4",
+         "run" : "t/pod.t",
+         "start" : 1783971412.98886,
+         "version" : "0.16"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Normalise subroutine arguments regardless of calling convention",
+         "dir" : "/home/runner/work/Params-Get/Params-Get",
+         "finish" : 1783971413.38668,
+         "name" : "Params-Get",
+         "perl" : "5.40.4",
+         "run" : "t/unit.t",
+         "start" : 1783971413.29061,
+         "version" : "0.16"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Normalise subroutine arguments regardless of calling convention",
+         "dir" : "/home/runner/work/Params-Get/Params-Get",
+         "finish" : 1783971413.80784,
+         "name" : "Params-Get",
+         "perl" : "5.40.4",
+         "run" : "t/validate-strict.t",
+         "start" : 1783971413.80625,
+         "version" : "0.16"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Normalise subroutine arguments regardless of calling convention",
+         "dir" : "/home/runner/work/Params-Get/Params-Get",
+         "finish" : 1783971414.0722,
+         "name" : "Params-Get",
+         "perl" : "5.40.4",
+         "run" : "t/vars.t",
+         "start" : 1783971414.07195,
+         "version" : "0.16"
+      }
+   ],
+   "summary" : {
+      "Total" : {
+         "branch" : {
+            "covered" : 50,
+            "error" : 0,
+            "percentage" : 100,
+            "total" : 50,
+            "uncoverable" : 0
+         },
+         "condition" : {
+            "covered" : 33,
+            "error" : 0,
+            "percentage" : 100,
+            "total" : 33,
+            "uncoverable" : 0
+         },
+         "statement" : {
+            "covered" : 83,
+            "percentage" : 100,
+            "total" : 83
+         },
+         "subroutine" : {
+            "covered" : 9,
+            "percentage" : 100,
+            "total" : 9
+         },
+         "total" : {
+            "covered" : 175,
+            "error" : 0,
+            "percentage" : 100,
+            "total" : 175,
+            "uncoverable" : 0
+         }
+      },
+      "blib/lib/Params/Get.pm" : {
+         "branch" : {
+            "covered" : 50,
+            "error" : 0,
+            "percentage" : 100,
+            "total" : 50,
+            "uncoverable" : 0
+         },
+         "condition" : {
+            "covered" : 33,
+            "error" : 0,
+            "percentage" : 100,
+            "total" : 33,
+            "uncoverable" : 0
+         },
+         "statement" : {
+            "covered" : 83,
+            "percentage" : 100,
+            "total" : 83
+         },
+         "subroutine" : {
+            "covered" : 9,
+            "percentage" : 100,
+            "total" : 9
+         },
+         "total" : {
+            "covered" : 175,
+            "error" : 0,
+            "percentage" : 100,
+            "total" : 175,
+            "uncoverable" : 0
+         }
+      }
+   }
+}
