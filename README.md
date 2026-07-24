@@ -4,7 +4,7 @@ Params::Get - Normalise subroutine arguments regardless of calling convention
 
 # VERSION
 
-Version 0.15
+Version 0.16
 
 # DESCRIPTION
 
@@ -203,6 +203,8 @@ or through [http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Params-Get](http://rt
 - [Test Dashboard](https://nigelhorne.github.io/Params-Get/coverage/)
 
 # SUPPORT
+
+This module is provided as-is without any warranty.
 
 - MetaCPAN: [https://metacpan.org/dist/Params-Get](https://metacpan.org/dist/Params-Get)
 - RT: [https://rt.cpan.org/NoAuth/Bugs.html?Dist=Params-Get](https://rt.cpan.org/NoAuth/Bugs.html?Dist=Params-Get)

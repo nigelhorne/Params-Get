@@ -4,6 +4,8 @@ package Params::Get;
 # arguments -- positional scalar, named pairs, hashref, arrayref -- into a
 # single hashref so the receiving sub need not care which style was used.
 
+# TODO: Investigate Params::Smart
+
 use strict;
 use warnings;
 use autodie qw(:all);
@@ -379,6 +381,8 @@ or through L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Params-Get>.
 =back
 
 =head1 SUPPORT
+
+This module is provided as-is without any warranty.
 
 =over 4
 
