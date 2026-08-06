@@ -16,6 +16,7 @@ t/extended_tests.t
 t/function.t
 t/get_params.t
 t/integration.t
+t/lib/TestHelper.pm
 t/locales.t
 t/pod-cm.t
 t/pod-coverage.t

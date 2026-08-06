@@ -5,6 +5,12 @@ Revision history for Params-Get
 	- Don't rely on PVS (GitHub#5)
 	  I have not been able to reproduce this, so I do not know if this fix works
 
+	[ Tests ]
+	- Add t/lib/TestHelper.pm: shared $USAGE_RE and $DEFAULT_CROAK_RE constants,
+	    eliminating five identical per-file Readonly definitions
+	- Fix greedy qr/latitude.*must be/ to non-greedy with /x in t/integration.t
+	- Use \Q->\E instead of bare -> in regex literals in t/extended_tests.t
+
 0.15	Tue Jun 30 10:17:42 EDT 2026
 	[ Bug fixes ]
 	- Ensure Makefile.PL has the latest META_MERGE format

@@ -24,15 +24,16 @@ use warnings;
 use Test::Most;
 use Test::Mockingbird 0.08;
 use Test::Returns;
+use FindBin qw($Bin);
+use lib "$Bin/lib";
 use Readonly;
 use Scalar::Util ();
 use POSIX ();
 use Params::Get qw(get_params);
+use TestHelper qw($USAGE_RE $DEFAULT_CROAK_RE);
 
 # Named constants -- no magic strings/numbers in assertions.
 Readonly::Scalar my $PKG              => 'Params::Get';
-Readonly::Scalar my $USAGE_RE         => qr/Usage:/;
-Readonly::Scalar my $DEFAULT_CROAK_RE => qr/\$default must be a scalar or arrayref/;
 Readonly::Scalar my $ONE_MB           => 1_048_576;
 Readonly::Scalar my $LARGE_PAIR_COUNT => 500;
 
