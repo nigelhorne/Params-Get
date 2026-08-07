@@ -5,6 +5,12 @@ Revision history for Params-Get
 	- Don't rely on PVS (GitHub#5)
 	  I have not been able to reproduce this, so I do not know if this fix works
 
+	[ Performance ]
+	- Cache ref($default) in $default_ref to avoid 2-3 redundant ref() calls per
+	    invocation when $default is an ARRAY ref or a plain string
+	- Replace named intermediate hash (my %rc = ...; \%rc) with direct anonymous
+	    hashref ({ @{$args} }) in the even-length named-pairs path: ~9% faster
+
 	[ Tests ]
 	- Add t/lib/TestHelper.pm: shared $USAGE_RE and $DEFAULT_CROAK_RE constants,
 	    eliminating five identical per-file Readonly definitions

@@ -212,14 +212,15 @@ sub get_params
 	return $_[0] if (@_ == 1) && (ref($_[0]) eq $T_HASH);
 
 	my $default = shift;
+	my $default_ref = ref($default);
 
-	if (ref($default) && (ref($default) ne $T_ARRAY)) {
+	if ($default_ref && ($default_ref ne $T_ARRAY)) {
 		Carp::croak(__PACKAGE__, '::get_params: $default must be a scalar or arrayref');
 	}
 
 	# Positional-names feature: $default is an arrayref of key names and the
 	# remaining @_ are values to map to those keys in order.
-	if($default && (ref($default) eq $T_ARRAY)) {
+	if($default && ($default_ref eq $T_ARRAY)) {
 		# Honour the single-hashref passthrough for consistency with scalar $default.
 		return $_[0] if (@_ == 1) && (ref($_[0]) eq $T_HASH);
 		my %rc;
@@ -307,8 +308,7 @@ sub get_params
 
 	# --- Even-length list: flat key/value pairs ---
 	if (($num_args % 2) == 0) {
-		my %rc = @{$args};
-		return \%rc;
+		return { @{$args} };
 	}
 
 	Carp::croak('Usage: ', __PACKAGE__, '->', (caller(1))[3], '()');
