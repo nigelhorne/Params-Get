@@ -25,6 +25,10 @@ Revision history for Params-Get
 	    eliminating five identical per-file Readonly definitions
 	- Fix greedy qr/latitude.*must be/ to non-greedy with /x in t/integration.t
 	- Use \Q->\E instead of bare -> in regex literals in t/extended_tests.t
+	- Add t/cgi_security.t: 32-subtest penetration test suite covering command
+	    injection, path traversal, XSS, CRLF header injection, SQL injection
+	    passthrough, STDIN isolation, duplicate-key attack vector, hostile $default
+	    values, resource exhaustion, global-state integrity, and taint propagation
 
 0.15	Tue Jun 30 10:17:42 EDT 2026
 	[ Bug fixes ]
