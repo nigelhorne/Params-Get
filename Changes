@@ -5,6 +5,15 @@ Revision history for Params-Get
 	- Don't rely on PVS (GitHub#5)
 	  I have not been able to reproduce this, so I do not know if this fix works
 
+	[ Code quality ]
+	- Remove provably redundant "$default &&" pre-check in the positional-names
+	    guard: ref(X) eq "ARRAY" implies X is always truthy, so the conjunction's
+	    left operand can never flip the branch (deductive reduction R1)
+	- Collapse five one-arg dispatch arms to two via De Morgan boolean reduction:
+	    SCALAR (deref) pulled left as fast guard; plain scalar/ARRAY/CODE/blessed
+	    merged into one disjunction (reduction R2)
+	- Update PSEUDOCODE POD to document the formal premises behind both reductions
+
 	[ Performance ]
 	- Cache ref($default) in $default_ref to avoid 2-3 redundant ref() calls per
 	    invocation when $default is an ARRAY ref or a plain string

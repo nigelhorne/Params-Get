@@ -180,20 +180,26 @@ because that almost always indicates a programming error.
     2.  Shift $default.  Validate: must be undef, a plain scalar, or an
         ARRAY ref.  Any other ref type croaks immediately.
 
-    3.  If $default is an ARRAY ref, map remaining @_ positionally to those
-        key names and return.  A single plain HASH ref is still passed
-        through unchanged.
+    3.  If $default_ref eq "ARRAY", map remaining @_ positionally to the key
+        names and return.  (Premise: an ARRAY ref is always truthy, so no
+        separate truthiness pre-check is needed -- $default_ref eq "ARRAY"
+        is sufficient.)
 
     4.  Detect the \@_ calling convention: if exactly one ARRAY ref argument
         remains, check the two-element (key => scalar-val) shorthand and
-        return immediately when it matches.  Otherwise unwrap and use the
-        array contents as the effective @args.
+        return immediately when it matches.  The shorthand guard uses
+        truthiness (not definedness) so that falsy $default strings ("0", "")
+        suppress it -- this is a documented invariant.  Otherwise unwrap and
+        use the array contents as the effective @args.
 
     5.  Dispatch on argument count:
         0 -- confess (with stack trace) if $default is defined;
              return undef otherwise.
-        1 -- if $default is defined, wrap the single arg under $default
-             (scalar, arrayref, scalarref->deref, coderef, blessed object).
+        1 -- if $default is defined, two arms cover all wrappable types:
+               SCALAR ref  -> deref then wrap (pulled left as fast guard).
+               plain scalar | ARRAY | CODE | blessed -> wrap as-is.
+             Unblessed HASH and exotic refs fall through to the no-default
+             path (see LIMITATIONS).
              Without $default: unwrap REF-of-REF, pass HASH ref through,
              return empty ARRAY ref as-is.  Anything else: croak.
         2 with HASH ref as arg[1]
@@ -220,7 +226,9 @@ sub get_params
 
 	# Positional-names feature: $default is an arrayref of key names and the
 	# remaining @_ are values to map to those keys in order.
-	if($default && ($default_ref eq $T_ARRAY)) {
+	# Premise: ref(X) eq "ARRAY" implies X is a reference, which is always truthy.
+	# Conclusion: the "$default &&" pre-check would never flip this branch; omitted.
+	if($default_ref eq $T_ARRAY) {
 		# Honour the single-hashref passthrough for consistency with scalar $default.
 		return $_[0] if (@_ == 1) && (ref($_[0]) eq $T_HASH);
 		my %rc;
@@ -261,13 +269,18 @@ sub get_params
 			my $arg  = $args->[0];
 			my $kind = ref($arg);
 
-			return { $default => $arg     } if !$kind;
-			return { $default => $arg     } if $kind eq $T_ARRAY;
-			return { $default => ${$arg}  } if $kind eq $T_SCALAR;
-			return { $default => $arg     } if $kind eq $T_CODE;
-			return { $default => $arg     } if Scalar::Util::blessed($arg);
-			# Unblessed HASH ref falls through to the no-default path below,
-			# where it is returned directly (see LIMITATIONS).
+			# SCALAR ref is the only arm with a distinct action (deref before wrap);
+			# pull it left as a fast guard (Modus Ponens / fail-fast).
+			return { $default => ${$arg} } if $kind eq $T_SCALAR;
+
+			# De Morgan reduction: four arms with identical action collapse to one
+			# disjunction.  Premise: !$kind (plain scalar), ARRAY, CODE, and blessed
+			# objects all return the arg as-is under $default.
+			# Conclusion: unblessed HASH / REF / exotic refs fall through to the
+			# no-default path below (see LIMITATIONS).
+			return { $default => $arg }
+				if !$kind || $kind eq $T_ARRAY || $kind eq $T_CODE
+				|| Scalar::Util::blessed($arg);
 		}
 
 		return unless defined $args->[0];
