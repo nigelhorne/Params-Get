@@ -1,5 +1,9 @@
 Revision history for Params-Get
 
+0.17
+	[ Tests ]
+	Improved usage of Test::Needs
+
 0.16	Fri Aug  7 09:51:33 AM EDT 2026
 	[ Bug fixes ]
 	- Don't rely on PVS (GitHub#5)
