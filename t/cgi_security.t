@@ -26,7 +26,7 @@ use FindBin qw($Bin);
 use lib "$Bin/lib";
 
 use Test::Most;
-use Test::Returns;
+use Test::Needs;
 use Test::Memory::Cycle;
 use Readonly;
 use Scalar::Util qw(tainted);
@@ -80,6 +80,9 @@ Readonly::Scalar my $LARGE_PAIR_CNT => 1_000;
 # =========================================================================
 
 subtest 'command injection: pipe metacharacter passes through as literal' => sub {
+	test_needs 'Test::Returns';
+	Test::Returns->import();
+
 	local %ENV = (%ENV,
 		QUERY_STRING   => 'cmd=' . $CMD_PIPE,
 		REQUEST_METHOD => 'GET',
