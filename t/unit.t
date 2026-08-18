@@ -18,7 +18,7 @@ use strict;
 use warnings;
 
 use Test::Most;
-use Test::Needs qw(Test::Returns Test::Memory::Cycle);
+use Test::Needs qw(Test::Memory::Cycle);
 use Test::Mockingbird 0.08;
 use Test::Memory::Cycle;
 use FindBin qw($Bin);

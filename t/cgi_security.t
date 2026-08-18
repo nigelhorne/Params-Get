@@ -477,6 +477,9 @@ subtest 'resource exhaustion: 64 KiB key name handled without error' => sub {
 };
 
 subtest 'resource exhaustion: 1000 key-value pairs normalised without error' => sub {
+	test_needs 'Test::Returns';
+	Test::Returns->import();
+
 	my @pairs = map { ("key_$_" => "val_$_") } 1 .. $LARGE_PAIR_CNT;
 
 	local %ENV = (%ENV, REQUEST_METHOD => 'GET');
