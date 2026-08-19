@@ -31,6 +31,13 @@ Revision history for Params-Get
 	    injection, path traversal, XSS, CRLF header injection, SQL injection
 	    passthrough, STDIN isolation, duplicate-key attack vector, hostile $default
 	    values, resource exhaustion, global-state integrity, and taint propagation
+	- Add t/data-flow.t: 45-subtest DU-chain coverage (10 sections): $default
+	    lifecycle and caller-alias isolation, $default_ref cache correctness,
+	    $args dual-definition-site equivalence, $from_arrayref conditional flag,
+	    $num_args dispatch correctness, $arg/$kind dispatch integrity, $val
+	    defensive-copy invariant (caller not mutated via REF-unwrap), %rc
+	    positional-names assembly (fill, discard, undef slots), return-value
+	    identity (fast path vs. fresh hashref), and global-state isolation
 
 0.15	Tue Jun 30 10:17:42 EDT 2026
 	[ Bug fixes ]

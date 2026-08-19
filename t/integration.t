@@ -27,7 +27,7 @@ use Test::Needs qw(
 );
 use Params::Validate::Strict qw(validate_strict);
 use Test::Mockingbird 0.08;
-use Test::Returns;
+use Test::Needs;
 use FindBin qw($Bin);
 use lib "$Bin/lib";
 use Readonly;
