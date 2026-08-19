@@ -21,6 +21,7 @@ t/get_params.t
 t/integration.t
 t/lib/TestHelper.pm
 t/locales.t
+t/path.t
 t/pod-cm.t
 t/pod-coverage.t
 t/pod-synopsis.t
