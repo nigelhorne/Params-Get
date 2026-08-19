@@ -25,11 +25,11 @@ Params::Get - Normalise subroutine arguments regardless of calling convention
 
 =head1 VERSION
 
-Version 0.16
+Version 0.17
 
 =cut
 
-our $VERSION = '0.16';
+our $VERSION = '0.17';
 
 # Reference-type sentinels.  Collected here so a typo is a compile-time
 # error via Readonly and grep/ack finds every usage in one search.

@@ -1,8 +1,8 @@
 Revision history for Params-Get
 
-0.17
+0.17	Tue Aug 18 09:38:35 PM EDT 2026
 	[ Tests ]
-	Improved usage of Test::Needs
+	- Improved usage of Test::Needs
 	- Add t/transaction.t: 34-subtest transaction-flow suite (9 sections): multi-step
 	    argument-normalisation lifecycle, three-package dispatch pipeline, mid-pipeline
 	    croak and recovery (state frozen at croak point; retry succeeds; $@ clean),
