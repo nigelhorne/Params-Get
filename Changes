@@ -3,6 +3,20 @@ Revision history for Params-Get
 0.17
 	[ Tests ]
 	Improved usage of Test::Needs
+	- Add t/transaction.t: 34-subtest transaction-flow suite (9 sections): multi-step
+	    argument-normalisation lifecycle, three-package dispatch pipeline, mid-pipeline
+	    croak and recovery (state frozen at croak point; retry succeeds; $@ clean),
+	    idempotency (N-repeated normalisations -> consistent isolated results), caller-
+	    variable isolation ($val defensive-copy invariant), OO method chain, state
+	    machine lifecycle (idle->receiving->processing->complete each using a different
+	    calling convention), exception state integrity ($@/$!/$_/$,/$;), and concurrent-
+	    like independent invocations (closures sharing source args; no cross-contamination)
+	- Add t/path.t: 43-subtest CFG path-coverage suite (11 sections): one test per
+	    uniquely identifiable execution path (P01-P31); exercises all four shorthand
+	    AND-chain sub-conditions (E1-E4), all OO sub-dispatch branches (Q/R/S), the
+	    L395 from_arrayref wrap path, the flat even/odd terminal split (U=T/F), and
+	    confirms the ARRAY arm of the De Morgan disjunction is reachable only via the
+	    \@_ detect path (D=T); zero unreachable lines confirmed
 
 0.16	Fri Aug  7 09:51:33 AM EDT 2026
 	[ Bug fixes ]
