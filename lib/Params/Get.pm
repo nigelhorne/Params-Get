@@ -8,7 +8,7 @@ package Params::Get;
 
 use strict;
 use warnings;
-use autodie qw(:all);
+use autodie qw(:default);
 
 use parent 'Exporter';
 
